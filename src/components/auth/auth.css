@@ -1,0 +1,17 @@
+.fondo-register{
+    background-image: url(fondo2.jpg);
+    background-size: cover;
+    /* height: 100vh; */
+
+}
+
+.fondo-transparente{
+    background-color: rgba(170, 128, 128, 0.5);
+    background-size: cover;
+
+}
+
+.form-fondo{
+    background-color: rgba(8, 8, 8, 0.356) !important;
+    color: white !important;
+}

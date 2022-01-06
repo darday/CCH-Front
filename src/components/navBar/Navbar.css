@@ -1,0 +1,11 @@
+.navbar{
+    background-color: hsla(90, 17%, 93%, 0.39) !important;
+}
+
+li{
+    font-family: 'Cabin' !important;
+}
+
+.navbar-user{
+    background-color: rgba(0, 0, 0, 0.329) !important;
+}
