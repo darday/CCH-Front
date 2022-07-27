@@ -5810,7 +5810,7 @@ a.close.disabled {
   padding: 0.5rem 0.75rem;
   color: #212529;
 }
-
+/* 
 .carousel {
   position: relative;
 }
@@ -5988,7 +5988,7 @@ a.close.disabled {
   padding-bottom: 20px;
   color: #fff;
   text-align: center;
-}
+} */
 
 @-webkit-keyframes spinner-border {
   to {

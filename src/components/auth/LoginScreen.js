@@ -48,7 +48,7 @@ export const LoginScreen = () => {
     const postPetition = async (e)=>{
         e.preventDefault();
         console.log(email);
-        dispatch(startLogin(email,password,isLogged));
+        // dispatch(startLogin(email,password,isLogged));
     }
 
     
@@ -91,10 +91,10 @@ export const LoginScreen = () => {
                                     </div>
                                 
                                     <div className="text-center" style={{paddingTop:'2vh'}}>
-                                        <button type="submit" className="btn  btn btn-success "  style={{margin:"5px", width:"180px"}} disabled={loading.loading} > <b>Iniciar Sesión</b></button>
-                                        {/* <Link to="/">
+                                        <button type="submit" className="btn  btn btn-success "  style={{margin:"5px", width:"180px"}} > <b>Iniciar Sesión</b></button>
+                                        <Link to="/">
                                             <button type="" className="btn  btn btn-dark "  style={{margin:"5px", width:"180px"}}  ><b>Cancelar </b></button>
-                                        </Link>                                 */}
+                                        </Link>                                
                                     </div>                               
                                     
                                 </form> 

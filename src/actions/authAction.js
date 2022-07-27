@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 import Cookies from "universal-cookie/es6";
 import { ApiUrl } from "../services/ApiRest";
 import { types } from "../types/types";
@@ -13,8 +12,6 @@ const urlRegister = ApiUrl+'register';
 const headers={
     Accept:'application/json'
 }
-
-
 
 export const startLogin = (email,password,isLogged)=>{
     return (dispatch) =>{
