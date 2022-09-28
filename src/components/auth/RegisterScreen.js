@@ -10,36 +10,29 @@ import { NavBarScreen } from '../navBar/NavBarScreen';
 import { FooterScreen } from '../footer/FooterScreen';
 import { useDispatch } from 'react-redux';
 import { startRegister } from '../../actions/authAction';
+import { useForm } from '../../hooks/useForm';
+import { createUser } from '../../store/auth/thunks';
 
 export const RegisterScreen = () => {
 
     const dispatch = useDispatch();
 
-    const [formState, setformState] = useState({
+    const { name,last_name,cellphone,email,password,password_confirm,onInputChange,formState } = useForm({
         name:'dario',
         last_name:'janeta',
         email:'darday1981@gmail.com',
         cellphone:'0961119670',
         password:'123456789',
         password_confirm:'123456789'
-    });
-
-
-     const {name,last_name,email,cellphone,password,password_confirm} = formState;
-
-    const handleChange  = (e)=>{
-        setformState({
-            ...formState,
-            [e.target.name]:e.target.value
-        });
-    }
+    })
 
     const postPetition = async (e)=>{
         e.preventDefault();
-        console.log(password);
+        //console.log(formState);
         if(password === password_confirm){
             if(validarFormulario()){
-                dispatch(startRegister(name,last_name,email,cellphone,password,password_confirm))
+                // dispatch(startRegister(name,last_name,email,cellphone,password,password_confirm))
+                dispatch(createUser(formState));
             }
         }
         else{
@@ -61,6 +54,7 @@ export const RegisterScreen = () => {
         }
         return true;
     }
+    
     return (
     <>
     <NavBarScreen/>
@@ -77,32 +71,32 @@ export const RegisterScreen = () => {
                                 <div className='row' >
                                     <div className="col-12 col-sm-6  " style={{paddingTop:'2vh'}}>
                                         <label  className="form-label"><b>Nombres:</b></label>
-                                        <input onChange={handleChange} type="text" name='name' value={name} className="form-control"  aria-describedby="textHelp" placeholder='Ej: Darío Javier' required></input>
+                                        <input onChange={onInputChange} type="text" name='name' value={name} className="form-control"  aria-describedby="textHelp" placeholder='Ej: Darío Javier' required></input>
                                     </div>
                                     <div className="col-12 col-sm-6" style={{paddingTop:'2vh'}}>
                                         <label  className="form-label"><b>Apellidos:</b></label>
-                                        <input onChange={handleChange} type="text" name='last_name' value={last_name} className="form-control" placeholder='Ej: Janeta Paca'  required></input>
+                                        <input onChange={onInputChange} type="text" name='last_name' value={last_name} className="form-control" placeholder='Ej: Janeta Paca'  required></input>
                                     </div>                                         
 
                                 </div>
                                 <div className='row'>
                                     <div className="col-12 col-sm-6" style={{paddingTop:'2vh'}}>
                                         <label  className="form-label"><b>Correo</b></label>
-                                        <input onChange={handleChange} type="email" name='email' value={email} className="form-control" placeholder='Ej: campingchimborazo@gmail.com' aria-describedby="textHelp" required></input>
+                                        <input onChange={onInputChange} type="email" name='email' value={email} className="form-control" placeholder='Ej: campingchimborazo@gmail.com' aria-describedby="textHelp" required></input>
                                     </div>
                                     <div className="col-12 col-sm-6" style={{paddingTop:'2vh'}}>
                                         <label  className="form-label"><b>Teléfono Celular</b></label>
-                                        <input onChange={handleChange} type="text" name='cellphone' value={cellphone} className="form-control" placeholder='Ej: 0961119670' placeholder='Ej: 0961119670' required></input>
+                                        <input onChange={onInputChange} type="text" name='cellphone' value={cellphone} className="form-control" placeholder='Ej: 0961119670' placeholder='Ej: 0961119670' required></input>
                                     </div>
                                 </div>
                                 <div className='row'>
                                     <div className="col-12 col-sm-6" style={{paddingTop:'2vh'}}>
                                         <label  className="form-label"><b>Contraseña</b></label>
-                                        <input onChange={handleChange} type="password" name='password' value={password} className="form-control"  aria-describedby="textHelp" placeholder='********' required></input>
+                                        <input onChange={onInputChange} type="password" name='password' value={password} className="form-control"  aria-describedby="textHelp" placeholder='********' required></input>
                                     </div>
                                     <div className="col-12 col-sm-6" style={{paddingTop:'2vh'}}>
                                         <label  className="form-label"><b>Confirmar Contraseña</b></label>
-                                        <input onChange={handleChange} type="password" name='password_confirm' value={password_confirm} className="form-control" placeholder='********' required></input>
+                                        <input onChange={onInputChange} type="password" name='password_confirm' value={password_confirm} className="form-control" placeholder='********' required></input>
                                     </div>
                                 </div>
                                 <div className="text-center" style={{paddingTop:'2vh'}}>

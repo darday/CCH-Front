@@ -1,15 +1,29 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import Cookies from 'universal-cookie/es6';
 import { startLogout } from '../../actions/authAction';
+import { logoutSesion } from '../../store/auth/thunks';
+import { LoginScreen } from '../auth/LoginScreen';
 import './Navbar.css';
+
+const cookies = new Cookies();
+
 
 export const NavBarUserScreen = () => {
 
+    const token = cookies.get('token');
+
+    const {accessToken} = useSelector(state=>state.auth);
 
     const dispatch = useDispatch();
 
     const handleLogout =()=>{
-        dispatch(startLogout());
+        // dispatch(startLogout(accessToken));
+        dispatch(logoutSesion(token));
+
+        return (
+            <LoginScreen/>
+        )
         
     }
 

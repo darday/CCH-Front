@@ -19,34 +19,61 @@ import { HomeScreen } from '../components/user/HomeScreen';
 import { AdminRoute } from './AdminRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { UserRouteScreen } from './UserRouteScreen';
+import { MonthlyTourScreen } from '../components/initialsPages/MonthlyTourScreen';
+import { CheckingAuthentication } from '../components/ui/CheckingAuthentication';
+import { AdminHomeScreen } from '../components/admin/AdminHomeScreen';
+import { AddMonthlyTour } from '../components/admin/tours/AddMonthlyTour';
+import { CampingTour, CampingTourScreen } from '../components/initialsPages/CampingTourScreen';
+import { FullDaysScreen } from '../components/initialsPages/FullDaysScreen';
+import { AllToursScreen } from '../components/initialsPages/AllToursScreen';
+import { RentEquipmentScreen } from '../components/initialsPages/RentEquipmentScreen';
+import { SellEquipmentScreen } from '../components/initialsPages/SellEquipmentScreen';
+import { AboutUsScreen } from '../components/initialsPages/AboutUsScreen';
+import { AddToCatalogue } from '../components/admin/catalogue/AddToCatalogue';
 
 
 export const CampingRoute = () => {
     
     const cookies = new Cookies();
-    const islogged = cookies.get('log');
     const id = cookies.get('uid');
     const token = cookies.get('token');
+
+
     const dispatch = useDispatch();
     
     
-    if(islogged){
-        dispatch(login(id,token));
-    }
-    
-   
-    
+    const {status} = useSelector(state=>state.auth);
+
 
     return (
         <>
             {/* <div style={{margin:'0',minHeight:'100vh',display:'grid', gridTemplateRows:'1fr '  }}> */}
             <div >
-                <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<IndexScreen />}></Route>
-                        <Route path="/registrar" element={<RegisterScreen />}></Route>
+                        <Route path="administrativo" element={<AdminRoute/>}>
+                            <Route path="home" element={<AdminHomeScreen/>} /> 
+                            
+                            <Route path="addTour" element={<AddMonthlyTour/>} /> 
+                            
+                            <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
+
+
+                        </Route>
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
-                        <Route path="/administrativo/*" element={<AdminRoute/>}></Route>
+                        <Route path="/registrar" element={<RegisterScreen />}></Route>
+                        <Route path="/" element={<IndexScreen />}></Route>
+
+                        <Route path="/tour-mensual" element={<MonthlyTourScreen />}></Route>
+                        <Route path="/tour-camping" element={<CampingTourScreen/>}></Route>
+                        <Route path="/tour-fullday" element={<FullDaysScreen />}></Route>
+                        <Route path="/tour-disponibles" element={<AllToursScreen />}></Route>
+
+
+                        <Route path="/equipo-alquiler" element={<RentEquipmentScreen />}></Route>
+                        <Route path="/equipo-venta" element={<SellEquipmentScreen />}></Route>
+                        
+                        <Route path="/nosotros" element={<AboutUsScreen />}></Route>
+
                         <Route path="user-home" element={<UserRouteScreen/>}></Route>
                         {/* <Route path="/*" element={
                             <PrivateRoute>
@@ -55,7 +82,6 @@ export const CampingRoute = () => {
                         }/> */}
                         {/* <Route path="/home" element={<HomeScreen/>}></Route> */}
                     </Routes>
-                </BrowserRouter>
                 {/* <FooterScreen/> */}
             </div>
         </>

@@ -1,8 +1,7 @@
+/* banner */
 
-/* Carousel */
-
-.carousel-item {
-    height: 100vh;
+.banner {
+    height: 47vh;
     min-height: 350px;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
@@ -11,7 +10,29 @@
     background-size: cover;
     /* background-color: red; */
 }
+/* Carousel */
+
+.carousel-item {
+    height: 80vh;
+    min-height: 250px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background-color: red; */
+}
 /* FinCarousel */
+
+.imagen-fondo-index{
+    height: auto;
+    /* min-height: 225px; */
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
 /***********Texto sobre Imagen***************/
 .cont_img{
@@ -143,7 +164,7 @@ p.tit-sob-img2 {
     }
     .text_cent_img_dividida{
         position: absolute;
-        top: 30%;
+        top: 25%;
         left: 50%;
         right: 0%;
         /* transform: translate(-40%, -40%); */

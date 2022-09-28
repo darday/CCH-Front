@@ -10,12 +10,23 @@ export const AdminSidebar = () => {
                             <div className="sb-sidenav-menu-heading">Core</div>
                             <Link className="nav-link" to="home">
                                 <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
-                                HOME
+                                INICIO
                             </Link>
                             <div className="sb-sidenav-menu-heading">Interface</div>
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#catalogo" aria-expanded="false" aria-controls="catalogo">
+                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                Catálogo de Tours
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            <div className="collapse" id="catalogo" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav className="sb-sidenav-menu-nested nav">
+                                    <Link className="nav-link" to="add-to-catalogue">Agregar a catálogo</Link>
+                                    <a className="nav-link" href="layout-sidenav-light.html">Ver catálogo</a>
+                                </nav>
+                            </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                                Tours
+                                Tours mensuales
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
                             <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">

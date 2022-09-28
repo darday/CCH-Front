@@ -1,5 +1,5 @@
 import { Formik, useFormik } from 'formik'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +11,8 @@ import { FooterScreen } from '../footer/FooterScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogin } from '../../actions/authAction';
 import Cookies from 'universal-cookie/es6';
+import { useForm } from '../../hooks/useForm';
+import { chekingAutentication } from '../../store/auth/thunks';
 
 
 const cookies = new Cookies();
@@ -20,37 +22,37 @@ const islogged = cookies.get('log');
 
 export const LoginScreen = () => {
 
-  
+    if(cookies.get('token') && cookies.get('uid') && cookies.get('rol')){
+        console.log("Estoy en administrativo logeado!!!")
+        window.location.href="/administrativo";
 
+     }else{
+         console.log('no está logeado')
+         //setisLiggedIn(false);
+        // window.location.href="/iniciar-sesion";
+
+
+     }
+    
+    const {status,errorMessage} = useSelector(state=>state.auth);
+
+    const isAuthenticate = useMemo(()=>status === 'checking',[status]);
+
+  
+    const { email,password,onInputChange } = useForm({
+        email:'darday1981@gmail.com',
+        password:'123456789'
+    })
     const dispatch = useDispatch();
     const loading = useSelector( state => state.ui );
 
  
-    
+    const onSubmit = (event)=>{
+        event.preventDefault();
+        dispatch(chekingAutentication(email,password));
+        // console.log({email,password});
 
-
-    const [formState, setformState] = useState({
-        
-        email:'darday1980@gmail.com',      
-        password:'123456789',
-        isLogged:false
-        
-    });
-    const {email,password,isLogged} = formState;
-
-    const handleChange  = (e)=>{
-        setformState({
-            ...formState,
-            [e.target.name]:e.target.value
-        });
     }
-
-    const postPetition = async (e)=>{
-        e.preventDefault();
-        console.log(email);
-        // dispatch(startLogin(email,password,isLogged));
-    }
-
     
     if(islogged){
         if(rol === "admin"){
@@ -58,8 +60,6 @@ export const LoginScreen = () => {
         }       
     }else{
         
-    
-    
         return (
         <>
         <NavBarScreen/>
@@ -72,12 +72,12 @@ export const LoginScreen = () => {
                                 <h3 className='camping-letters text-center'>Comencemos!  </h3>
                             </div>
                             <div className="card-body">
-                                <form onSubmit={postPetition} >
+                                <form onSubmit={onSubmit} >
                                     
                                     <div className='row'>
                                         <div className="col-12 col-sm-12" style={{paddingTop:'2vh'}}>
                                             <label  className="form-label"><b>Correo</b></label>
-                                            <input onChange={handleChange} type="email" name='email' value={email}  className="form-control" placeholder='Ej: campingchimborazo@gmail.com' aria-describedby="textHelp" required></input>
+                                            <input  type="email" onChange={onInputChange} name='email' value={email}  className="form-control" placeholder='Ej: campingchimborazo@gmail.com' aria-describedby="textHelp" required></input>
                                         </div>
                                         
                                     </div>
@@ -85,13 +85,25 @@ export const LoginScreen = () => {
                                     <div className='row'>
                                         <div className="col-12 col-sm-12" style={{paddingTop:'2vh'}}>
                                             <label  className="form-label"><b>Contraseña</b></label>
-                                            <input onChange={handleChange} type="password" name='password' value={password} className="form-control"  aria-describedby="textHelp" placeholder='********' required></input>
+                                            <input  type="password" onChange={onInputChange}  name='password' value={password} className="form-control"  aria-describedby="textHelp" placeholder='********' required></input>
                                         </div>
 
                                     </div>
+                                    <div>
+                                    </div>
                                 
                                     <div className="text-center" style={{paddingTop:'2vh'}}>
-                                        <button type="submit" className="btn  btn btn-success "  style={{margin:"5px", width:"180px"}} > <b>Iniciar Sesión</b></button>
+                                        {
+                                            (errorMessage)
+                                            ?
+                                            <div className="alert alert-danger" role="alert">
+                                                {errorMessage}
+                                            </div>
+                                            :
+                                            <></>
+                                        }
+                                        
+                                        <button type="submit" disabled={isAuthenticate} className="btn  btn btn-success "  style={{margin:"5px", width:"180px"}} > <b>Iniciar Sesión</b></button>
                                         <Link to="/">
                                             <button type="" className="btn  btn btn-dark "  style={{margin:"5px", width:"180px"}}  ><b>Cancelar </b></button>
                                         </Link>                                
