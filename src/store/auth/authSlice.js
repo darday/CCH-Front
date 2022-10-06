@@ -10,16 +10,19 @@ export const authSlice = createSlice({
     email:null,
     displayName:null,
     img:null,
+    rol:null,
     errorMessage:null,
   },
   reducers: {
     login:(state,{payload})=>{
+      // console.log(payload);
       state.status='authenticated';//not-authenticated , authenticated
-      state.accessToken=payload.accessToken;
-      state.uid=payload.user.id;
-      state.email=payload.user.email;
-      state.displayName=payload.user.name;
-      state.img=null;
+      // state.accessToken=payload.accessToken;
+      state.uid=payload.id;
+      state.email=payload.email;
+      state.displayName=payload.name +' '+ payload.last_name;
+      state.img=payload.img;
+      state.rol=payload.rol;
       state.errorMessage=null;
     },
     logout:(state,payload)=>{

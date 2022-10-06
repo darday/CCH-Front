@@ -9,7 +9,6 @@ import './auth.css'
 import { NavBarScreen } from '../navBar/NavBarScreen';
 import { FooterScreen } from '../footer/FooterScreen';
 import { useDispatch } from 'react-redux';
-import { startRegister } from '../../actions/authAction';
 import { useForm } from '../../hooks/useForm';
 import { createUser } from '../../store/auth/thunks';
 

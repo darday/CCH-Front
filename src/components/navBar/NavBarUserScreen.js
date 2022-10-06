@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Cookies from 'universal-cookie/es6';
-import { startLogout } from '../../actions/authAction';
 import { logoutSesion } from '../../store/auth/thunks';
 import { LoginScreen } from '../auth/LoginScreen';
 import './Navbar.css';

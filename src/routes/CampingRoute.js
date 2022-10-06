@@ -11,7 +11,6 @@ import {
 import { IndexScreen } from '../components/initialsPages/IndexScreen';
 import { FooterScreen } from '../components/footer/FooterScreen';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../actions/authAction';
 import Cookies from 'universal-cookie/es6';
 import axios from 'axios';
 import { ApiUrl } from '../services/ApiRest';
@@ -30,6 +29,7 @@ import { RentEquipmentScreen } from '../components/initialsPages/RentEquipmentSc
 import { SellEquipmentScreen } from '../components/initialsPages/SellEquipmentScreen';
 import { AboutUsScreen } from '../components/initialsPages/AboutUsScreen';
 import { AddToCatalogue } from '../components/admin/catalogue/AddToCatalogue';
+import { CatalogueList } from '../components/admin/catalogue/CatalogueList';
 
 
 export const CampingRoute = () => {
@@ -56,6 +56,7 @@ export const CampingRoute = () => {
                             <Route path="addTour" element={<AddMonthlyTour/>} /> 
                             
                             <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
+                            <Route path="catalogue-list" element={<CatalogueList/>} /> 
 
 
                         </Route>

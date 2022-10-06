@@ -1,8 +1,9 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie/es6';
+import { ApiUrl } from '../../services/ApiRest';
 import {checkingCredentials, login,logout} from './authSlice';
 // import ApiUrl from '../../services/ApiRest'
-
+const url=ApiUrl;
 const cookies = new Cookies;
 
 export const chekingAutentication=(email,password)=>{
@@ -96,5 +97,21 @@ export const logoutSesion = (AccessToken)=>{
         .catch(error =>{
             console.log(error);
         })
+    }
+}
+
+export const loadUser = (id)=>{
+    // console.log("aa@"+id)
+    return async (dispatch)=>{
+
+        await axios.get(url+'user_info/'+id)
+        .then(response =>{
+            const result = response.data;
+            dispatch(login(result));
+
+        })
+        .catch(e=>{
+            console.log(e);
+        })        
     }
 }

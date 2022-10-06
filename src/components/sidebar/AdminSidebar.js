@@ -1,7 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 export const AdminSidebar = () => {
+
+    const {displayName} = useSelector( state => state.auth);
+    console.log(displayName);
+
     return (
         
                 <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -21,7 +26,7 @@ export const AdminSidebar = () => {
                             <div className="collapse" id="catalogo" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav">
                                     <Link className="nav-link" to="add-to-catalogue">Agregar a catálogo</Link>
-                                    <a className="nav-link" href="layout-sidenav-light.html">Ver catálogo</a>
+                                    <Link className="nav-link" to="catalogue-list">Ver catálogo</Link>
                                 </nav>
                             </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -100,8 +105,8 @@ export const AdminSidebar = () => {
                         </div>
                     </div>
                     <div className="sb-sidenav-footer">
-                        <div className="small">Logged in as:</div>
-                        Start Bootstrap
+                        <div className="small">Usuario:</div>
+                        {displayName}
                     </div>
                 </nav>
          

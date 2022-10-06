@@ -9,7 +9,6 @@ import './auth.css'
 import { NavBarScreen } from '../navBar/NavBarScreen';
 import { FooterScreen } from '../footer/FooterScreen';
 import { useDispatch, useSelector } from 'react-redux';
-import { startLogin } from '../../actions/authAction';
 import Cookies from 'universal-cookie/es6';
 import { useForm } from '../../hooks/useForm';
 import { chekingAutentication } from '../../store/auth/thunks';
@@ -28,10 +27,7 @@ export const LoginScreen = () => {
 
      }else{
          console.log('no está logeado')
-         //setisLiggedIn(false);
-        // window.location.href="/iniciar-sesion";
-
-
+       
      }
     
     const {status,errorMessage} = useSelector(state=>state.auth);

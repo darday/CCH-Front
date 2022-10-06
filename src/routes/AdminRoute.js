@@ -5,24 +5,35 @@ import { NavBarUserScreen } from '../components/navBar/NavBarUserScreen'
 import { AdminSidebar } from '../components/sidebar/AdminSidebar'
 import Cookies from 'universal-cookie/es6';
 import { FooterDashboardScreen } from '../components/footer/FooterDashboardScreen'
+import axios from 'axios'
+import { ApiUrl } from '../services/ApiRest'
+import { loadUser } from '../store/auth/thunks'
+import { useDispatch } from 'react-redux'
+import { startLoadingTourCatalogue } from '../store/tour_catalogue/thunks'
 // import { AddTour } from '../components/admin/tours/AddTour'
 
 
 const cookies = new Cookies();
 
 export const AdminRoute = () => {
+
+    const dispatch = useDispatch();
+
     
     if(cookies.get('token') && cookies.get('uid') && cookies.get('rol')){
-        console.log("Estoy en administrativo logeado!!!")
-        // window.location.href="/administrativo";
-
-     }else{
-         console.log('no está logeado')
-         //setisLiggedIn(false);
+        dispatch(loadUser(cookies.get('uid')));
+        dispatch(startLoadingTourCatalogue());
+        // console.log("Estoy en administrativo logeado!!!")
+        
+        
+    }else{
+        console.log('no está logeado')
+        //setisLiggedIn(false);
         window.location.href="/iniciar-sesion";
+    }
 
+    
 
-     }
     return (
         <>         
         <NavBarUserScreen/>
