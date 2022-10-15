@@ -30,6 +30,7 @@ import { SellEquipmentScreen } from '../components/initialsPages/SellEquipmentSc
 import { AboutUsScreen } from '../components/initialsPages/AboutUsScreen';
 import { AddToCatalogue } from '../components/admin/catalogue/AddToCatalogue';
 import { CatalogueList } from '../components/admin/catalogue/CatalogueList';
+import { AddToEquipmentSell } from '../components/admin/equipment/AddToEquipmentSell';
 
 
 export const CampingRoute = () => {
@@ -53,11 +54,12 @@ export const CampingRoute = () => {
                         <Route path="administrativo" element={<AdminRoute/>}>
                             <Route path="home" element={<AdminHomeScreen/>} /> 
                             
-                            <Route path="addTour" element={<AddMonthlyTour/>} /> 
+                            <Route path="addTour" element={<AddMonthlyTour/>} />   
                             
                             <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
                             <Route path="catalogue-list" element={<CatalogueList/>} /> 
 
+                            <Route path="add-equipment-sell" element={<AddToEquipmentSell/>} /> 
 
                         </Route>
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
