@@ -229,7 +229,7 @@ export const AddToCatalogue = () => {
                                     </div>
                                 </div>
                                
-                                <button type="submit" className="btn btn-success">Guardar Tour</button>
+                                <button type="submit" className="btn btn-success">Guardar Tour</button> &nbsp;
                                 <button onClick={onClickAddTour} type="button" className="btn btn-danger">Cancelar</button>
                             </form>
 

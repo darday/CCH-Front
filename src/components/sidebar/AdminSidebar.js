@@ -40,15 +40,15 @@ export const AdminSidebar = () => {
                                     <a className="nav-link" href="layout-sidenav-light.html">Listar Tours</a>
                                 </nav>
                             </div>
-                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#ventas" aria-expanded="false" aria-controls="ventas">
                                 <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
                                 Ventas
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
-                            <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div className="collapse" id="ventas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav">
-                                    <a className="nav-link" href="layout-static.html">Agregar Tour</a>
-                                    <a className="nav-link" href="layout-sidenav-light.html">Listar Tours</a>
+                                    <Link className="nav-link" to="add-equipment-sell">Agregar Producto</Link>
+                                    <a className="nav-link" href="layout-sidenav-light.html">Listar Productos</a>
                                 </nav>
                             </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
