@@ -22,7 +22,6 @@ export const CatalogueList = () => {
     })
   }
  
-
   useEffect(() => {  
     getData()
   }, [])
@@ -42,8 +41,8 @@ export const CatalogueList = () => {
                   <tr>
                     <th>#</th>
                     <th>Destino</th>
-                    <th>Estado</th>
                     <th>Tipo</th>
+                    <th>Estado</th>
                     <th>Dificultad</th>
                     <th>Costo 1</th>
                     <th>Costo 2</th>
@@ -58,12 +57,12 @@ export const CatalogueList = () => {
                       <td>{index+1}</td>
                       <td>{tour.tour_destiny}</td>
                       <td>{tour.type}</td>
-                      <td>{tour.dificulty}</td>
+                      <td>{(tour.state == 1)?'Habilitado':'Deshanilitado'}</td>
+                      <td>{tour.dificulty }</td>
                       <td>{tour.cost_1}</td>
                       <td>{tour.cost_2}</td>
                       <td>{tour.cost_3}</td>
                       <td>{tour.cost_4}</td>
-                      <td>{((tour.state))==1?'Activado':' Desactivado' }</td>
                       <td>
                         <button className='btn btn-outline-primary'>Editar</button>
                         <button className='btn btn-outline-danger'>Eliminar</button>

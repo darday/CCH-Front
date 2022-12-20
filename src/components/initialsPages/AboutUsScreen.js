@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useGetDate } from '../../hooks/useGetDate'
+import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
 
 export const AboutUsScreen = () => {
@@ -82,6 +83,65 @@ export const AboutUsScreen = () => {
                     </div>
                 </div>
         </div>
+
+        <div className="container ">
+                <br></br>
+                <h1 className="camping-letters text-center">EQUIPO CAMPING CHIMBORAZO</h1>
+                <hr></hr>
+                <div className='row'>
+                    <div className='col-12 col-sm-12 col-md-6 text-center'>
+                        <img src={`./assets/images/nosotros/luis.jpg`}  alt="" width="70%" height="auto"/>
+
+                    </div>
+                    <div className='col-12 col-sm-12 col-md-6'>
+                        <h3 className="card-title camping-letters"  >Luis Yumiseba  (Luchito)</h3>
+                        <p>Aqui va descripcion</p>
+
+                    </div>
+
+                </div>
+                <br></br>
+                <br></br>
+
+                <div className='row'>
+                    <div className='col-12 col-sm-12 col-md-6 text-center'>
+                        <img src={`./assets/images/nosotros/jhon.jpg`}  alt="" width="70%" height="auto"/>
+
+                    </div>
+                    <div className='col-12 col-sm-12 col-md-6'>
+                        <h3 className="card-title camping-letters"  >Jhon Santos  (Jhonson)</h3>
+                        <p>Aqui va descripcion</p>
+
+                    </div>
+
+                </div>
+                <br></br>
+                <br></br>
+                <div className='row'>
+                    <div className='col-12 col-sm-12 col-md-6 text-center'>
+                        <img src={`./assets/images/nosotros/dario.jpg`}  alt="" width="70%" height="auto"/>
+
+                    </div>
+                    <div className='col-12 col-sm-12 col-md-6'>
+                        <h3 className="card-title camping-letters"  >Darío Janeta  (Darius)</h3>
+                        <p style={{textAlign:'justify'}}>Soy una persona que le gusta compartir con la naturaleza pues en ella he encontrado la paz y tranquilidad que tanto buscaba, me guta compartir este sentir con muchas personas
+                            que para que disfruten de la bondad y pureza que solo se puede apreciar en las montañas.                            
+                        </p>
+                        <p style={{textAlign:'justify'}}>
+                            Comencé estas aventuras a los 18 años actualmente tengo 28 años y en estos 10 años de viajes he logrado tener muchas experiencias las cuales me han ayudado a mejorar en cada ruta que hago
+                            
+                        </p>
+                        <p>
+                            Redes Sociales:                            
+                        </p>
+
+                    </div>
+
+                </div>
+        </div>
+        <br></br>
+        <br></br>
+    <FooterScreen/>
 
         
 
