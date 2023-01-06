@@ -3,17 +3,20 @@ import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 export const AddToEquipmentSell = () => {
-    const [FormData, setFormData] = useState({
+    const [FormData, setFormData] = useState({  //Es un hook = useState
         name: '',
         description: '',
         cost: '',
         state: '',
-        discount: '0',
+        discount: 0,
         discount_description: '',
         contact_phone: '',
         messagge_for_contact: '',
     });
     
+    const onInputChange=()=>{
+        console.log('DAVID PACA');
+    }
      useEffect(() => {
         setFormData({
             name: 'Carpa',
@@ -42,7 +45,7 @@ export const AddToEquipmentSell = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Nombre del Equipo</label>
-                                            <input type="text" name='name' className="form-control"  placeholder='Ej: Carpa'  required></input>
+                                            <input type="text" name='name' className="form-control"  placeholder='Ej: Carpa' value={FormData.name} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6'>
@@ -109,7 +112,20 @@ export const AddToEquipmentSell = () => {
                                             <label >Imagen del Equipo</label>
                                             <input name="img_1" className="form-control form-control-sm" id="formFileSm" type="file"  accept="image/png, image/gif, image/jpeg" required></input>
                                         </div>
-                                    </div>                                      
+                                    </div> 
+                                    <div className='col-12 col-sm-6'>
+                                        <div className="form-group">
+                                            <label >Tipo</label>
+                                            <select className="form-select" name="type" aria-label="Default select example" required>
+                                                <option value="" >Seleccione una opción</option>
+                                                <option value="1" >Sleeping</option>
+                                                <option value="2" >Carpa</option>
+                                                <option value="3" >Mochila</option>
+                                                <option value="4" >Ropa</option>
+                                                <option value="5" >Accesorios</option>
+                                            </select>                                                        
+                                        </div>
+                                    </div>                                     
                                 </div>    
                                 <button type="submit" className="btn btn-success"> Guardar Tour </button> &nbsp;
                                 <button type="button" className="btn btn-danger"> Cancelar </button>                         

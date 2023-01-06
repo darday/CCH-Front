@@ -48,7 +48,8 @@ export const AdminSidebar = () => {
                             <div className="collapse" id="ventas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav">
                                     <Link className="nav-link" to="add-equipment-sell">Agregar Producto</Link>
-                                    <a className="nav-link" href="layout-sidenav-light.html">Listar Productos</a>
+                                    <Link className="nav-link" to="list-equipment-sell">Listar Productos</Link>
+                                    
                                 </nav>
                             </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

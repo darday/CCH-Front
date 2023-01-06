@@ -32,6 +32,7 @@ import { AddToCatalogue } from '../components/admin/catalogue/AddToCatalogue';
 import { CatalogueList } from '../components/admin/catalogue/CatalogueList';
 import { GeneralTourScreen } from '../components/initialsPages/GeneralTourScreen';
 import { AddToEquipmentSell } from '../components/admin/equipment/AddToEquipmentSell';
+import { ListEquipmentSell } from '../components/admin/equipment/ListEquipmentSell';
 
 
 export const CampingRoute = () => {
@@ -60,7 +61,9 @@ export const CampingRoute = () => {
                             <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
                             <Route path="catalogue-list" element={<CatalogueList/>} /> 
 
-                            <Route path="add-equipment-sell" element={<AddToEquipmentSell/>} /> 
+                            
+                            <Route path="add-equipment-sell" element={<AddToEquipmentSell/>} />                             
+                            <Route path="list-equipment-sell" element={<ListEquipmentSell/>} /> 
 
                         </Route>
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
