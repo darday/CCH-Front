@@ -29,15 +29,16 @@ export const AdminSidebar = () => {
                                     <Link className="nav-link" to="catalogue-list">Ver catálogo</Link>
                                 </nav>
                             </div>
-                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#monthly" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
                                 Tours mensuales
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
-                            <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div className="collapse" id="monthly" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav">
                                     <Link className="nav-link" to="addTour">Agregar Tour</Link>
-                                    <a className="nav-link" href="layout-sidenav-light.html">Listar Tours</a>
+                                    <Link className="nav-link" to="monthly-tour-list">Listar Tours</Link>
+                                    {/* <a className="nav-link" href="layout-sidenav-light.html">Listar Tours</a> */}
                                 </nav>
                             </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#ventas" aria-expanded="false" aria-controls="ventas">
