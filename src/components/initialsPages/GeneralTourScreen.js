@@ -78,8 +78,12 @@ export const GeneralTourScreen = () => {
                             <br></br>
                             <br></br>
                             <div className='container text-center'>
-                                <a href='https://wa.link/3h7nxd' target="_blank">
-                                    <button type="button" className="btn btn-outline-success">COMPRAR RUTA</button>
+                                <a href='https://wa.link/3h7nxd' target="_blank" style={{padding:'5px'}}>
+                                    <button type="button" className="btn btn-success"> COMPRAR  RUTA </button >
+                                </a>
+
+                                <a href='https://wa.link/3h7nxd' target="_blank" style={{padding:'5px'}}>
+                                    <button type="button" className="btn btn-warning" >VOLVER A TOURS</button>
                                 </a>
                             </div>
 

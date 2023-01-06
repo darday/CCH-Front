@@ -5,10 +5,13 @@ export const useGetDate = () => {
     var month = date.getMonth();
     var months= ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
     var printMonth = months[month];
-    console.log(printMonth);
+    var printNextMonth = months[month+1];
+    // console.log(printMonth);
 
     return {
         printMonth,
+        printNextMonth,
         date
     }
 }
+
