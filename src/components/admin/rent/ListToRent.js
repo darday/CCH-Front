@@ -1,36 +1,6 @@
 import React from 'react'
-// import React, { useState } from 'react'
-// import { useEffect } from 'react';
 
-export const ListEquipmentSell = () => {
-
-    // const [listData, setListData] = useState({
-    //     name: '',
-    //     description: '',
-    //     cost: '',
-    //     state: '',
-    //     discount: 0,
-    //     discount_description: '',
-    //     contact_phone: '',
-    //     messagge_for_contact: '',
-    //     type: '',
-    // });
-
-    // useEffect(() => {
-    //   setListData({
-    //     escription: 'Es una carpa',
-    //     cost: '10.00',
-    //     state: '1',
-    //     discount: '15',
-    //     discount_description: 'Descripcion 1',
-    //     contact_phone: '123456789',
-    //     messagge_for_contact: 'Mensaje 1',
-    //     type: 'Carpa',
-    //     });
-    //   }, [])
-    
-
-    // console.log(listData);
+export const ListToRent = () => {
   return (
     <div>
       <div className='row'>

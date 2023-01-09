@@ -60,8 +60,8 @@ export const AdminSidebar = () => {
                             </a>
                             <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav">
-                                    <a className="nav-link" href="layout-static.html">Agregar Tour</a>
-                                    <a className="nav-link" href="layout-sidenav-light.html">Listar Tours</a>
+                                    <Link className="nav-link" to="add-to-rent">Agregar Producto</Link>
+                                    <Link className="nav-link" to="list-to-rent">Listar Producto</Link>
                                 </nav>
                             </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

@@ -1,10 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { ApiUrl } from '../../../services/ApiRest';
 
-export const AddToEquipmentSell = () => {
+export const AddToRent = () => {
     const [img, setimg] = useState()
     const [fData, setFormData] = useState({  //Es un hook = useState
         name: '',
@@ -39,9 +37,11 @@ export const AddToEquipmentSell = () => {
         });
     }, [])
 
-    const onSubmit = async(event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
-        
+         console.log(img);
+        console.log(fData);
+
         const form = new FormData();
         form.append("name", fData.name);
         form.append("description", fData.description);
@@ -53,31 +53,8 @@ export const AddToEquipmentSell = () => {
         form.append("messagge_for_contact", fData.messagge_for_contact); 
         form.append("type", fData.type); 
         form.append("img_1", img[0]);
-
-        await axios.post(ApiUrl+'equipment-add', form)
-        .then(resp=>{
-            const data=resp.data;
-            console.log(data);
-            toast.success("Tour Agregado exitosamente", {position: toast.POSITION.BOTTOM_RIGHT}); 
-
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-
-        setFormData({
-            name: '',
-            description: '',
-            cost: '',
-            state: '',
-            discount: '',
-            discount_description: '',
-            contact_phone: '',
-            messagge_for_contact: '',
-            type: '',
-        });
         
-        // console.log(Object.fromEntries(form));
+        console.log(Object.fromEntries(form));
 
     }
 
@@ -165,7 +142,7 @@ export const AddToEquipmentSell = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Imagen del Equipo</label>
-                                            <input name="img_1" className="form-control form-control-sm" id="formFileSm" type="file" accept="image/png, image/gif, image/jpeg" onChange={(e)=>updateImg(e.target.files)} required></input>
+                                            <input name="img_1" className="form-control form-control-sm" id="formFileSm" type="file" accept="image/png, image/gif, image/jpeg" onChange={(e)=>updateImg(e.target.files)} ></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6'>
@@ -173,11 +150,11 @@ export const AddToEquipmentSell = () => {
                                             <label >Tipo</label>
                                             <select className="form-select" name="type" aria-label="Default select example" value={fData.type} onChange={onInputChange}>
                                                 <option value="" >Seleccione una opción</option>
-                                                <option value="Sleeping" >Sleeping</option>
-                                                <option value="Carpa" >Carpa</option>
-                                                <option value="Mochila" >Mochila</option>
-                                                <option value="Ropa" >Ropa</option>
-                                                <option value="Accesorios" >Accesorios</option>
+                                                <option value="1" >Sleeping</option>
+                                                <option value="2" >Carpa</option>
+                                                <option value="3" >Mochila</option>
+                                                <option value="4" >Ropa</option>
+                                                <option value="5" >Accesorios</option>
                                             </select>
                                         </div>
                                     </div>
