@@ -6,14 +6,14 @@ import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen';
 
 
-export const GeneralTourScreen = () => {
+export const MonthlyTourSingleScreen = () => {
     const { tourId } = useParams();
     console.log(tourId)
 
     const [tour, settour] = useState([]);
 
     const getData = async () => {
-        await axios.get(ApiUrl + "show-catalogue-tour/" + tourId)
+        await axios.get(ApiUrl + "monthly-tour-show-id/" + tourId)
             .then(response => {
                 const data = response.data;
                 settour(data);
@@ -70,23 +70,31 @@ export const GeneralTourScreen = () => {
                             <h3 className='camping-letters'> {tour.tour_name}</h3>
                             <h1 className='camping-letters' style={{ textTransform: 'uppercase' }}> {tour.tour_destiny}</h1>
                             <p>{tour.description}</p>
+
                             <p><b>Incluye:</b> {tour.include}</p>
                             <p><b>Dificultad:</b> {tour.dificulty}</p>
                             <p><b>Tipo de Ruta:</b> {tour.type}</p>
-                            <p><b>Costo 1 Persona: </b>{tour.cost_1} <br></br>
-                                <b>Costo 2 Personas: </b>{tour.cost_2}<br></br>
-                                <b>Costo 3-4 Personas: </b>{tour.cost_3}<br></br>
-                                <b>Costo +4 Persona: </b>{tour.cost_4} <br></br>
-                                <small>El precio puede variar dependiendo si se requiere transporte, equipo de camping etc.</small>
+                            <p><b>Costo por Persona: </b>{tour.person_cost} <br></br>
+                                <b>Costo por grupo +3: </b>{tour.group_cost}<br></br>
                             </p>
                             <br></br>
+
+                            <div className='row text-center'>
+                                <div className='col-12 col-sm-6'>
+                                    <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Salida<br></br> {tour.departure_date}</h4>
+                                </div>
+                                <div className='col-12 col-sm-6'>
+                                    <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Retorno <br></br> {tour.return_date}</h4>
+                                </div>
+                            </div>
+
                             <br></br>
                             <div className='container text-center'>
                                 <a href={`https://api.whatsapp.com/send?phone=+593${tour.contact_phone}&text=${tour.messagge_for_contact}`} target="_blank" style={{ padding: '5px' }}>
                                     <button type="button" className="btn btn-success"> COMPRAR  RUTA </button >
                                 </a>
-
-                                <Link to={'/tour-disponibles'} style={{ padding: '5px' }}>
+                                
+                                <Link to={'/tour-mensual'} style={{ padding: '5px' }}>
                                     <button type="button" className="btn btn-warning" >VOLVER A TOURS</button>
                                 </Link>
                             </div>

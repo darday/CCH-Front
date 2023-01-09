@@ -33,6 +33,7 @@ import { CatalogueList } from '../components/admin/catalogue/CatalogueList';
 import { GeneralTourScreen } from '../components/initialsPages/GeneralTourScreen';
 import { AddToEquipmentSell } from '../components/admin/equipment/AddToEquipmentSell';
 import { MonthlyTourList } from '../components/admin/tours/MonthlyTourList';
+import { MonthlyTourSingleScreen } from '../components/initialsPages/MonthlyTourSingleScreen';
 
 
 export const CampingRoute = () => {
@@ -70,6 +71,7 @@ export const CampingRoute = () => {
                         <Route path="/" element={<IndexScreen />}></Route>
 
                         <Route path="/tour-mensual" element={<MonthlyTourScreen />}></Route>
+                        <Route path="/tour-mensual/:tourId" element={<MonthlyTourSingleScreen />}></Route>
                         <Route path="/tour-camping" element={<CampingTourScreen/>}></Route>
                         <Route path="/tour-fullday" element={<FullDaysScreen />}></Route>
                         <Route path="/tour-disponibles" element={<AllToursScreen />}></Route>
