@@ -10,23 +10,30 @@ export const CatalogueList = () => {
 
   const [tours, settours] = useState([]);
 
-  const getData = async()=>{
-    await axios.get(ApiUrl+"catalogue-list")
-    .then(response =>{
-      const data=response.data;
-      // console.log(data);
-      settours(data);
-    })
-    .catch(e=>{
-      console.log(e)
-    })
+
+
+  const getData = async () => {
+    await axios.get(ApiUrl + "catalogue-list")
+      .then(response => {
+        const data = response.data;
+        settours(data);
+
+        //cargamos los datos nuevos
+        const script = document.createElement("script");
+        script.src = `/assets/dataTable/dataTable.js`;
+        script.async = true;
+        document.body.appendChild(script);
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
- 
-  useEffect(() => {  
+
+  useEffect(() => {
     getData()
   }, [])
 
-   
+
   return (
     <div>
       <div className='row'>
@@ -36,7 +43,7 @@ export const CatalogueList = () => {
               CATÁLOGO DE TOURS2
             </div>
             <div className="card-body">
-              <table className='table table-hover'>
+              <table className='table table table-striped table-bordered' id="dataTable" >
                 <thead>
                   <tr>
                     <th>#</th>
@@ -52,13 +59,13 @@ export const CatalogueList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {tours.map((tour,index)=>(
+                  {tours.map((tour, index) => (
                     <tr key={tour.tour_catalogues_id}>
-                      <td>{index+1}</td>
+                      <td>{index + 1}</td>
                       <td>{tour.tour_destiny}</td>
                       <td>{tour.type}</td>
-                      <td>{(tour.state == 1)?'Habilitado':'Deshanilitado'}</td>
-                      <td>{tour.dificulty }</td>
+                      <td>{(tour.state == 1) ? 'Habilitado' : 'Deshanilitado'}</td>
+                      <td>{tour.dificulty}</td>
                       <td>{tour.cost_1}</td>
                       <td>{tour.cost_2}</td>
                       <td>{tour.cost_3}</td>
@@ -66,13 +73,13 @@ export const CatalogueList = () => {
                       <td>
                         <button className='btn btn-outline-primary'>Editar</button>
                         <button className='btn btn-outline-danger'>Eliminar</button>
-                        
+
                       </td>
-                      
+
 
                     </tr>
                   ))}
-                  
+
                 </tbody>
               </table>
             </div>
@@ -80,7 +87,7 @@ export const CatalogueList = () => {
         </div>
       </div>
     </div>
-            
+
 
   )
 }

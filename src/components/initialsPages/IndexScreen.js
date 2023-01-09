@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'animate.css';
 
 import './initial.css';
@@ -7,88 +7,75 @@ import { Banner } from './Banner';
 import { FooterScreen } from '../footer/FooterScreen';
 import { useGetDate } from '../../hooks/useGetDate';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { ApiStorage, ApiUrl } from '../../services/ApiRest';
+import { useSetMonthlyTour } from '../../hooks/useSetMonthlyTour';
 
 
 export const IndexScreen = () => {
-    
-    localStorage.removeItem("menu");
-    window.localStorage.setItem("menu",1);  
 
-    const {printMonth} = useGetDate()
+    localStorage.removeItem("menu");
+    window.localStorage.setItem("menu", 1);
+
+    const [availabilityTour, setavailabilityTour] = useState([]);
+
+    const getData = async () => {
+        await axios.get(ApiUrl + 'monthly-tour-list')
+            .then(response => {
+                const data = response.data;
+                setavailabilityTour(data);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+
+    }
+
+    useEffect(() => {
+        getData();
+    }, [])
+
+    const { availableTour } = useSetMonthlyTour(availabilityTour);
+
+
+
+    console.log(availableTour);
+
+
     return (
         <div>
-            <NavBarScreen/>
-            <Banner/>
+            <NavBarScreen />
+            <Banner />
 
-            
+
 
             {/* ****************************NUESTRAS RUTAS*************************** */}
 
             <div className="container ">
                 <br></br>
                 <h1 className="camping-letters text-center"> PRÓXIMAS RUTAS</h1>
-                <hr></hr>
 
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-                    <div className="col">
-                        <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..."/>
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..."/>
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a short card.</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..."/>
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        </div>
-                    </div>
 
-                    <div className="col">
-                        <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..."/>
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        </div>
-                    </div>
+                    {availableTour.map((tour, index) => (
+                        <div className="col">
+                            <Link to={`/tour-mensual/${tour.monthly_tour_id}`} style={{textDecoration:'none'}}>
+                                <div className="card h-100" style={{ border: '0' }}>
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
+                                        <div className="card-body">
+                                            <h5 className="card-title camping-letters text-center">{tour.tour_destiny}</h5>
+                                            {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
+                                        </div>
+                                    </button>
+                                </div>
 
-                    <div className="col">
-                        <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..."/>
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        </div>
-                    </div>
 
-                    <div className="col">
-                        <div className="card h-100">
-                        <img src="..." className="card-img-top" alt="..."/>
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        </div>
-                    </div>
 
-                    
+                            </Link>
+
+                        </div>
+                    ))}
                 </div>
 
 
@@ -101,13 +88,13 @@ export const IndexScreen = () => {
                 <br></br>
                 <div className="row row-cols-1 row-cols-md-3 g-4 text-center justify-content-center">
                     <div className="col">
-                        <div className="card h-100" style={{border:'none'}}>
+                        <div className="card h-100" style={{ border: 'none' }}>
                             <a href="/equipo-alquiler">
-                                <img src={`./assets/images/principal/alquilar.jpg`} className="card-img-top" alt="..." style={{borderRadius:'110vh'}}/>
+                                <img src={`./assets/images/principal/alquilar.jpg`} className="card-img-top" alt="..." style={{ borderRadius: '110vh' }} />
                             </a>
                             <div className="card-body">
                                 <a href="/equipo-alquiler">
-                                    <button type="button" className="btn btn-outline-success camping-letters">            
+                                    <button type="button" className="btn btn-outline-success camping-letters">
                                         ALQUILAR EQUIPO
                                     </button>
                                 </a>
@@ -115,26 +102,26 @@ export const IndexScreen = () => {
                         </div>
                     </div>
                     <div className="col">
-                        <div className="card h-100" style={{border:'none'}}>
+                        <div className="card h-100" style={{ border: 'none' }}>
                             <a href="/equipo-venta">
-                                <img src={`./assets/images/principal/comprar.jpeg`} className="card-img-top" alt="..." style={{borderRadius:'110vh'}}/>
+                                <img src={`./assets/images/principal/comprar.jpeg`} className="card-img-top" alt="..." style={{ borderRadius: '110vh' }} />
                             </a>
 
                             <div className="card-body">
                                 <a href="/equipo-venta">
-                                    <button type="button" className="btn btn-outline-success camping-letters">            
+                                    <button type="button" className="btn btn-outline-success camping-letters">
                                         COMPRAR EQUIPO
-                                    </button>       
+                                    </button>
                                 </a>
 
-                                                
+
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-                    
+
+
+
+
                 </div>
 
 
@@ -142,35 +129,35 @@ export const IndexScreen = () => {
 
             <br></br>
             <br></br>
-                
-            <div className='imagen-fondo-index' style={{backgroundImage:`url('./assets/images/principal/info-index.jpeg')`}} >
-                <div className='container' style={{padding:'10vh'}}>
+
+            <div className='imagen-fondo-index' style={{ backgroundImage: `url('./assets/images/principal/info-index.jpeg')` }} >
+                <div className='container' style={{ padding: '10vh' }}>
                     <div className='row text-center justify-content-center'>
-                        <div className='col-12 col-sm-6 col-md-3'>                            
-                                <h1 className="card-title camping-letters" >+300</h1>
-                                <h5 className="card-title camping-letters"  >Clientes Satisfechos</h5>
-                                
+                        <div className='col-12 col-sm-6 col-md-3'>
+                            <h1 className="card-title camping-letters" >+300</h1>
+                            <h5 className="card-title camping-letters"  >Clientes Satisfechos</h5>
+
                         </div>
-                        <div className='col-12 col-sm-6 col-md-3'>                            
-                                <h1 className="card-title camping-letters" >+15</h1>
-                                <h5 className="card-title camping-letters"  >Rutas Disponibles</h5>
-                                
+                        <div className='col-12 col-sm-6 col-md-3'>
+                            <h1 className="card-title camping-letters" >+15</h1>
+                            <h5 className="card-title camping-letters"  >Rutas Disponibles</h5>
+
                         </div>
-                        <div className='col-12 col-sm-6 col-md-3'>                            
-                                <h1 className="card-title camping-letters" >10</h1>
-                                <h5 className="card-title camping-letters"  >Años de Experiencia</h5>
-                                
+                        <div className='col-12 col-sm-6 col-md-3'>
+                            <h1 className="card-title camping-letters" >10</h1>
+                            <h5 className="card-title camping-letters"  >Años de Experiencia</h5>
+
                         </div>
-                        <div className='col-12 col-sm-6 col-md-3'>                            
-                                <h1 className="card-title camping-letters" >100%</h1>
-                                <h5 className="card-title camping-letters"  >Garantizado</h5>
-                                
+                        <div className='col-12 col-sm-6 col-md-3'>
+                            <h1 className="card-title camping-letters" >100%</h1>
+                            <h5 className="card-title camping-letters"  >Garantizado</h5>
+
                         </div>
                     </div>
                 </div>
 
-                
-               
+
+
             </div>
 
             <br></br>
@@ -182,7 +169,7 @@ export const IndexScreen = () => {
                 <hr></hr>
 
                 <div className='row justify-content-center'>
-                    <div className='col-12 col-sm-6 col-md-4 ' style={{paddingBottom:'2vh'}}>
+                    <div className='col-12 col-sm-6 col-md-4 ' style={{ paddingBottom: '2vh' }}>
                         <div className="card h-100">
                             <img src={`./assets/images/principal/desta-altar.jpeg`} className="card-img-top" alt="..."></img>
                             <div className="card-body">
@@ -194,7 +181,7 @@ export const IndexScreen = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col-12 col-sm-6 col-md-4 ' style={{paddingBottom:'2vh'}}>
+                    <div className='col-12 col-sm-6 col-md-4 ' style={{ paddingBottom: '2vh' }}>
                         <div className="card h-100">
                             <img src={`./assets/images/principal/desta-punay.jpeg`} className="card-img-top" alt="..."></img>
                             <div className="card-body">
@@ -206,7 +193,7 @@ export const IndexScreen = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col-12 col-sm-6 col-md-4 ' style={{paddingBottom:'2vh'}}>
+                    <div className='col-12 col-sm-6 col-md-4 ' style={{ paddingBottom: '2vh' }}>
                         <div className="card h-100">
                             <img src={`./assets/images/principal/desta-cari.jpeg`} className="card-img-top" alt="..."></img>
                             <div className="card-body">
@@ -235,7 +222,7 @@ export const IndexScreen = () => {
             <br></br>
             <br></br>
 
-            <FooterScreen/>
+            <FooterScreen />
         </div>
     )
 }

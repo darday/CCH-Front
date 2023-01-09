@@ -36,6 +36,7 @@ import { ListEquipmentSell } from '../components/admin/equipment/ListEquipmentSe
 import { AddToRent } from '../components/admin/rent/AddToRent';
 import { ListToRent } from '../components/admin/rent/ListToRent';
 import { MonthlyTourList } from '../components/admin/tours/MonthlyTourList';
+import { MonthlyTourSingleScreen } from '../components/initialsPages/MonthlyTourSingleScreen';
 
 
 export const CampingRoute = () => {
@@ -78,6 +79,7 @@ export const CampingRoute = () => {
                         <Route path="/" element={<IndexScreen />}></Route>
 
                         <Route path="/tour-mensual" element={<MonthlyTourScreen />}></Route>
+                        <Route path="/tour-mensual/:tourId" element={<MonthlyTourSingleScreen />}></Route>
                         <Route path="/tour-camping" element={<CampingTourScreen/>}></Route>
                         <Route path="/tour-fullday" element={<FullDaysScreen />}></Route>
                         <Route path="/tour-disponibles" element={<AllToursScreen />}></Route>

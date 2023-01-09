@@ -9,19 +9,21 @@ export const AddMonthlyTour = () => {
 
     const {tour_name, tour_destiny,description,include,state,type, person_cost,
         group_cost,dificulty,discount,departure_date,return_date,income, egress,
-        utility, onInputChange,formState} = useForm({
+        utility,contact_phone,messagge_for_contact, onInputChange,formState} = useForm({
             tour_name:'CAMPING SOBRE LAS NUBES', 
             tour_destiny:'CERRO PU;AY',
-            description:'DESCRIPCI[ON',
-            include:'TODO',
+            description:'Acompañanos a visitar una de las lagunas más hermosas del ecuador y contemplar un cielo estrellado y hermoso. Es una aventura que sin duda no te la puedes perder.',
+            include:'Carpa de media-alta montaña. Sleeping Bag, Aislante térmico, Cena sábado, Desayuno Domingo, Ticket de ingreso al atractivo, Charla y observación astronómica, Guianza.',
             state:1,
-            type:'CAMPING',
-            person_cost:25,
-            group_cost:20,
+            type:'Camping',
+            person_cost:40,
+            group_cost:35,
             dificulty:'MODERADA',
             discount:0,
-            departure_date:'2022-01-28',
-            return_date:'2022-01-29',
+            contact_phone:'0961119670',
+            messagge_for_contact:'Hola me gustaría reservar mi cupo para la ruta mensual',
+            departure_date:'2023-01-28',
+            return_date:'2023-01-29',
             income:'', 
             egress:'',
             utility:'', 
@@ -57,6 +59,8 @@ export const AddMonthlyTour = () => {
         f.append("discount",discount);
         f.append("departure_date",departure_date);
         f.append("return_date",return_date);
+        f.append("contact_phone",contact_phone);
+        f.append("messagge_for_contact",messagge_for_contact);
         f.append("income",income);
         f.append("egress",egress);
         f.append("utility",utility);
@@ -90,7 +94,7 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Destino</label>
-                                            <input type="text" name='tour_destiny' value={tour_destiny} onChange={onInputChange} className="form-control text-uppercase" placeholder='Ej: Puñay'></input>
+                                            <input type="text" name='tour_destiny' value={tour_destiny} onChange={onInputChange} className="form-control" placeholder='Ej: Puñay'></input>
                                         </div>
                                     </div>
                                 </div>
@@ -201,6 +205,22 @@ export const AddMonthlyTour = () => {
 
                                     </div>
                                 </div>
+
+                                <div className='row'>
+                                    <div className='col-12 col-sm-6'>
+                                        <div className="form-group">
+                                            <label >Telefono de Contacto</label>
+                                            <input type="text" name='contact_phone' value={contact_phone} onChange={onInputChange} className="form-control" placeholder='Ej: 0961119670' ></input>
+                                        </div>
+                                    </div>
+                                    <div className='col-12 col-sm-6'>
+                                        <div className="form-group">
+                                            <label >Destino</label>
+                                            <input type="text" name='messagge_for_contact' value={messagge_for_contact} onChange={onInputChange} className="form-control" placeholder='Ej: Puñay'></input>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <hr></hr>
                                 <div className='row'>
                                     <small>Estos campos llenar al final de la ruta. Cuando se haya realizado el reporte de ruta</small>
