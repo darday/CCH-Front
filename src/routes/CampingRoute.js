@@ -33,6 +33,8 @@ import { CatalogueList } from '../components/admin/catalogue/CatalogueList';
 import { GeneralTourScreen } from '../components/initialsPages/GeneralTourScreen';
 import { AddToEquipmentSell } from '../components/admin/equipment/AddToEquipmentSell';
 import { ListEquipmentSell } from '../components/admin/equipment/ListEquipmentSell';
+import { AddToRent } from '../components/admin/rent/AddToRent';
+import { ListToRent } from '../components/admin/rent/ListToRent';
 import { MonthlyTourList } from '../components/admin/tours/MonthlyTourList';
 import { MonthlyTourSingleScreen } from '../components/initialsPages/MonthlyTourSingleScreen';
 import { EditCatalogue } from '../components/admin/catalogue/EditCatalogue';
@@ -72,6 +74,9 @@ export const CampingRoute = () => {
                             
                             <Route path="add-equipment-sell" element={<AddToEquipmentSell/>} />                             
                             <Route path="list-equipment-sell" element={<ListEquipmentSell/>} /> 
+
+                            <Route path="add-to-rent" element={<AddToRent/>}/>
+                            <Route path="list-to-rent" element={<ListToRent/>}/>
 
                         </Route>
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
