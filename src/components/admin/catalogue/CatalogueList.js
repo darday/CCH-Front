@@ -3,12 +3,14 @@ import MUIDataTable from "mui-datatables";
 import axios from 'axios';
 import { ApiUrl } from '../../../services/ApiRest';
 import { Download } from '@mui/icons-material';
-
+import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
 export const CatalogueList = () => {
 
   const [tours, settours] = useState([]);
+  const [selectedTour, setselectedTour] = useState([]);
 
 
 
@@ -29,6 +31,30 @@ export const CatalogueList = () => {
       })
   }
 
+  const deleteTable = () => {
+    const script1 = document.createElement("script");
+    script1.src = `/assets/dataTable/datatable-destroy.js`;
+    script1.async = true;
+    document.body.appendChild(script1);
+  }
+
+  const selectTour = (data) => {
+    setselectedTour(data);
+  }
+
+  const deleteTour = async () => {
+    await axios.post(ApiUrl + 'catalogue-tour-delete/' + selectedTour.tour_catalogues_id)
+      .then(resp => {
+        deleteTable();
+        getData();
+        toast.success("Tour Eliminado exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+
   useEffect(() => {
     getData()
   }, [])
@@ -40,7 +66,7 @@ export const CatalogueList = () => {
         <div className='col-12 '>
           <div className="card">
             <div className="card-header">
-              CATÁLOGO DE TOURS2
+              CATÁLOGO DE TOURS
             </div>
             <div className="card-body">
               <table className='table table table-striped table-bordered' id="dataTable" >
@@ -71,11 +97,12 @@ export const CatalogueList = () => {
                       <td>{tour.cost_3}</td>
                       <td>{tour.cost_4}</td>
                       <td>
-                        <button className='btn btn-outline-primary'>Editar</button>
-                        <button className='btn btn-outline-danger'>Eliminar</button>
+                        <Link to={"../edit-catalogue/" + tour.tour_catalogues_id}>
+                          <button className='btn btn-outline-primary' >Editar</button>
+                        </Link>
+                        <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectTour(tour)}  >Eliminar</button>
 
                       </td>
-
 
                     </tr>
                   ))}
@@ -85,7 +112,28 @@ export const CatalogueList = () => {
             </div>
           </div>
         </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Está seguro que desea eliminar <b>{selectedTour.tour_destiny}</b>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal" >Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <ToastContainer theme="colored" />
+
     </div>
 
 
