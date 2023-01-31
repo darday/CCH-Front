@@ -66,7 +66,7 @@ export const MonthlyTourList = () => {
                                 LISTA DE TOURS MENSUALES
                             </div>
                             <div className="card-body">
-                            <table className='table table table-striped table-bordered' id="dataTable" >
+                            <table className='table table table-striped table-bordered table-responsive' id="dataTable" >
                                     <thead>
                                         <tr>
                                             <th>#</th>

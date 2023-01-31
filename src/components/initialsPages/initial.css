@@ -22,6 +22,17 @@
     background-size: cover;
     /* background-color: red; */
 }
+
+.carousel-item2 {
+    height: auto !important;
+    min-height: 250px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background-color: red; */
+}
 /* FinCarousel */
 
 .imagen-fondo-index{
@@ -165,7 +176,7 @@ p.tit-sob-img2 {
     .text_cent_img_dividida{
         position: absolute;
         top: 25%;
-        left: 50%;
+        left: 38%;
         right: 0%;
         /* transform: translate(-40%, -40%); */
         text-align: center;
@@ -233,4 +244,28 @@ p{
 }
 
 
+
+
 /* tipografia */
+
+
+/* *****PANTALLAS ***** */
+
+.pantalla-peque{
+    display: none;
+}
+
+.pantalla-grande{
+    display: block;
+}
+
+@media (max-width:801px)  {
+    .pantalla-peque{
+        display: block;
+    }
+    
+    .pantalla-grande{
+        display: none;
+    }
+    
+}

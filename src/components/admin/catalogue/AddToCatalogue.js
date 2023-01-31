@@ -17,21 +17,21 @@ export const AddToCatalogue = () => {
 
     const{tour_name,tour_destiny, description,include,cost_1,cost_2,cost_3,cost_4,state, type,dificulty,discount,
         discount_description,contact_phone,messagge_for_contact,img_1,img_2, onInputChange,formState} = useForm({
-        tour_name:'PON A PRUEBA TU MENTE Y CUERPO',
-        tour_destiny:'Altar',
-        description:'Esta es una descripci[on',
-        include: 'El tour incluye lo siguiente',
-        cost_1:'230',
-        cost_2:'150',
-        cost_3:'120',
-        cost_4:'80',
+        tour_name:'',
+        tour_destiny:'',
+        description:'',
+        include: '',
+        cost_1:'',
+        cost_2:'',
+        cost_3:'',
+        cost_4:'',
         state:'',
         type:'',
         dificulty:'',
-        discount:'10',
-        discount_description:'Esta es una descripci[on',
-        contact_phone:'0961119670',
-        messagge_for_contact:'Este es un mensaje',
+        discount:'',
+        discount_description:'',
+        contact_phone:'',
+        messagge_for_contact:'',
        
     }) 
 

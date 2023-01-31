@@ -73,7 +73,7 @@ export const AllToursScreen = () => {
                                     <img src={`${ApiStorage + tour.img_1}`} style={{ width: '80%', padding: '1.5vh' }} className="card-img-top" alt="..."></img>
 
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-7">
                                     <div className="card-body">
                                         <h5 className="card-title camping-letters">{tour.tour_name}</h5>
                                         <h4 className="card-title camping-letters" style={{ textTransform: 'uppercase' }}>{tour.tour_destiny}</h4>
@@ -81,8 +81,9 @@ export const AllToursScreen = () => {
                                         <p className="card-text"><small className="text-muted">Nivel: {tour.dificulty}</small></p>
                                     </div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-2">
                                     <div className="card-body text-center">
+                                        <br></br>
                                         <h5 className="card-title camping-letters ">Desde:</h5>
                                         <h1 className="card-text camping-letters">{tour.cost_4}</h1>
                                         <Link to={`/tour-disponibles/${tour.tour_catalogues_id}`}>

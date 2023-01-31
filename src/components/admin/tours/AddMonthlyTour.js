@@ -12,20 +12,20 @@ export const AddMonthlyTour = () => {
     const { tour_name, tour_destiny, description, include, state, type, person_cost,
         group_cost, dificulty, discount, departure_date, return_date, income, egress,
         utility, contact_phone, messagge_for_contact, onInputChange, formState } = useForm({
-            tour_name: 'CAMPING SOBRE LAS NUBES',
-            tour_destiny: 'CERRO PU;AY',
-            description: 'Acompañanos ',
-            include: 'Carpa de mediauno ',
+            tour_name: '',
+            tour_destiny: '',
+            description: ' ',
+            include: '',
             state: 1,
-            type: 'Camping',
-            person_cost: 40,
-            group_cost: 35,
-            dificulty: 'MODERADA',
-            discount: 0,
-            contact_phone: '0961119670',
-            messagge_for_contact: 'Hola ',
-            departure_date: '2023-01-28',
-            return_date: '2023-01-29',
+            type: '',
+            person_cost: '',
+            group_cost: '',
+            dificulty: '',
+            discount: '',
+            contact_phone: '',
+            messagge_for_contact: ' ',
+            departure_date: '',
+            return_date: '',
             income: 0,
             egress: 0,
             utility: 0,
@@ -90,13 +90,13 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Nombre del Tour</label>
-                                            <input type="text" name='tour_name' value={tour_name} onChange={onInputChange} className="form-control" placeholder='Ej: Camping Sobre las Nubes' ></input>
+                                            <input type="text" name='tour_name' value={tour_name} onChange={onInputChange} className="form-control" placeholder='Ej: Camping Sobre las Nubes' required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Destino</label>
-                                            <input type="text" name='tour_destiny' value={tour_destiny} onChange={onInputChange} className="form-control" placeholder='Ej: Puñay'></input>
+                                            <input type="text" name='tour_destiny' value={tour_destiny} onChange={onInputChange} className="form-control" placeholder='Ej: Puñay' required></input>
                                         </div>
                                     </div>
                                 </div>
@@ -107,14 +107,14 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-12'>
                                         <div className="form-group">
                                             <label >Descripción</label>
-                                            <textarea className="form-control" name='description' value={description} onChange={onInputChange} id="exampleFormControlTextarea1" rows="2"></textarea>
+                                            <textarea className="form-control" name='description' value={description} onChange={onInputChange} id="exampleFormControlTextarea1" rows="2" required></textarea>
                                         </div>
                                     </div>
 
                                     <div className='col-12 col-sm-12'>
                                         <div className="form-group">
                                             <label >Incluye</label>
-                                            <textarea className="form-control" name='include' value={include} onChange={onInputChange} id="exampleFormControlTextarea1" rows="2"></textarea>
+                                            <textarea className="form-control" name='include' value={include} onChange={onInputChange} id="exampleFormControlTextarea1" rows="2" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Estado</label>
-                                            <select className="form-select" name='state' value={state} onChange={onInputChange} aria-label="Default select example">
+                                            <select className="form-select" name='state' value={state} onChange={onInputChange} aria-label="Default select example" required>
                                                 <option value="" >Seleccione una opcion</option>
                                                 <option value="1">Activo</option>
                                                 <option value="0">Inactivo</option>
@@ -134,7 +134,7 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Tipo</label>
-                                            <select className="form-select" name='type' value={type} onChange={onInputChange} aria-label="Default select example">
+                                            <select className="form-select" name='type' value={type} onChange={onInputChange} aria-label="Default select example" required>
                                                 <option value="" >Seleccione una opcion</option>
                                                 <option value="Full Day">Full Day</option>
                                                 <option value="Camping">Camping</option>
@@ -147,13 +147,13 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Costo por Persona</label>
-                                            <input type="text" name='person_cost' value={person_cost} onChange={onInputChange} className="form-control" placeholder='Ej: 39.49'></input>
+                                            <input type="text" name='person_cost' value={person_cost} onChange={onInputChange} className="form-control" placeholder='Ej: 39.49' required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Costo Grupo +4 personas</label>
-                                            <input type="text" name='group_cost' value={group_cost} onChange={onInputChange} className="form-control" placeholder='Ej: 39.49'></input>
+                                            <input type="text" name='group_cost' value={group_cost} onChange={onInputChange} className="form-control" placeholder='Ej: 39.49' required></input>
                                         </div>
 
                                     </div>
@@ -164,7 +164,7 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-3'>
                                         <div className="form-group">
                                             <label >Dificultad</label>
-                                            <select className="form-select" name='dificulty' valor={dificulty} onChange={onInputChange} aria-label="Default select example">
+                                            <select className="form-select" name='dificulty' valor={dificulty} onChange={onInputChange} aria-label="Default select example" required>
                                                 <option value="" >Seleccione una opcion</option>
                                                 <option value="Facil">Facil</option>
                                                 <option value="Moderada - Facil">Moderada - Facil</option>
@@ -177,19 +177,19 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-3'>
                                         <div className="form-group">
                                             <label >Porcentaje Descuento</label>
-                                            <input type="text" name='discount' value={discount} onChange={onInputChange} className="form-control" placeholder='Ej: 39.49'></input>
+                                            <input type="text" name='discount' value={discount} onChange={onInputChange} className="form-control" placeholder='Ej: 39.49' required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-3'>
                                         <div className="form-group">
                                             <label >Fecha de Salida:</label>
-                                            <input type="date" name='departure_date' value={departure_date} onChange={onInputChange} className="form-control" id="exampleInputEmail1"  ></input>
+                                            <input type="date" name='departure_date' value={departure_date} onChange={onInputChange} className="form-control" id="exampleInputEmail1"  required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-3'>
                                         <div className="form-group">
                                             <label >Fecha de Regreso:</label>
-                                            <input type="date" name='return_date' value={return_date} onChange={onInputChange} className="form-control" id="exampleInputEmail1"  ></input>
+                                            <input type="date" name='return_date' value={return_date} onChange={onInputChange} className="form-control" id="exampleInputEmail1"  required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6'>
@@ -212,13 +212,13 @@ export const AddMonthlyTour = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Telefono de Contacto</label>
-                                            <input type="text" name='contact_phone' value={contact_phone} onChange={onInputChange} className="form-control" placeholder='Ej: 0961119670' ></input>
+                                            <input type="text" name='contact_phone' value={contact_phone} onChange={onInputChange} className="form-control" placeholder='Ej: 0961119670' required ></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
-                                            <label >Destino</label>
-                                            <input type="text" name='messagge_for_contact' value={messagge_for_contact} onChange={onInputChange} className="form-control" placeholder='Ej: Puñay'></input>
+                                            <label >Mensaje</label>
+                                            <input type="text" name='messagge_for_contact' value={messagge_for_contact} onChange={onInputChange} className="form-control" placeholder='Hola me gustaría ...'></input>
                                         </div>
                                     </div>
                                 </div>

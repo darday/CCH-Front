@@ -64,7 +64,7 @@ export const IndexScreen = () => {
                                     <button type="button" class="btn btn-outline-secondary">
                                         <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
                                         <div className="card-body">
-                                            <h5 className="card-title camping-letters text-center">{tour.tour_destiny}</h5>
+                                            {/* <h5 className="card-title camping-letters text-center">{tour.tour_destiny}</h5> */}
                                             {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
                                         </div>
                                     </button>

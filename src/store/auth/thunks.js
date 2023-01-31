@@ -10,7 +10,7 @@ export const chekingAutentication=(email,password)=>{
     return async (dispatch)=>{
         dispatch(checkingCredentials() )
 
-        await axios.post("http://127.0.0.1:8000/api/login",{
+        await axios.post(ApiUrl+"login",{
         email:email,
         password:password,
         })

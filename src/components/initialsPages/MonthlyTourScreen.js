@@ -115,7 +115,7 @@ export const MonthlyTourScreen = () => {
                                     {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
                                     {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                                     <div className='text-center'>
-                                        <a href="#" className="btn btn-success">Más información</a>
+                                        <Link to={`/tour-mensual/${tour.monthly_tour_id}`} className="btn btn-success">Más información</Link>
                                     </div>
                                 </div>
                             </div>
