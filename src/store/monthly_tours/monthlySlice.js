@@ -11,6 +11,11 @@ export const monthlySlice = createSlice({
             state.tours.push(action.payload);
             state.isSaving=false;        
         }, 
+
+        statusSave:(state,action)=>{
+            state.isLoading=action.payload;
+           
+        },
         setTourFromMonthly:(state,action)=>{
 
         },
@@ -25,5 +30,5 @@ export const monthlySlice = createSlice({
 }); 
 
 // Action creators are generated for each case reducer function
-export const { addTourToMonthly } = monthlySlice.actions; 
+export const { addTourToMonthly,statusSave } = monthlySlice.actions; 
 export default monthlySlice.reducer

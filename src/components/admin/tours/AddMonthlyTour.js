@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../../hooks/useForm';
 import { startNewTourToMonthly } from '../../../store/monthly_tours/thunks';
 
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 export const AddMonthlyTour = () => {
     const [img1, setimg1] = useState();
@@ -40,6 +41,8 @@ export const AddMonthlyTour = () => {
     }
 
     const dispatch = useDispatch();
+    const {isLoading} = useSelector(state => state.monthly);
+    console.log(isLoading);
 
     const onClickAddMonthlyTour = () => {
         dispatch(startNewTourToMonthly(formState, img1, img2))
@@ -246,7 +249,10 @@ export const AddMonthlyTour = () => {
                                     </div>
 
                                 </div>
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-success" disabled={isLoading} >Guardar Tour</button> &nbsp;
+                                <Link to={'../monthly-tour-list'}>
+                                    <button type="button" className="btn btn-danger">Regresar</button> &nbsp;
+                                </Link>                            
                             </form>
 
                         </div>

@@ -4,13 +4,14 @@ import { useForm } from '../../../hooks/useForm';
 import { startNewTourToMonthly } from '../../../store/monthly_tours/thunks';
 
 import { ToastContainer, toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ApiUrl } from '../../../services/ApiRest';
 
 export const EditMonthlyTour = () => {
 
     const { tourId } = useParams([]);
+    const [isLoading, setisLoading] = useState(false);
     const [newData, setnewData] = useState({
         tour_name: '',
         tour_destiny: '',
@@ -118,25 +119,42 @@ export const EditMonthlyTour = () => {
         f.append("income", newData.income);
         f.append("egress", newData.egress);
         f.append("utility", newData.utility);
-        f.append("img_1", img1[0]);
-        f.append("img_2", img2[0]);
+        if (img1[0] != undefined) {
+            f.append("img_1", img1[0]);
+        }
+
+        if (img2[0] != undefined) {
+            f.append("img_2", img2[0]);
+        }
 
         console.log(Object.fromEntries(f));
-
+        notify();
+        setisLoading(true);
         await axios.post(ApiUrl + "monthly-tour-update/" + tourId, f)
         .then(res => {
-            console.log(res);
-            console.log('vamos a ver q pasa');
-            toast.success("Tour Editado exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
-
+            res = res.data;
+            setisLoading(false);
+            if (res.success == true) {
+                success(res.messagge);
+            } else {
+                error(res.messagge);
+            }
         })
         .catch(e => {
             console.log(e);
-            toast.danger("Tour No Editado!!", { position: toast.POSITION.BOTTOM_RIGHT });
-
+            error('Error de Servidor, Contactese con soporte');
+            setisLoading(false);
         })
 
     }
+
+    
+
+    const toastId = React.useRef(null);
+    const notify = () => toastId.current = toast("Enviando Datos...", { autoClose: false,  type: toast.TYPE.INFO, position: toast.POSITION.BOTTOM_RIGHT });
+    const success = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.SUCCESS, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+    const error = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.ERROR, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+
 
     return (
         <div>
@@ -308,7 +326,10 @@ export const EditMonthlyTour = () => {
                                     </div>
 
                                 </div>
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-success" disabled={isLoading} >Guardar Tour</button> &nbsp;
+                                <Link to={'../catalogue-list'}>
+                                    <button type="button" className="btn btn-danger">Regresar</button> &nbsp;
+                                </Link>
                             </form>
 
                         </div>

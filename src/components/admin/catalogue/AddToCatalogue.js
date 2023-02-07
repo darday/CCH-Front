@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../../hooks/useForm'
 import { ApiUrl } from '../../../services/ApiRest';
 import { startNewTourToCatalogue } from '../../../store/tour_catalogue/thunks';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 export const AddToCatalogue = () => {
 
@@ -14,6 +15,7 @@ export const AddToCatalogue = () => {
 
     const [img1, setimg1] = useState();
     const [img2, setimg2] = useState();
+
 
     const{tour_name,tour_destiny, description,include,cost_1,cost_2,cost_3,cost_4,state, type,dificulty,discount,
         discount_description,contact_phone,messagge_for_contact,img_1,img_2, onInputChange,formState} = useForm({
@@ -36,7 +38,7 @@ export const AddToCatalogue = () => {
     }) 
 
     const dispatch = useDispatch();
-
+    const {isLoading} = useSelector(state => state.journal);
     const onClickAddTour =()=>{
         dispatch(startNewTourToCatalogue(formState,img1,img2));
     }
@@ -66,6 +68,11 @@ export const AddToCatalogue = () => {
         f.append("img_2",img2[0]);
         
         dispatch(startNewTourToCatalogue(f));
+
+        // const {formState} = useForm({
+
+        // })
+        
 
     }
 
@@ -229,9 +236,10 @@ export const AddToCatalogue = () => {
                                     </div>
                                 </div>
                                
-                                <button type="submit" className="btn btn-success">Guardar Tour</button> &nbsp;
-                                <button onClick={onClickAddTour} type="button" className="btn btn-danger">Cancelar</button>
-                            </form>
+                                <button type="submit" className="btn btn-success" disabled={isLoading} >Guardar Tour</button> &nbsp;
+                                <Link to={'../catalogue-list'}>
+                                    <button type="button" className="btn btn-danger">Regresar</button> &nbsp;
+                                </Link>                            </form>
 
                         </div>
                     </div>

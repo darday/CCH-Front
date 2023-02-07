@@ -82,7 +82,7 @@ export const AllToursScreen = () => {
                                     </div>
                                 </div>
                                 <div className="col-md-2">
-                                    <div className="card-body text-center">
+                                    <div className="card-body text-center" style={{padding:'0.2rem'}}>
                                         <br></br>
                                         <h5 className="card-title camping-letters ">Desde:</h5>
                                         <h1 className="card-text camping-letters">{tour.cost_4}</h1>

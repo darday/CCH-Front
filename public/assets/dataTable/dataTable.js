@@ -10,7 +10,7 @@ $(function () {
                 ],
                 "language":{
                     "decimal":        "",
-                    "emptyTable":     "Por Favor Recarge la página",
+                    "emptyTable":     "No existen datos que mostrar",
                     "info":           "Mostrando _START_ a _END_ de _TOTAL_ Datos",
                     "infoEmpty":      "Mostrando 0 a 0 de 0 Datos",
                     "infoFiltered":   "(Encontrada de un Total de _MAX_ Datos)",

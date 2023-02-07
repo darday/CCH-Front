@@ -9,6 +9,7 @@ import { ApiUrl } from '../../../services/ApiRest';
 export const EditCatalogue = () => {
 
     const { tourId } = useParams([]);
+    const [isLoading, setisLoading] = useState(false);
     const [newData, setnewData] = useState({
         tour_name: '',
         tour_destiny: '',
@@ -103,36 +104,51 @@ export const EditCatalogue = () => {
         f.append("discount_description", newData.discount_description);
         f.append("contact_phone", newData.contact_phone);
         f.append("messagge_for_contact", newData.messagge_for_contact);
-        f.append("img_1", img1[0]);
-        f.append("img_2", img2[0]);
+        if (img1[0] != undefined) {
+            f.append("img_1", img1[0]);
+        }
 
+        if (img2[0] != undefined) {
+            f.append("img_2", img2[0]);
+        }
+
+        notify();
         console.log(Object.fromEntries(f));
-
+        setisLoading(true);
         await axios.post(ApiUrl + "catalogue-tour-update/" + tourId, f)
             .then(res => {
+                res = res.data;
                 console.log(res);
-                console.log('vamos a ver q pasa');
-                toast.success("Tour Editado exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+                setisLoading(false);
+                if (res.success == true) {
+                    success(res.messagge);
+                } else {
+                    error(res.messagge);
+                }
 
             })
             .catch(e => {
                 console.log(e);
-                toast.danger("Tour No Editado!!", { position: toast.POSITION.BOTTOM_RIGHT });
+                error('Error de Servidor, Contactese con soporte');
+                setisLoading(false);
 
             })
 
-        // dispatch(startNewTourToCatalogue(f));
 
     }
-
-    console.log(newData);
+    const toastId = React.useRef(null);
+    const notify = () => toastId.current = toast("Enviando Datos...", { autoClose: false,  type: toast.TYPE.INFO, position: toast.POSITION.BOTTOM_RIGHT });
+    const success = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.SUCCESS, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+    const error = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.ERROR, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
 
     if (loading == true) {
         return (<h3>Cargando Datos...</h3>)
     }
 
     return (
+
         <div>
+
             <div className='row'>
                 <div className='col-12 '>
                     <div className="card">
@@ -280,7 +296,7 @@ export const EditCatalogue = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-success">Guardar Tour</button> &nbsp;
+                                <button type="submit" className="btn btn-success" disabled={isLoading} >Guardar Tour</button> &nbsp;
                                 <Link to={'../catalogue-list'}>
                                     <button type="button" className="btn btn-danger">Regresar</button> &nbsp;
                                 </Link>

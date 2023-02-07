@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const journalSlice = createSlice({ 
     name: 'journal', 
     initialState: { 
-        isSaving: false,
+        isLoading: false,
         messageSaved:'',
         tours:[],
 
@@ -10,7 +10,13 @@ export const journalSlice = createSlice({
     reducers: { 
         addTourToCatalogue: (state,action)=>{
             state.tours.push(action.payload);
-            state.isSaving=false;
+        },
+
+        statusSave:(state,action)=>{
+            state.isLoading=action.payload;
+            console.log('aqui llegue ')
+            console.log(state)
+            console.log(action)
         },
 
         setTourFromCatalogue:(state,action)=>{
@@ -27,5 +33,5 @@ export const journalSlice = createSlice({
 }); 
 
 // Action creators are generated for each case reducer function
-export const { addTourToCatalogue,setTourFromCatalogue } = journalSlice.actions; 
+export const { addTourToCatalogue,setTourFromCatalogue,statusSave } = journalSlice.actions; 
 export default journalSlice.reducer

@@ -100,29 +100,33 @@ export const AddToEquipmentSell = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Nombre del Equipo</label>
-                                            <input type="text" name='name' className="form-control" placeholder='Ej: Carpa' value={fData.name} onChange={onInputChange} ></input>
+                                            <input type="text" name='name' className="form-control" placeholder='Ej: Carpa' value={fData.name} onChange={onInputChange} required ></input>
                                         </div>
                                     </div>
-                                    <div className='col-12 col-sm-6'>
+                                    <div className='col-12 col-sm-6 col-md-6'>
+                                        <div className="form-group">
+                                            <label >Precio</label>
+                                            <input className="form-control" name='cost' placeholder='Ej: 00.00' value={fData.cost} onChange={onInputChange} required></input>
+
+                                        </div>
+                                    </div>
+
+                                    <div className='col-12 col-sm-12'>
                                         <div className="form-group">
                                             <label >Descripción</label>
-                                            <input type="text" name='description' className="form-control" value={fData.description} placeholder='Ej: Tienda de campaña impermeable ultraligera' onChange={onInputChange} ></input>
+                                            <textarea class="form-control" placeholder="Leave a comment here" name='description' value={fData.description} rows="4" onChange={onInputChange}  style={{ color: 'black' }}  required></textarea>
+
                                         </div>
                                     </div>
+                                    
                                 </div>
 
                                 <div className='row'>
-                                    <div className='col-12 col-sm-6 col-md-3'>
-                                        <div className="form-group">
-                                            <label >Precio</label>
-                                            <input className="form-control" name='cost' placeholder='Ej: 00.00' value={fData.cost} onChange={onInputChange}></input>
-
-                                        </div>
-                                    </div>
+                                    
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Estado</label>
-                                            <select className="form-select" name="state" aria-label="Default select example" value={fData.state} onChange={onInputChange} >
+                                            <select className="form-select" name="state" aria-label="Default select example" value={fData.state} onChange={onInputChange} required>
                                                 <option value="" >Seleccione una opción</option>
                                                 <option value="1" >Habilitado</option>
                                                 <option value="0" >Deshabilitado</option>
@@ -134,14 +138,14 @@ export const AddToEquipmentSell = () => {
 
                                             <div className="form-group">
                                                 <label >Descuento</label>
-                                                <input name="discount" className="form-control" placeholder='Ej: 0%' value={fData.discount} onChange={onInputChange} ></input>
+                                                <input name="discount" className="form-control" placeholder='Ej: 0%' value={fData.discount} onChange={onInputChange} required></input>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Descripción del Descuento</label>
-                                            <input name="discount_description" className="form-control" placeholder='Ej: Descuentos' value={fData.discount_description} onChange={onInputChange}></input>
+                                            <input name="discount_description" className="form-control" placeholder='Ej: Descuentos' value={fData.discount_description} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
                                 </div>
@@ -150,13 +154,13 @@ export const AddToEquipmentSell = () => {
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Teléfono</label>
-                                            <input type="text" name='contact_phone' className="form-control" placeholder='Ej: 123456789' value={fData.contact_phone} onChange={onInputChange} ></input>
+                                            <input type="text" name='contact_phone' className="form-control" placeholder='Ej: 123456789' value={fData.contact_phone} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6 col-md-9'>
                                         <div className="form-group">
                                             <label >Mensaje</label>
-                                            <input type="text" name='messagge_for_contact' className="form-control text-uppercase" value={fData.messagge_for_contact} onChange={onInputChange} ></input>
+                                            <input type="text" name='messagge_for_contact' className="form-control text-uppercase" value={fData.messagge_for_contact} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +175,7 @@ export const AddToEquipmentSell = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Tipo</label>
-                                            <select className="form-select" name="type" aria-label="Default select example" value={fData.type} onChange={onInputChange}>
+                                            <select className="form-select" name="type" aria-label="Default select example" value={fData.type} onChange={onInputChange} required>
                                                 <option value="" >Seleccione una opción</option>
                                                 <option value="Sleeping" >Sleeping</option>
                                                 <option value="Carpa" >Carpa</option>

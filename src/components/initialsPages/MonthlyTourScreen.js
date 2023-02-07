@@ -60,9 +60,15 @@ export const MonthlyTourScreen = () => {
             <br></br>
             <br></br>
             <div className='container'>
-                <h5 style={{ textAlign: 'center' }}>Tenemos estas rutas disponibles para el mes de {printMonth} asi que acompañanos a vivir estas aventuras que tenemos planificadas para ti. Escoge la que más te guste y disfrutala al máximo junto a tus amigos, pareja o familia</h5>
+                <h5 style={{ textAlign: 'center' }}>Tenemos estas rutas disponibles para el mes de <b>{printMonth} y {printNextMonth} </b> asi que acompañanos a vivir estas aventuras que tenemos planificadas para ti. Escoge la que más te guste y disfrutala al máximo junto a tus amigos, pareja o familia</h5>
                 <br></br>
                 <h1 className="camping-letters text-center" >TOURS DE {printMonth}</h1>
+                {
+                    (monthlyTour.length == 0) ?
+                        <h5 style={{ textAlign: 'center' }}>Por el momento no tenemos rutas disponibles para {printMonth} pronto tendremos más información </h5>
+                        :
+                        ''
+                }
             </div>
             <div className='container'>
                 <div className='row'>

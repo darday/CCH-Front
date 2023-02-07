@@ -176,7 +176,7 @@ p.tit-sob-img2 {
     .text_cent_img_dividida{
         position: absolute;
         top: 25%;
-        left: 38%;
+        left: 40%;
         right: 0%;
         /* transform: translate(-40%, -40%); */
         text-align: center;
@@ -266,6 +266,13 @@ p{
     
     .pantalla-grande{
         display: none;
+    }
+    
+}
+
+@media (max-width:801px)  {
+    .sell-equipment-card-body{
+        padding: 0.25rem;
     }
     
 }

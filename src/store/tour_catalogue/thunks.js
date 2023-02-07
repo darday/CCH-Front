@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ApiUrl } from "../../services/ApiRest";
-import {addTourToCatalogue} from './journalSlice'
+import {addTourToCatalogue,statusSave} from './journalSlice'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,12 +15,13 @@ const token = cookies.get('token');
 export const startNewTourToCatalogue=(f)=>{
     return async(dispatch,getState)=>{
         const {uid}=getState().auth;
-
         
+        dispatch(statusSave(true));          
+
         await axios.post(ApiUrl+'catalogue-add',f)  
         .then(response=>{
             var resp=response.data;
-            console.log(resp);
+            dispatch(statusSave(false));          
             if(resp.success){
                 toast.success("Tour Agregado exitosamente", {position: toast.POSITION.BOTTOM_RIGHT}); 
                 dispatch(addTourToCatalogue(resp.data));          
