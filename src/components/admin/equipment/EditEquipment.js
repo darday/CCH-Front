@@ -130,22 +130,24 @@ export const EditEquipment = () => {
                                             <input type="text" name='name' className="form-control" placeholder='Ej: Carpa' value={newData.name} onChange={onInputChange} required ></input>
                                         </div>
                                     </div>
-                                    <div className='col-12 col-sm-6'>
-                                        <div className="form-group">
-                                            <label >Descripción</label>
-                                            <input type="text" name='description' className="form-control" value={newData.description} placeholder='Ej: Tienda de campaña impermeable ultraligera' onChange={onInputChange} required></input>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className='row'>
-                                    <div className='col-12 col-sm-6 col-md-3'>
+                                    <div className='col-12 col-sm-6 col-md-6'>
                                         <div className="form-group">
                                             <label >Precio</label>
                                             <input className="form-control" name='cost' placeholder='Ej: 00.00' value={newData.cost} onChange={onInputChange} required></input>
 
                                         </div>
                                     </div>
+                                    <div className='col-12 col-sm-12'>
+                                        <div className="form-group">
+                                            <label >Descripción</label>
+                                            <textarea class="form-control" placeholder="Leave a comment here" name='description' value={newData.description} rows="4" onChange={onInputChange}  style={{ color: 'black' }}  required></textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='row'>
+                                    
                                     <div className='col-12 col-sm-6 col-md-3'>
                                         <div className="form-group">
                                             <label >Estado</label>

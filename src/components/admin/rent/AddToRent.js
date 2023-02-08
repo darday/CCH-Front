@@ -1,9 +1,13 @@
+import { CleaningServices } from '@mui/icons-material';
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { ApiUrl } from '../../../services/ApiRest';
 
 export const AddToRent = () => {
     const [img, setimg] = useState()
+    const [sending, setsending] = useState(false);
     const [fData, setFormData] = useState({  //Es un hook = useState
         name: '',
         description: '',
@@ -25,20 +29,23 @@ export const AddToRent = () => {
     }
     useEffect(() => {
         setFormData({
-            name: 'Carpa',
-            description: 'Es una carpa',
-            cost: '10.00',
-            state: '1',
-            discount: '15',
-            discount_description: 'Descripcion 1',
-            contact_phone: '123456789',
-            messagge_for_contact: 'Mensaje 1',
-            type: 'Carpa',
+            name: '',
+            description: '',
+            cost: '',
+            state: '',
+            discount: '',
+            discount_description: '',
+            contact_phone: '',
+            messagge_for_contact: '',
+            type: '',
+            img_1:''
         });
     }, [])
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
+        setsending(true);
+        notify();
          console.log(img);
         console.log(fData);
 
@@ -56,11 +63,37 @@ export const AddToRent = () => {
         
         console.log(Object.fromEntries(form));
 
+        await axios.post(ApiUrl+'equipment-rent-add', form)
+        .then(resp=>{
+            setsending(false)
+            const data=resp.data;
+            console.log(data);
+            if (data.success == true){
+                success(data.messagge);
+
+            }else{
+                error(data.messagge);
+                setsending(false)
+            }
+        })
+        .catch(err =>{
+            error('Error de Servidor, Contactese con soporte');
+            console.log(err);
+            setsending(false)
+
+        })
+
     }
 
     const updateImg = (e) => {
         setimg(e);
     }
+
+    const toastId = React.useRef(null);
+    const notify = () => toastId.current = toast("Enviando Datos...", { autoClose: false,  type: toast.TYPE.INFO, position: toast.POSITION.BOTTOM_RIGHT });
+    const success = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.SUCCESS, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+    const error = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.ERROR, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+
 
 
     return (
@@ -69,7 +102,7 @@ export const AddToRent = () => {
                 <div className='col-12 '>
                     <div className="card">
                         <div className="card-header">
-                            AGREGAR EQUIPO
+                            AGREGAR EQUIPO PARA ALQUILER
                         </div>
                         <div className="card-body">
                             <form onSubmit={onSubmit}>
@@ -80,10 +113,11 @@ export const AddToRent = () => {
                                             <input type="text" name='name' className="form-control" placeholder='Ej: Carpa' value={fData.name} onChange={onInputChange} ></input>
                                         </div>
                                     </div>
-                                    <div className='col-12 col-sm-6'>
+                                    <div className='col-12 col-sm-12'>
                                         <div className="form-group">
                                             <label >Descripción</label>
-                                            <input type="text" name='description' className="form-control" value={fData.description} placeholder='Ej: Tienda de campaña impermeable ultraligera' onChange={onInputChange} ></input>
+                                            <textarea class="form-control" placeholder="Leave a comment here" name='description' value={fData.description} rows="4" onChange={onInputChange}  style={{ color: 'black' }}  required></textarea>
+
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +167,7 @@ export const AddToRent = () => {
                                     <div className='col-12 col-sm-6 col-md-9'>
                                         <div className="form-group">
                                             <label >Mensaje</label>
-                                            <input type="text" name='messagge_for_contact' className="form-control text-uppercase" value={fData.messagge_for_contact} onChange={onInputChange} ></input>
+                                            <input type="text" name='messagge_for_contact' className="form-control " value={fData.messagge_for_contact} onChange={onInputChange} ></input>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +176,7 @@ export const AddToRent = () => {
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
                                             <label >Imagen del Equipo</label>
-                                            <input name="img_1" className="form-control form-control-sm" id="formFileSm" type="file" accept="image/png, image/gif, image/jpeg" onChange={(e)=>updateImg(e.target.files)} ></input>
+                                            <input name="img_1" className="form-control form-control-sm" id="formFileSm" type="file" accept="image/png, image/gif, image/jpeg" onChange={(e)=>updateImg(e.target.files)} required></input>
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6'>
@@ -159,7 +193,7 @@ export const AddToRent = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-success"> Guardar Tour </button> &nbsp;
+                                <button type="submit" className="btn btn-success" disabled={sending}> Guardar Tour </button> &nbsp;
                                 <button type="button" className="btn btn-danger"> Cancelar </button>
                             </form>
                         </div>

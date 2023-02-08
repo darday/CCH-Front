@@ -66,7 +66,7 @@ export const ListEquipmentSell = () => {
                 <div className='col-12 '>
                     <div className="card">
                         <div className="card-header">
-                            LISTA DE TOURS MENSUALES
+                            LISTA DE EQUIPOS DE VENTA
                         </div>
                         <div className="card-body">
                             <table className='table table-hover table-responsive' id="dataTable"  >

@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { ApiUrl } from '../../../services/ApiRest';
 
 export const AddToEquipmentSell = () => {
-    const [img, setimg] = useState()
+    const [img, setimg] = useState();
+    const [sendingPetition, setsendingPetition] = useState(false);
     const [fData, setFormData] = useState({  //Es un hook = useState
         name: '',
         description: '',
@@ -27,21 +29,22 @@ export const AddToEquipmentSell = () => {
     }
     useEffect(() => {
         setFormData({
-            name: 'Carpa',
-            description: 'Es una carpa',
-            cost: '10.00',
-            state: '1',
-            discount: '15',
-            discount_description: 'Descripcion 1',
-            contact_phone: '123456789',
-            messagge_for_contact: 'Mensaje 1',
-            type: 'Carpa',
+            name: '',
+            description: '',
+            cost: '',
+            state: '',
+            discount: '',
+            discount_description: '',
+            contact_phone: '',
+            messagge_for_contact: '',
+            type: '',
         });
     }, [])
 
     const onSubmit = async(event) => {
         event.preventDefault();
         
+        setsendingPetition(true);
         const form = new FormData();
         form.append("name", fData.name);
         form.append("description", fData.description);
@@ -54,28 +57,41 @@ export const AddToEquipmentSell = () => {
         form.append("type", fData.type); 
         form.append("img_1", img[0]);
 
+        notify();
         await axios.post(ApiUrl+'equipment-add', form)
         .then(resp=>{
+            setsendingPetition(false);
+
             const data=resp.data;
+            if (data.success == true){
+                success(resp.messagge);
+
+            }else{
+                error(resp.messagge);
+            }
             console.log(data);
-            toast.success("Tour Agregado exitosamente", {position: toast.POSITION.BOTTOM_RIGHT}); 
+            setFormData({
+                name: '',
+                description: '',
+                cost: '',
+                state: '',
+                discount: '',
+                discount_description: '',
+                contact_phone: '',
+                messagge_for_contact: '',
+                type: '',
+                img_1:''
+            });
 
         })
         .catch(err =>{
+            error('Error de Servidor, Contactese con soporte');
             console.log(err);
+            setsendingPetition(false);
+
         })
 
-        setFormData({
-            name: '',
-            description: '',
-            cost: '',
-            state: '',
-            discount: '',
-            discount_description: '',
-            contact_phone: '',
-            messagge_for_contact: '',
-            type: '',
-        });
+        
         
         // console.log(Object.fromEntries(form));
 
@@ -85,6 +101,12 @@ export const AddToEquipmentSell = () => {
         setimg(e);
     }
 
+    const toastId = React.useRef(null);
+    const notify = () => toastId.current = toast("Enviando Datos...", { autoClose: false,  type: toast.TYPE.INFO, position: toast.POSITION.BOTTOM_RIGHT });
+    const success = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.SUCCESS, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+    const error = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.ERROR, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+
+
 
     return (
         <div>
@@ -92,7 +114,7 @@ export const AddToEquipmentSell = () => {
                 <div className='col-12 '>
                     <div className="card">
                         <div className="card-header">
-                            AGREGAR EQUIPO
+                            AGREGAR EQUIPO PARA VENTA
                         </div>
                         <div className="card-body">
                             <form onSubmit={onSubmit}>
@@ -160,7 +182,7 @@ export const AddToEquipmentSell = () => {
                                     <div className='col-12 col-sm-6 col-md-9'>
                                         <div className="form-group">
                                             <label >Mensaje</label>
-                                            <input type="text" name='messagge_for_contact' className="form-control text-uppercase" value={fData.messagge_for_contact} onChange={onInputChange} required></input>
+                                            <input type="text" name='messagge_for_contact' className="form-control" value={fData.messagge_for_contact} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
                                 </div>
@@ -186,8 +208,10 @@ export const AddToEquipmentSell = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" className="btn btn-success"> Guardar Tour </button> &nbsp;
-                                <button type="button" className="btn btn-danger"> Cancelar </button>
+                                <button type="submit" className="btn btn-success" disabled={sendingPetition}> Guardar Tour </button> &nbsp;
+                                <Link to={'../list-equipment-sell'}>
+                                    <button type="button" className="btn btn-danger">Regresar</button> &nbsp;
+                                </Link>
                             </form>
                         </div>
                     </div>

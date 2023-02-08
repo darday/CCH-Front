@@ -159,8 +159,10 @@ export const AddToCatalogue = () => {
                                     
                                     <div className='col-12 col-sm-6'>
                                         <div className="form-group">
-                                            <label >Imagen Promocional</label>
+                                            <label >Imagen para Listado</label>
                                             <input name="img_1" onChange={(e)=>updateImg1(e.target.files)} className="form-control form-control-sm" id="formFileSm" type="file"  accept="image/png, image/gif, image/jpeg" required></input>
+                                            <small >La imagen debe ser más alta que ancha.</small>
+
                                         </div>
                                     </div>
                                     <div className='col-12 col-sm-6'>

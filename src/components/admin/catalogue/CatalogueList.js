@@ -68,8 +68,8 @@ export const CatalogueList = () => {
             <div className="card-header">
               CATÁLOGO DE TOURS
             </div>
-            <div className="card-body">
-              <table className='table table table-striped table-bordered table-responsive' id="dataTable" >
+            <div className="card-body table-responsive">
+              <table className='table table-hover' id="dataTable" style={{width:'100%'}} >
                 <thead>
                   <tr>
                     <th>#</th>
