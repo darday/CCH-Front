@@ -40,6 +40,7 @@ import { MonthlyTourSingleScreen } from '../components/initialsPages/MonthlyTour
 import { EditCatalogue } from '../components/admin/catalogue/EditCatalogue';
 import { EditMonthlyTour } from '../components/admin/tours/EditMonthlyTour';
 import { EditEquipment } from '../components/admin/equipment/EditEquipment';
+import { EditEquipmentRent } from '../components/admin/rent/EditEquipmentRent';
 
 
 export const CampingRoute = () => {
@@ -79,6 +80,8 @@ export const CampingRoute = () => {
 
                             <Route path="add-to-rent" element={<AddToRent/>}/>
                             <Route path="list-to-rent" element={<ListToRent/>}/>
+                            <Route path="edit-equipment-rent/:equipmentId" element={<EditEquipmentRent/>} /> 
+
 
                         </Route>
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
