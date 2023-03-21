@@ -87,7 +87,7 @@ export const RentEquipmentScreen = () => {
                                     <p className="card-text camping-letters text-center">Precio: ${equipment.cost} </p>
                                 </div>
                                 <div className="card-footer text-center">
-                                    {/* <a href="#" className="btn btn-success">Comprar</a> */}
+                                    {/* <a href="#" className="btn btn-success">Alquilar</a> */}
                                     <a href={`https://api.whatsapp.com/send?phone=+593${equipment.contact_phone}&text=${equipment.messagge_for_contact}`} target="_blank" style={{ padding: '0px' }}>
                                         <button type="button" className="btn btn-success" style={{ margin: '0vh' }}> Alquilar </button >
                                     </a>
@@ -110,7 +110,7 @@ export const RentEquipmentScreen = () => {
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                             <a href={`https://api.whatsapp.com/send?phone=+593${equipment.contact_phone}&text=${equipment.messagge_for_contact}`} target="_blank" style={{ padding: '0px' }}>
-                                                <button type="button" className="btn btn-success" style={{ margin: '0vh' }}> Comprar </button >
+                                                <button type="button" className="btn btn-success" style={{ margin: '0vh' }}> Alquilar </button >
                                             </a>
                                         </div>
                                     </div>

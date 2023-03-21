@@ -73,7 +73,7 @@ export const NavBarScreen = (props) => {
                                 href="/"
                                 onClick={() => menuSeleccionado(1)}
                             >
-                                <i className="fas fa-home"></i>
+                                <i className="fas fa-home">  </i>  <b>Inicio</b>
                             </a>
                         </li>
 
@@ -180,12 +180,12 @@ export const NavBarScreen = (props) => {
                             </form>
                             :
                             <form className="d-flex">
-                                <div style={{ paddingRigth: '0.2vh' }}>
+                                {/* <div style={{ paddingRigth: '0.2vh' }}>
                                     <Link className="" to="/iniciar-sesion"><button className="btn btn-success btn-sm" type="submit">Iniciar Sesión</button></Link>
                                 </div>
                                 <div style={{ paddingLeft: '0.2vh' }}>
                                     <Link className="" to="/registrar"><button className="btn btn-outline-dark btn-sm " type="submit">Crear Cuenta</button></Link>
-                                </div>
+                                </div> */}
                             </form>
                     }
 

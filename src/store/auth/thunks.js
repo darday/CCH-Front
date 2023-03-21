@@ -80,7 +80,7 @@ export const logoutSesion = (AccessToken)=>{
             }
         }
         console.log(config);
-        await axios.post("http://127.0.0.1:8000/api/logout",{},config)
+        await axios.post(ApiUrl+ "logout",{},config)
         .then(response =>{
             const result = response.data
             cookies.remove('uid',{path:"/"});

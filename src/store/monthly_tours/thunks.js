@@ -15,14 +15,19 @@ export const startNewTourToMonthly = (f) =>{
             console.log(resp);
             if(resp.success){
                 toast.success("Tour Agregado exitosamente", {position: toast.POSITION.BOTTOM_RIGHT}); 
+                dispatch(statusSave(false));          
                 dispatch(addTourToMonthly(resp.data));          
+
             }else{
-                toast.error("El tour no se ha agregado", {position: toast.POSITION.BOTTOM_RIGHT});           
+                toast.error("El tour no se ha agregado", {position: toast.POSITION.BOTTOM_RIGHT}); 
+                dispatch(statusSave(false));          
+          
             }
         }) 
         .catch(e =>{
             console.log(e)
             toast.error(""+e+"  !", {position: toast.POSITION.BOTTOM_RIGHT});           
+            dispatch(statusSave(false));          
 
         })    
 
