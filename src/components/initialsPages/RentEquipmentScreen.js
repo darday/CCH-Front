@@ -47,7 +47,7 @@ export const RentEquipmentScreen = () => {
                         <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/tours/alqui.jpeg')` }}>
                             <div className="pantaresp.messaggella_dividida" style={{ height: "45vh" }}>
                                 <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s">
-                                    <h1 className="tit-sob-img_dividida" >TODO NUESTRO EQUIPO<br />A TU ALCANCE</h1>
+                                    <h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}} >Todo nuestro equipo<br />a tu alcance</h1>
                                 </div>
 
                             </div>

@@ -43,7 +43,7 @@ export const AllToursScreen = () => {
                         <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/tours/at1.jpeg')` }}>
                             <div className="pantalla_dividida" style={{ height: "45vh" }}>
                                 <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s">
-                                    <h1 className="tit-sob-img_dividida" >ENCUENTRA LA RUTA<br />QUE MÁS TE GUSTE</h1>
+                                    <h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}} >Encuentra la ruta<br />que más te guste</h1>
                                 </div>
 
                             </div>

@@ -48,7 +48,7 @@ export const SellEquipmentScreen = () => {
                         <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/tours/venta.jpeg')` }}>
                             <div className="pantalla_dividida" style={{ height: "45vh" }}>
                                 <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s">
-                                    <h1 className="tit-sob-img_dividida" >ES HORA DE QUE<br />EMPIECES CON TU EQUIPO</h1>
+                                    <h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}} >Es hora de que<br />empieces con tu equipo propio</h1>
                                 </div>
 
                             </div>

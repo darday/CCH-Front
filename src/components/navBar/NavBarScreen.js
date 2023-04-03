@@ -6,9 +6,9 @@ import './Navbar.css';
 
 const cookies = new Cookies();
 export const NavBarScreen = (props) => {
-    console.log(props.var)
+    
     const token = cookies.get('token');
-    const { printMonth } = useGetDate();
+    // const { printMonth } = useGetDate();
 
     // mantener pintada opción seleccionada
     const menuSeleccionado = (opcion) => {
@@ -44,6 +44,10 @@ export const NavBarScreen = (props) => {
             case 7:
                 localStorage.removeItem("menu");
                 window.localStorage.setItem("menu", 7);
+                break;
+            case 8:
+                localStorage.removeItem("menu");
+                window.localStorage.setItem("menu", 8);
                 break;
 
             default:
@@ -150,6 +154,14 @@ export const NavBarScreen = (props) => {
 
 
 
+                        <li className="nav-item">
+                            <a className={`nav-link selection-word ${(localStorage.getItem("menu") == 8) && 'color-selected'}`}
+                                href="/galeria"
+                                onClick={() => menuSeleccionado(8)}
+                            >
+                                Galería
+                            </a>
+                        </li>
                         <li className="nav-item">
                             <a className={`nav-link selection-word ${(localStorage.getItem("menu") == 7) && 'color-selected'}`}
                                 href="/nosotros"
