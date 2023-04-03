@@ -87,7 +87,7 @@ export const MonthlyTourList = () => {
                                                 <td>{index + 1}</td>
                                                 <td>{tour.tour_destiny}</td>
                                                 <td>{tour.type}</td>
-                                                <td>{(tour.state == 1) ? 'Habilitado' : 'Deshanilitado'}</td>
+                                                <td>{(tour.state == 1) ? 'Activo' : 'Inactivo'}</td>
                                                 <td>{tour.dificulty}</td>
                                                 <td>{tour.person_cost}</td>
                                                 <td>{tour.group_cost}</td>

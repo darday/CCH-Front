@@ -64,6 +64,17 @@ export const AdminSidebar = () => {
                                     <Link className="nav-link" to="list-to-rent">Listar Producto</Link>
                                 </nav>
                             </div>
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gallery" aria-expanded="false" aria-controls="gallery">
+                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                Galería
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            <div className="collapse" id="gallery" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav className="sb-sidenav-menu-nested nav">
+                                    <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link>
+                                    <Link className="nav-link" to="list-gallery">Listar Imagenes</Link>
+                                </nav>
+                            </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
                                 Hospedaje

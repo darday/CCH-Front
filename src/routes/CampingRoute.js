@@ -41,6 +41,8 @@ import { EditCatalogue } from '../components/admin/catalogue/EditCatalogue';
 import { EditMonthlyTour } from '../components/admin/tours/EditMonthlyTour';
 import { EditEquipment } from '../components/admin/equipment/EditEquipment';
 import { EditEquipmentRent } from '../components/admin/rent/EditEquipmentRent';
+import { GaleriaScreen } from '../components/initialsPages/gallery/GaleriaScreen';
+import { ListGallery } from '../components/admin/gallery/ListGallery';
 
 
 export const CampingRoute = () => {
@@ -72,8 +74,6 @@ export const CampingRoute = () => {
                             <Route path="catalogue-list" element={<CatalogueList/>} /> 
                             <Route path="edit-catalogue/:tourId" element={<EditCatalogue />}></Route>
 
-
-                            
                             <Route path="add-equipment-sell" element={<AddToEquipmentSell/>} />                             
                             <Route path="list-equipment-sell" element={<ListEquipmentSell/>} /> 
                             <Route path="edit-equipment/:equipmentId" element={<EditEquipment/>} /> 
@@ -82,6 +82,7 @@ export const CampingRoute = () => {
                             <Route path="list-to-rent" element={<ListToRent/>}/>
                             <Route path="edit-equipment-rent/:equipmentId" element={<EditEquipmentRent/>} /> 
 
+                            <Route path="list-gallery" element={<ListGallery/>}/>
 
                         </Route>
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
@@ -99,6 +100,7 @@ export const CampingRoute = () => {
                         <Route path="/equipo-alquiler" element={<RentEquipmentScreen />}></Route>
                         <Route path="/equipo-venta" element={<SellEquipmentScreen />}></Route>
                         
+                        <Route path="/galeria" element={<GaleriaScreen />}></Route>
                         <Route path="/nosotros" element={<AboutUsScreen />}></Route>
 
                         <Route path="user-home" element={<UserRouteScreen/>}></Route>

@@ -17,7 +17,7 @@ export const Banner = () => {
       <div className="carousel-item active" data-bs-interval="4000"  style={{backgroundImage:`url('./assets/images/banner/banner4.jpg')`}}>
         <div >
           <div className="text_cent_img camping-letters animate__animated animate__fadeInLeft "><h1 className="tit-sob-img" >CAMPING CHIMBORAZO</h1></div>
-          <div className="text_cent_img2 animate__animated animate__fadeInRight "><p className="tit-sob-img2" style={{color:"white"}}>La aventura está en el camino</p></div>
+          <div className="text_cent_img2 animate__animated animate__fadeInRight "><p className="tit-sob-img2" style={{color:"white", textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}}>La aventura está en el camino</p></div>
         </div>
 
         {/* <div className="btn-carousel">
@@ -32,7 +32,7 @@ export const Banner = () => {
       
       <div className="carousel-item " data-bs-interval="4000"  style={{backgroundImage:`url('./assets/images/banner/banner.jpg')`}}>
         <div className="pantalla_dividida"  style={{height:"100vh"}}>
-          <div className="text_cent_img_dividida animate__animated animate__zoomInDown"><h1 className="tit-sob-img_dividida" >EL MEJOR <br/>EQUIPO DE CAMPING PARA TUS RUTAS</h1></div>
+          <div className="text_cent_img_dividida animate__animated animate__zoomInDown"><h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}} >EL MEJOR <br/>EQUIPO DE CAMPING PARA TUS RUTAS</h1></div>
           
         </div>
               
@@ -40,7 +40,7 @@ export const Banner = () => {
 
       <div className="carousel-item " data-bs-interval="4000"  style={{backgroundImage:`url('./assets/images/banner/banner6.jpg')`}}>
         <div className="pantalla_dividida"  style={{height:"100vh"}}>
-          <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s"><h1 className="tit-sob-img_dividida" >DISFRUTA <br/>HAY MUCHO POR CONOCER</h1></div>
+          <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s"><h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}} >DISFRUTA <br/>HAY MUCHO POR CONOCER</h1></div>
           
         </div>
               

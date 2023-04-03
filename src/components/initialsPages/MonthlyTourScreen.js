@@ -46,7 +46,7 @@ export const MonthlyTourScreen = () => {
                         <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/monthly-tour.jpeg')` }}>
                             <div className="pantalla_dividida" style={{ height: "45vh" }}>
                                 <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s">
-                                    <h1 className="tit-sob-img_dividida" >UN MES <br />LLENO DE AVENTURA Y DIVERSIÓN</h1>
+                                    <h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)',letterSpacing:'0px'}}>Reserva tu lugar ahora <br />y comienza a crear recuerdos </h1>
                                 </div>
 
                             </div>
@@ -73,7 +73,7 @@ export const MonthlyTourScreen = () => {
             <div className='container'>
                 <div className='row'>
                     {monthlyTour.map((tour, index) => (
-                        <div className='card-group col-sm-12 col-md-6' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
+                        <div className='card-group col-sm-12 col-md-4' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
                             <div className="card" >
                                 <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
 

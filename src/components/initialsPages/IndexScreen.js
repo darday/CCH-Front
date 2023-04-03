@@ -22,15 +22,15 @@ export const IndexScreen = () => {
 
 
     const getData = async () => {
-        await axios.get(ApiUrl + 'monthly-tour-list')
+        await axios.get(ApiUrl + 'monthly-tour-list_active/3')
             .then(response => {
                 const data = response.data;
+                console.log(data);
                 setavailabilityTour(data);
             })
             .catch(e => {
                 console.log(e);
             })
-
     }
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export const IndexScreen = () => {
     }, [])
 
     const { availableTour } = useSetMonthlyTour(availabilityTour);
-
+    console.log('availableTour')
 
 
     console.log(availableTour);
