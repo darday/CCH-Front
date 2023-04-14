@@ -46,7 +46,7 @@ export const MonthlyTourScreen = () => {
                         <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/monthly-tour.jpeg')` }}>
                             <div className="pantalla_dividida" style={{ height: "45vh" }}>
                                 <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s">
-                                    <h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)',letterSpacing:'0px'}}>Reserva tu lugar ahora <br />y comienza a crear recuerdos </h1>
+                                    <h1 className="tit-sob-img_dividida" style={{ textShadow: '1px 1px 2px rgba(0,0,0,1.5)', letterSpacing: '0px' }}>Reserva tu cupo ahora <br />y comienza a crear recuerdos </h1>
                                 </div>
 
                             </div>
@@ -73,24 +73,23 @@ export const MonthlyTourScreen = () => {
             <div className='container'>
                 <div className='row'>
                     {monthlyTour.map((tour, index) => (
-                        <div className='card-group col-sm-12 col-md-4' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
+                        <div className='card-group col-12 col-sm-6 col-md-4' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
                             <div className="card" >
                                 <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
 
                                 {/* <img src="./assets/images/principal/monthly-tour.jpeg" className="card-img-top" alt="..."></img> */}
-                                <div className="card-body">
-                                    {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
-                                    {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
-                                    {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                    <div className='text-center'>
-                                        <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
-                                            <button type="button" className="btn btn-outline-success" >
-                                                Más información
-                                            </button>
-                                        </Link>
-                                    </div>
-
+                                {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
+                                {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
+                                {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+                                <small className='text-center camping-letters'>{tour.tour_destiny} / {tour.departure_date}</small>
+                                <div className='text-center'>
+                                    <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
+                                        <button type="button" className="btn btn-outline-success" style={{ marginBottom: '2vh' }}>
+                                            Más información
+                                        </button>
+                                    </Link>
                                 </div>
+
                             </div>
                         </div>
                     ))}
@@ -113,17 +112,22 @@ export const MonthlyTourScreen = () => {
             <div className='container'>
                 <div className='row'>
                     {nextMonthlyTour.map((tour, index) => (
-                        <div className='card-group col-sm-12 col-md-6' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
-                            <div className="card" >
+                        <div className='card-group col-12 col-sm-6 col-md-4' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
+                            <div className="card" > 
                                 <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
-                                <div className="card-body">
-                                    {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
-                                    {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
-                                    {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                    <div className='text-center'>
-                                        <Link to={`/tour-mensual/${tour.monthly_tour_id}`} className="btn btn-success">Más información</Link>
-                                    </div>
+                                {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
+                                {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
+                                {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+                                <small className='text-center camping-letters'>{tour.tour_destiny} / {tour.departure_date}</small>
+                                <div className='text-center'>
+                                    <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
+                                        <button type="button" className="btn btn-outline-success" style={{ marginBottom: '2vh' }}>
+                                            Más información
+                                        </button>
+                                    </Link>
                                 </div>
+
+
                             </div>
                         </div>
 
