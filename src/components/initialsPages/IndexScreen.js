@@ -104,10 +104,10 @@ export const IndexScreen = () => {
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
 
                     {availableTour.map((tour, index) => (
-                        <div className="col">
+                        <div key={index} className="col">
                             <Link to={`/tour-mensual/${tour.monthly_tour_id}`} style={{ textDecoration: 'none' }}>
                                 <div className="card h-100" style={{ border: '0' }}>
-                                    <button type="button" class="btn btn-outline-secondary">
+                                    <button type="button" className="btn btn-outline-secondary">
                                         <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
                                         {/* <div className="card-body"> */}
                                             {/* <h5 className="card-title camping-letters text-center">{tour.tour_destiny}</h5> */}
