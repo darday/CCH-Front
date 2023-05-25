@@ -86,7 +86,7 @@ export const IndexScreen = () => {
                         </div>
                     </div>
 
-                    <div className="col-sm-12 col-md-12 col-lg-5" style={{ margin: "10px" }}>
+                    <div className="col-sm-12 col-md-12 col-lg-5 img-info" style={{ margin: "10px" }}>
                         <img src={`./assets/images/principal/machay1.jpg`} className="rounded img-fluid img-thumbnail" alt="" width="100%" height="auto" />
 
                     </div>

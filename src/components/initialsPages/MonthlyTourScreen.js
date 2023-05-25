@@ -73,7 +73,7 @@ export const MonthlyTourScreen = () => {
             <div className='container'>
                 <div className='row'>
                     {monthlyTour.map((tour, index) => (
-                        <div className='card-group col-12 col-sm-6 col-md-4' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
+                        <div className='card-group col-12 col-sm-6 col-md-4 current-month-card'  key={tour.monthly_tour_id}>
                             <div className="card" >
                                 <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
 
@@ -81,10 +81,10 @@ export const MonthlyTourScreen = () => {
                                 {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
                                 {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
                                 {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                <small className='text-center camping-letters'>{tour.tour_destiny} / {tour.departure_date}</small>
+                                <small className='text-center camping-letters'style={{ margin: '1vh' }} >{tour.tour_destiny} / {tour.departure_date}</small>
                                 <div className='text-center'>
                                     <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
-                                        <button type="button" className="btn btn-outline-success" style={{ marginBottom: '2vh' }}>
+                                        <button type="button" className="btn btn-outline-success" style={{ marginBottom: '1vh' }}>
                                             Más información
                                         </button>
                                     </Link>
@@ -112,16 +112,16 @@ export const MonthlyTourScreen = () => {
             <div className='container'>
                 <div className='row'>
                     {nextMonthlyTour.map((tour, index) => (
-                        <div className='card-group col-12 col-sm-6 col-md-4' style={{ padding: '5vh' }} key={tour.monthly_tour_id}>
+                        <div className='card-group col-12 col-sm-6 col-md-4 next-month-card' key={tour.monthly_tour_id}>
                             <div className="card" > 
                                 <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
                                 {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
                                 {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
                                 {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                <small className='text-center camping-letters'>{tour.tour_destiny} / {tour.departure_date}</small>
+                                <small className='text-center camping-letters' style={{ margin: '1vh' }}>{tour.tour_destiny} / {tour.departure_date}</small>
                                 <div className='text-center'>
                                     <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
-                                        <button type="button" className="btn btn-outline-success" style={{ marginBottom: '2vh' }}>
+                                        <button type="button" className="btn btn-outline-success" style={{ marginBottom: '1vh' }}>
                                             Más información
                                         </button>
                                     </Link>

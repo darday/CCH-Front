@@ -276,3 +276,47 @@ p{
     }
     
 }
+/* ############INDEXSCREEN################## */
+@media (max-width:991px)  {
+    .img-info{
+        display: none;
+    }
+    
+}
+
+/* ###############MONTHLYTOURSCREEN################# */
+.current-month-card{
+    padding:4vh
+}
+
+@media (max-width:991px)  {
+    .current-month-card{
+        padding: 3vh;
+    }
+    
+}
+
+@media (max-width:415px)  {
+    .current-month-card{
+        padding: 0.1vh;
+    }
+    
+}
+
+.next-month-card{
+    padding:4vh
+}
+
+@media (max-width:991px)  {
+    .next-month-card{
+        padding: 3vh;
+    }
+    
+}
+
+@media (max-width:415px)  {
+    .next-month-card{
+        padding: 0.1vh;
+    }
+    
+}
