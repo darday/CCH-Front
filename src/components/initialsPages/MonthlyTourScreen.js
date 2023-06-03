@@ -6,6 +6,7 @@ import { useSetMonthlyTour } from '../../hooks/useSetMonthlyTour';
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 export const MonthlyTourScreen = () => {
     localStorage.removeItem("menu");
@@ -137,7 +138,7 @@ export const MonthlyTourScreen = () => {
             </div>
             <br></br>
             <br></br>
-
+            <WhatsappButtonScreen/>
             <FooterScreen />
         </>
 

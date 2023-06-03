@@ -13,7 +13,7 @@
 /* Carousel */
 
 .carousel-item {
-    height: 80vh;
+    height: 100vh;
     min-height: 250px;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
@@ -284,6 +284,39 @@ p{
     
 }
 
+.btn-rs{
+    /* position: fixed; */
+    width: 55px;
+    height: 55px;
+    /* line-height: 55px; */
+    /* bottom: 30px;
+    right: 30px; */
+    /* background: #0df053; */
+    color: #fff;
+    /* border-radius: 50px; */
+    text-align: center;
+    font-size: 4.5rem;
+    /* box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3); */
+    /* z-index: 100; */
+}
+
+
+
+
+.btn-rs:hover{
+    text-decoration: none;
+    color: #3d641c;
+    /* background: #fff; */
+
+}
+
+@media (max-width:991px)  {
+    .btn-rs{
+        font-size: 3rem !important;
+    }
+    
+}
+
 /* ###############MONTHLYTOURSCREEN################# */
 .current-month-card{
     padding:4vh
@@ -320,3 +353,36 @@ p{
     }
     
 }
+
+/* ############################ALL TOU SCREEN################################ */
+
+.img-list-at{
+    padding:'0.2rem'
+}
+
+@media (max-width:991px)  {
+    .img-list-at{
+        padding:'5rem'
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 0px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .t-name{
+        text-align: center !important;
+    }
+    .t-destiny{
+        text-align: center !important;
+    }
+    
+}
+
+
+
+

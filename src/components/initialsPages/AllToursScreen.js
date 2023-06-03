@@ -5,6 +5,7 @@ import { useGetDate } from '../../hooks/useGetDate'
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 export const AllToursScreen = () => {
     localStorage.removeItem("menu");
@@ -24,6 +25,14 @@ export const AllToursScreen = () => {
             }).catch(e => {
                 console.log(e);
             })
+    }
+
+    const textLimit =(text,limit)=>{
+        if (text.length > limit) {
+            return text.substring(0, limit) + "...";
+          } else {
+            return text;
+          }
     }
 
     useEffect(() => {
@@ -75,16 +84,16 @@ export const AllToursScreen = () => {
                                 </div>
                                 <div className="col-md-7">
                                     <div className="card-body">
-                                        <h5 className="card-title camping-letters">{tour.tour_name}</h5>
-                                        <h4 className="card-title camping-letters" style={{ textTransform: 'uppercase' }}>{tour.tour_destiny}</h4>
-                                        <p className="card-text">{tour.description}</p>
+                                        <h5 className="card-title camping-letters t-name">{tour.tour_name}</h5>
+                                        <h4 className="card-title camping-letters t-destiny" style={{ textTransform: 'uppercase' }}>{tour.tour_destiny}</h4>
+                                        <p className="card-text " style={{textAlign:'justify'}}>{textLimit(tour.description,220)}</p>
                                         <p className="card-text"><small className="text-muted">Nivel: {tour.dificulty}</small></p>
                                     </div>
                                 </div>
-                                <div className="col-md-2">
-                                    <div className="card-body text-center" style={{padding:'0.2rem'}}>
-                                        <br></br>
-                                        <h5 className="card-title camping-letters ">Desde:</h5>
+                                <div className="col-md-2 d-flex align-items-center">
+                                    <div className="card-body text-center img-list-at" style={{}}>
+                                        
+                                        <h5 className="card-title camping-letters " >Desde:</h5>
                                         <h1 className="card-text camping-letters">{tour.cost_4}</h1>
                                         <Link to={`/tour-disponibles/${tour.tour_catalogues_id}`}>
                                             <button type="button" className="btn btn-outline-success" >
@@ -103,7 +112,7 @@ export const AllToursScreen = () => {
 
                 ))}
             </div>
-
+            <WhatsappButtonScreen/>
             <FooterScreen />
 
 

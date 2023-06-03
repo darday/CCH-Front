@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen';
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 
 export const MonthlyTourSingleScreen = () => {
@@ -188,7 +189,7 @@ export const MonthlyTourSingleScreen = () => {
             <br></br>
             <br></br>
             <br></br>
-
+            <WhatsappButtonScreen/>
             <FooterScreen />
 
 

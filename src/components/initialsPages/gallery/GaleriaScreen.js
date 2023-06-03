@@ -7,6 +7,8 @@ import FaWindowClose from '@mui/icons-material/Close';
 
 import axios from 'axios';
 import { ApiStorage, ApiUrl } from '../../../services/ApiRest';
+import { FooterScreen } from '../../footer/FooterScreen';
+import { WhatsappButtonScreen } from '../whatsappButton/WhatsappButtonScreen';
 
 export const GaleriaScreen = () => {
 
@@ -81,6 +83,9 @@ export const GaleriaScreen = () => {
             </div>
             <br></br>
             <br></br>
+            <WhatsappButtonScreen/>
+            <FooterScreen/>
+
         </>
     )
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useGetDate } from '../../hooks/useGetDate'
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 export const AboutUsScreen = () => {
     // var date = new Date();
@@ -150,6 +151,7 @@ export const AboutUsScreen = () => {
         </div>
         <br></br>
         <br></br>
+    <WhatsappButtonScreen/>
     <FooterScreen/>
 
         

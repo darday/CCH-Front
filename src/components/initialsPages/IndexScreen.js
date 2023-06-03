@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { useSetMonthlyTour } from '../../hooks/useSetMonthlyTour';
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 
 export const IndexScreen = () => {
@@ -51,7 +52,7 @@ export const IndexScreen = () => {
 
             <div className="container ">
                 <br></br>
-                <h1 className="camping-letters text-center">SOBRE NUESTROS TOURS</h1>
+                <h1 className="camping-letters text-center animate__animated animate__zoomIn">SOBRE NUESTROS TOURS</h1>
                 <hr></hr>
 
                 <div className="row" style={{ textAlign: 'justify', justifyContent: "center", alignItems: "center", display: "flex" }}>
@@ -182,23 +183,23 @@ export const IndexScreen = () => {
                 <div className='container' style={{ padding: '10vh' }}>
                     <div className='row text-center justify-content-center'>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >+300</h1>
-                            <h5 className="card-title camping-letters"  >Clientes Satisfechos</h5>
+                            <h1 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }}  >+300</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Clientes Satisfechos</h5>
 
                         </div>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >+15</h1>
-                            <h5 className="card-title camping-letters"  >Rutas Disponibles</h5>
+                            <h1 className="card-title camping-letters"style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >+15</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Rutas Disponibles</h5>
 
                         </div>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >10</h1>
-                            <h5 className="card-title camping-letters"  >Años de Experiencia</h5>
+                            <h1 className="card-title camping-letters"style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >10</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Años de Experiencia</h5>
 
                         </div>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >100%</h1>
-                            <h5 className="card-title camping-letters"  >Garantizado</h5>
+                            <h1 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }}>100%</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Garantizado</h5>
 
                         </div>
                     </div>
@@ -272,6 +273,7 @@ export const IndexScreen = () => {
             <br></br>
             <br></br>
 
+            <WhatsappButtonScreen/>
             <FooterScreen />
         </div>
     )
