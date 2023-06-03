@@ -74,7 +74,7 @@ export const MonthlyTourScreen = () => {
             <div className='container'>
                 <div className='row'>
                     {monthlyTour.map((tour, index) => (
-                        <div className='card-group col-12 col-sm-6 col-md-4 current-month-card'  key={tour.monthly_tour_id}>
+                        <div className='card-group col-12 col-sm-6 col-md-4 current-month-card sm-screen'  key={tour.monthly_tour_id}>
                             <div className="card" >
                                 <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
 
@@ -86,7 +86,7 @@ export const MonthlyTourScreen = () => {
                                 <div className='text-center'>
                                     <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
                                         <button type="button" className="btn btn-outline-success" style={{ marginBottom: '1vh' }}>
-                                            Más información
+                                           <b> Más información</b>
                                         </button>
                                     </Link>
                                 </div>

@@ -97,7 +97,7 @@ export const AllToursScreen = () => {
                                         <h1 className="card-text camping-letters">{tour.cost_4}</h1>
                                         <Link to={`/tour-disponibles/${tour.tour_catalogues_id}`}>
                                             <button type="button" className="btn btn-outline-success" >
-                                                Ver Más
+                                                <b>Ver Más</b>
                                             </button>
                                         </Link>
 

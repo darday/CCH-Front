@@ -114,7 +114,8 @@ export const IndexScreen = () => {
                                             {/* <h5 className="card-title camping-letters text-center">{tour.tour_destiny}</h5> */}
                                             {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
                                         {/* </div> */}
-                                        <label className='text-center camping-letters' style={{paddingTop:'1vh'}}>{tour.tour_destiny} / {tour.departure_date}</label>
+                                        {/* <label className='text-center camping-letters' style={{paddingTop:'1vh',fontSize:'5rem !important'}}>{tour.tour_destiny} / {tour.departure_date}</label> */}
+                                        <small className='text-center camping-letters'style={{ margin: '1vh' }} >{tour.tour_destiny} / {tour.departure_date}</small>
 
                                     </button>
                                 </div>
