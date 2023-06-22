@@ -11,6 +11,7 @@ import axios from 'axios';
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { useSetMonthlyTour } from '../../hooks/useSetMonthlyTour';
 import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
+import { useGetDateToDayMonth } from '../../hooks/useGetDateToDayMonth';
 
 
 export const IndexScreen = () => {
@@ -39,10 +40,12 @@ export const IndexScreen = () => {
     }, [])
 
     const { availableTour } = useSetMonthlyTour(availabilityTour);
-    console.log('availableTour')
-
-
-    console.log(availableTour);
+    
+    const convertDate = (date)=>{
+        const {letterMonth,day} = useGetDateToDayMonth(date);
+        var dateText = day+' '+'DE '+letterMonth;
+        return(dateText);
+    }
 
 
     return (
@@ -115,7 +118,7 @@ export const IndexScreen = () => {
                                             {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
                                         {/* </div> */}
                                         {/* <label className='text-center camping-letters' style={{paddingTop:'1vh',fontSize:'5rem !important'}}>{tour.tour_destiny} / {tour.departure_date}</label> */}
-                                        <small className='text-center camping-letters'style={{ margin: '1vh' }} >{tour.tour_destiny} / {tour.departure_date}</small>
+                                        <small className='text-center camping-letters'style={{ margin: '1vh' }} >{tour.tour_destiny} / {convertDate(tour.departure_date)}</small>
 
                                     </button>
                                 </div>

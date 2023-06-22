@@ -7,14 +7,13 @@ import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
 import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
+import { useGetDateToDayMonth } from '../../hooks/useGetDateToDayMonth';
 
 export const MonthlyTourScreen = () => {
     localStorage.removeItem("menu");
     window.localStorage.setItem("menu", 2);
 
     const { printMonth, printNextMonth, date } = useGetDate();
-    const currentMonth = ((date.getMonth()) + 1);
-    const currentYear = date.getFullYear();
 
     const [tours, settours] = useState([]);
 
@@ -27,6 +26,12 @@ export const MonthlyTourScreen = () => {
             .catch(e => {
                 console.log(e);
             })
+    }
+
+    const convertDate = (date)=>{
+        const {letterMonth,day} = useGetDateToDayMonth(date);
+        var dateText = day+' '+'DE '+letterMonth;
+        return(dateText);
     }
 
     useEffect(() => {
@@ -82,7 +87,7 @@ export const MonthlyTourScreen = () => {
                                 {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
                                 {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
                                 {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                <small className='text-center camping-letters'style={{ margin: '1vh' }} >{tour.tour_destiny} / {tour.departure_date}</small>
+                                <small className='text-center camping-letters'style={{ margin: '1vh' }} >{tour.tour_destiny} / {convertDate(tour.departure_date)} </small>
                                 <div className='text-center'>
                                     <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
                                         <button type="button" className="btn btn-outline-success" style={{ marginBottom: '1vh' }}>
@@ -113,13 +118,13 @@ export const MonthlyTourScreen = () => {
             <div className='container'>
                 <div className='row'>
                     {nextMonthlyTour.map((tour, index) => (
-                        <div className='card-group col-12 col-sm-6 col-md-4 next-month-card' key={tour.monthly_tour_id}>
+                        <div className='card-group col-12 col-sm-6 col-md-4 next-month-card sm-screen' key={tour.monthly_tour_id}>
                             <div className="card" > 
                                 <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
                                 {/* <h4 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_destiny}</h4> */}
                                 {/* <h5 className="card-title camping-letters text-center" style={{ textTransform: 'uppercase' }} >{tour.tour_name}</h5> */}
                                 {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                <small className='text-center camping-letters' style={{ margin: '1vh' }}>{tour.tour_destiny} / {tour.departure_date}</small>
+                                <small className='text-center camping-letters' style={{ margin: '1vh' }}>{tour.tour_destiny} / {convertDate(tour.departure_date)}</small>
                                 <div className='text-center'>
                                     <Link to={`/tour-mensual/${tour.monthly_tour_id}`}>
                                         <button type="button" className="btn btn-outline-success" style={{ marginBottom: '1vh' }}>

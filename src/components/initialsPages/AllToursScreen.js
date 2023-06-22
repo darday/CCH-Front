@@ -86,7 +86,7 @@ export const AllToursScreen = () => {
                                     <div className="card-body">
                                         <h5 className="card-title camping-letters t-name">{tour.tour_name}</h5>
                                         <h4 className="card-title camping-letters t-destiny" style={{ textTransform: 'uppercase' }}>{tour.tour_destiny}</h4>
-                                        <p className="card-text " style={{textAlign:'justify'}}>{textLimit(tour.description,220)}</p>
+                                        <p className="card-text " style={{textAlign:'justify'}}>{textLimit(tour.description,165)}</p>
                                         <p className="card-text"><small className="text-muted">Nivel: {tour.dificulty}</small></p>
                                     </div>
                                 </div>
