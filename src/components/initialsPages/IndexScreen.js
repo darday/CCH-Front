@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { useSetMonthlyTour } from '../../hooks/useSetMonthlyTour';
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
+import { useGetDateToDayMonth } from '../../hooks/useGetDateToDayMonth';
 
 
 export const IndexScreen = () => {
@@ -38,10 +40,12 @@ export const IndexScreen = () => {
     }, [])
 
     const { availableTour } = useSetMonthlyTour(availabilityTour);
-    console.log('availableTour')
-
-
-    console.log(availableTour);
+    
+    const convertDate = (date)=>{
+        const {letterMonth,day} = useGetDateToDayMonth(date);
+        var dateText = day+' '+'DE '+letterMonth;
+        return(dateText);
+    }
 
 
     return (
@@ -51,7 +55,7 @@ export const IndexScreen = () => {
 
             <div className="container ">
                 <br></br>
-                <h1 className="camping-letters text-center">SOBRE NUESTROS TOURS</h1>
+                <h1 className="camping-letters text-center animate__animated animate__zoomIn">SOBRE NUESTROS TOURS</h1>
                 <hr></hr>
 
                 <div className="row" style={{ textAlign: 'justify', justifyContent: "center", alignItems: "center", display: "flex" }}>
@@ -86,7 +90,7 @@ export const IndexScreen = () => {
                         </div>
                     </div>
 
-                    <div className="col-sm-12 col-md-12 col-lg-5" style={{ margin: "10px" }}>
+                    <div className="col-sm-12 col-md-12 col-lg-5 img-info" style={{ margin: "10px" }}>
                         <img src={`./assets/images/principal/machay1.jpg`} className="rounded img-fluid img-thumbnail" alt="" width="100%" height="auto" />
 
                     </div>
@@ -104,15 +108,18 @@ export const IndexScreen = () => {
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
 
                     {availableTour.map((tour, index) => (
-                        <div className="col">
+                        <div key={index} className="col">
                             <Link to={`/tour-mensual/${tour.monthly_tour_id}`} style={{ textDecoration: 'none' }}>
                                 <div className="card h-100" style={{ border: '0' }}>
-                                    <button type="button" class="btn btn-outline-secondary">
+                                    <button type="button" className="btn btn-outline-secondary">
                                         <img src={`${ApiStorage + tour.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
-                                        <div className="card-body">
+                                        {/* <div className="card-body"> */}
                                             {/* <h5 className="card-title camping-letters text-center">{tour.tour_destiny}</h5> */}
                                             {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
-                                        </div>
+                                        {/* </div> */}
+                                        {/* <label className='text-center camping-letters' style={{paddingTop:'1vh',fontSize:'5rem !important'}}>{tour.tour_destiny} / {tour.departure_date}</label> */}
+                                        <small className='text-center camping-letters'style={{ margin: '1vh' }} >{tour.tour_destiny} / {convertDate(tour.departure_date)}</small>
+
                                     </button>
                                 </div>
 
@@ -180,23 +187,23 @@ export const IndexScreen = () => {
                 <div className='container' style={{ padding: '10vh' }}>
                     <div className='row text-center justify-content-center'>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >+300</h1>
-                            <h5 className="card-title camping-letters"  >Clientes Satisfechos</h5>
+                            <h1 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }}  >+300</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Clientes Satisfechos</h5>
 
                         </div>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >+15</h1>
-                            <h5 className="card-title camping-letters"  >Rutas Disponibles</h5>
+                            <h1 className="card-title camping-letters"style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >+15</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Rutas Disponibles</h5>
 
                         </div>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >10</h1>
-                            <h5 className="card-title camping-letters"  >Años de Experiencia</h5>
+                            <h1 className="card-title camping-letters"style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >10</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Años de Experiencia</h5>
 
                         </div>
                         <div className='col-12 col-sm-6 col-md-3'>
-                            <h1 className="card-title camping-letters" >100%</h1>
-                            <h5 className="card-title camping-letters"  >Garantizado</h5>
+                            <h1 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }}>100%</h1>
+                            <h5 className="card-title camping-letters" style={{ textShadow: '1px 1px 2px rgba(255,255,255,1)' }} >Garantizado</h5>
 
                         </div>
                     </div>
@@ -270,6 +277,7 @@ export const IndexScreen = () => {
             <br></br>
             <br></br>
 
+            <WhatsappButtonScreen/>
             <FooterScreen />
         </div>
     )

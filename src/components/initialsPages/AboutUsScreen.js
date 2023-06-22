@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useGetDate } from '../../hooks/useGetDate'
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 export const AboutUsScreen = () => {
     // var date = new Date();
@@ -44,10 +45,10 @@ export const AboutUsScreen = () => {
 
         <div className="container ">
                 <br></br>
-                <h1 className="camping-letters text-center">SOBRE NUESTROS TOURS</h1>
+                <h1 className="camping-letters text-center">Bienvenidos a Camping Chimborazo :D</h1>
                 <hr></hr>
 
-                <div className="row" style={{textAlign:'justify',justifyContent:"center",alignItems:"center",display:"flex"}}>
+                <div className="row" style={{textAlign:'justify',justifyContent:"center",display:"flex"}}>
                    
                     <div className="col-md-5" style={{margin:"10px"}} >
                         {/* <p >Quieres Aventurarte salir de la rutina diaria y del estrés de la ciudad? Si es así Acompañanos!!! Tenemos un plan perfecto para ti, contamos con
@@ -55,20 +56,36 @@ export const AboutUsScreen = () => {
                              que te ayudarán a que disfrutes de la maravillosa naturaleza en su máximo esplendor.
                         </p> */}
                         <p>
-                            Tenemos <b>13 destinos </b> diferentes para que puedas distraerte y compartir con la naturaleza. Puede ser solo, con amigos o junto a tu familia.
-                            No te preocupes por el <b>equipo de camping</b> nosotros te lo proporcionamos.
+                            Somos una <b>operadora de turismo</b> que ofrece rutas de trekking, camping y senderismo en los increíbles paisajes de la región. 
+                            Nuestra empresa se dedica a brindar una <b>experiencia única y auténtica de la naturaleza</b>, combinando la aventura con la comodidad y 
+                            seguridad que nuestros clientes merecen.
                         </p>
                         <p>
-                            Contamos con un <b>tour mensual </b> el cual es propuesto por nosotros, cada mes viajamos a un lugar diferente, si estas libre en la fecha que 
-                            proponemos inscribete y <b>conocerás más aventureros </b>como tú viviendo una experiencia inolvidable.
+                            Desde nuestros inicios, hemos estado comprometidos en proporcionar un <b>servicio de calidad</b>, respetando el medio ambiente y 
+                            contribuyendo al desarrollo sostenible de la región. Nuestro <b>equipo de guías expertos y profesionales</b> está a su disposición para 
+                            acompañarle en las rutas, brindar información detallada sobre los lugares y cuidar de su seguridad durante el viaje.
                         </p>
 
                         <p>
-                            <b>Tour personalizado </b> en este tour nosotros nos acoplamos a tu disponibilidad, <b>CAMPING CHIMBORAZO</b> te asignará un guía para que te 
-                            acompañe en la ruta que desees y además te proporcionara el <b>equipo de camping</b> para que disfrutes de esta aventura. No olvides que <b>la fecha la 
-                            pones tu</b>.
+                            En Camping Chimborazo, creemos que el contacto con la naturaleza es una <b>experiencia transformadora y enriquecedora</b>, por eso ofrecemos 
+                            rutas de trekking, camping y senderismo adaptadas a <b>todos los niveles de experiencia</b>, desde principiantes hasta expertos. Podrá disfrutar 
+                            de vistas impresionantes, respirar aire puro y vivir <b>momentos inolvidables</b> en compañía de amigos, familiares o en solitario.
                         </p>
 
+                        
+                    </div>
+                    
+                    <div className="col-md-5"  style={{margin:"10px"}}>
+                        {/* <img src={`./assets/images/principal/machay1.jpg`} className="rounded img-fluid img-thumbnail"  alt="" width="100%" height="auto"/> */}
+                        <p>
+                            Además de nuestras rutas, también ofrecemos servicios adicionales como el <b>alquiler de equipos</b>, alojamiento en nuestras tiendas de campaña y 
+                            transporte. Nos aseguramos de que todos los detalles estén cubiertos para que usted pueda relajarse y disfrutar de su <b>aventura en la 
+                            naturaleza.</b>
+                        </p>
+                        <p>
+                            En Camping Chimborazo, estamos comprometidos en hacer que su experiencia sea única e inolvidable. Únase a nosotros y descubra los paisajes más 
+                            hermosos y emocionantes de la región. <b>¡Estamos listos para acompañarlo en su próxima aventura de trekking, camping y senderismo!</b>
+                        </p>
                         <div className="text-center">
                             <Link className="" to="/tour-mensual">
                                 <button type="button" style={{width:"40%",margin:"5px"}} className="btn btn-success">TOURS DE {printMonth}</button>
@@ -76,17 +93,12 @@ export const AboutUsScreen = () => {
                             <button type="button" style={{width:"40%",margin:"5px"}} className="btn btn-outline-secondary">RUTAS DISPONIBLES</button>
                         </div>
                     </div>
-                    
-                    <div className="col-md-5"  style={{margin:"10px"}}>
-                        <img src={`./assets/images/principal/machay1.jpg`} className="rounded img-fluid img-thumbnail"  alt="" width="100%" height="auto"/>
-
-                    </div>
                 </div>
         </div>
 
         <div className="container ">
                 <br></br>
-                <h1 className="camping-letters text-center">EQUIPO CAMPING CHIMBORAZO</h1>
+                <h1 className="camping-letters text-center">Nuestro Equipo de Guías</h1>
                 <hr></hr>
                 <div className='row'>
                     <div className='col-12 col-sm-12 col-md-6 text-center'>
@@ -95,7 +107,8 @@ export const AboutUsScreen = () => {
                     </div>
                     <div className='col-12 col-sm-12 col-md-6'>
                         <h3 className="card-title camping-letters"  >Luis Yumiseba  (Luchito)</h3>
-                        <p>Aqui va descripcion</p>
+                        <p>Luis Yumiseba es un guía de montaña con más de 5 años de experiencia en la guianza de expediciones de montañismo en diferentes regiones del país. A pesar de su juventud, Luis ha adquirido una gran cantidad de conocimientos y habilidades en la orientación, planificación y seguridad en la montaña.</p>
+                        <p>Una de las virtudes más destacadas de Luis es su personalidad sociable y divertida. Él tiene una gran habilidad para conectarse con sus clientes y crear un ambiente amigable y relajado durante sus expediciones de montañismo. Esta habilidad hace que sus clientes se sientan cómodos y en confianza, lo que les permite disfrutar plenamente de la experiencia de montaña.</p>
 
                     </div>
 
@@ -109,8 +122,9 @@ export const AboutUsScreen = () => {
 
                     </div>
                     <div className='col-12 col-sm-12 col-md-6'>
-                        <h3 className="card-title camping-letters"  >Jhon Santos  (Jhonson)</h3>
-                        <p>Aqui va descripcion</p>
+                        <h3 className="card-title camping-letters"  >Jhon Santos  (Jhon Paúl)</h3>
+                        <p>Jhon Santos es un guía turístico con más de 5 años de experiencia en la guianza de rutas de trekking y senderismo en diferentes regiones del país. Su pasión por la naturaleza y el deseo de compartir su conocimiento lo llevaron a convertirse en guía de montaña, donde ha perfeccionado sus habilidades en la planificación y organización de expediciones de trekking.</p>
+                        <p>Lo que hace que Jhon sea un guía excepcional es su paciencia y habilidad para trabajar con personas que realizan trekking por primera vez. Él sabe cómo hacer que la experiencia sea agradable y gratificante, y se asegura de que todos los miembros del grupo estén cómodos y seguros durante todo el recorrido. Su enfoque en la seguridad y el bienestar de sus clientes lo convierte en un guía altamente confiable y comprometido con la satisfacción del cliente.</p>
 
                     </div>
 
@@ -124,16 +138,12 @@ export const AboutUsScreen = () => {
                     </div>
                     <div className='col-12 col-sm-12 col-md-6'>
                         <h3 className="card-title camping-letters"  >Darío Janeta  (Darius)</h3>
-                        <p style={{textAlign:'justify'}}>Soy una persona que le gusta compartir con la naturaleza pues en ella he encontrado la paz y tranquilidad que tanto buscaba, me guta compartir este sentir con muchas personas
-                            que para que disfruten de la bondad y pureza que solo se puede apreciar en las montañas.                            
+                        <p style={{textAlign:'justify'}}>Darío Janeta es un apasionado explorador de la naturaleza y guía turístico, con más de 5 años de experiencia en la guianza de rutas de trekking, camping y senderismo en diferentes regiones del país. Su amor por la naturaleza lo llevó a dedicarse a la guianza, donde ha perfeccionado sus habilidades en la orientación, la seguridad y la planificación de expediciones en condiciones extremas.                          
                         </p>
                         <p style={{textAlign:'justify'}}>
-                            Comencé estas aventuras a los 18 años actualmente tengo 28 años y en estos 10 años de viajes he logrado tener muchas experiencias las cuales me han ayudado a mejorar en cada ruta que hago
-                            
+                        Lo que hace que Darío sea un guía excepcional es su habilidad para transmitir su pasión por la naturaleza y la aventura a sus clientes. Con él, no solo tendrás una experiencia de turismo de aventura, sino también una oportunidad para aprender sobre la fauna local y las historias detrás de cada lugar. Él se preocupa por brindar a sus clientes una experiencia única y personalizada que nunca olvidarán.                            
                         </p>
-                        <p>
-                            Redes Sociales:                            
-                        </p>
+                       
 
                     </div>
 
@@ -141,6 +151,7 @@ export const AboutUsScreen = () => {
         </div>
         <br></br>
         <br></br>
+    <WhatsappButtonScreen/>
     <FooterScreen/>
 
         

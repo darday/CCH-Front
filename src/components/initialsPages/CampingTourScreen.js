@@ -1,6 +1,8 @@
 import React from 'react'
 import { useGetDate } from '../../hooks/useGetDate'
 import { NavBarScreen } from '../navBar/NavBarScreen'
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
+import { FooterScreen } from '../footer/FooterScreen';
 
 export const CampingTourScreen = () => {
     // var date = new Date();
@@ -98,6 +100,8 @@ export const CampingTourScreen = () => {
         
 
         </div>
+        <WhatsappButtonScreen/>
+        <FooterScreen/>
 
 
     </>

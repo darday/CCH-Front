@@ -7,6 +7,8 @@ import FaWindowClose from '@mui/icons-material/Close';
 
 import axios from 'axios';
 import { ApiStorage, ApiUrl } from '../../../services/ApiRest';
+import { FooterScreen } from '../../footer/FooterScreen';
+import { WhatsappButtonScreen } from '../whatsappButton/WhatsappButtonScreen';
 
 export const GaleriaScreen = () => {
 
@@ -49,7 +51,7 @@ export const GaleriaScreen = () => {
                 <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
                     <div className="carousel-inner" role="listbox">
 
-                        <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/monthly-tour.jpeg')` }}>
+                        <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/gallery.jpeg')` }}>
                             <div className="pantalla_dividida" style={{ height: "45vh" }}>
                                 <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s">
                                     <h1 className="tit-sob-img_dividida" style={{ textShadow: '1px 1px 2px rgba(0,0,0,1.5)' }} >Descubre la belleza <br />de nuestras aventuras</h1>
@@ -81,6 +83,9 @@ export const GaleriaScreen = () => {
             </div>
             <br></br>
             <br></br>
+            <WhatsappButtonScreen/>
+            <FooterScreen/>
+
         </>
     )
 }
