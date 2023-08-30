@@ -29,20 +29,37 @@ export const AdminSidebar = () => {
                                     <Link className="nav-link" to="catalogue-list">Ver catálogo</Link>
                                 </nav>
                             </div>
+
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#monthly" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                <div className="sb-nav-link-icon"><i className="fas fa-mountain"></i></div>
                                 Tours mensuales
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
                             <div className="collapse" id="monthly" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav">
                                     <Link className="nav-link" to="addTour">Agregar Tour</Link>
-                                    <Link className="nav-link" to="monthly-tour-list">Listar Tours</Link>
+                                    <Link className="nav-link" to="monthly-tour-available">Tours Disponibles</Link>
+                                    <Link className="nav-link" to="monthly-tour-list">Todos los Tours</Link>
                                     {/* <a className="nav-link" href="layout-sidenav-light.html">Listar Tours</a> */}
                                 </nav>
                             </div>
+                          
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#passenger-tour" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div className="sb-nav-link-icon"><i className="fas fa-id-badge"></i></div>
+                                Pasajeros en Tour
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            <div className="collapse" id="passenger-tour" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav className="sb-sidenav-menu-nested nav">
+                                    <Link className="nav-link" to="passenger-available-tour">Tour con Listado</Link>
+                                    <Link className="nav-link" to="monthly-tour-list">Todos los Tours</Link>
+                                    <Link className="nav-link" to="monthly-tour-list">Tous Externos Solicitud</Link>
+                                    {/* <a className="nav-link" href="layout-sidenav-light.html">Listar Tours</a> */}
+                                </nav>
+                            </div>
+                            
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#ventas" aria-expanded="false" aria-controls="ventas">
-                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                <div className="sb-nav-link-icon"><i className="far fa-money-bill-alt"></i></div>
                                 Ventas
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
@@ -54,7 +71,7 @@ export const AdminSidebar = () => {
                                 </nav>
                             </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                <div className="sb-nav-link-icon"><i className="fas fa-retweet"></i></div>
                                 Alquiler
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
@@ -65,18 +82,19 @@ export const AdminSidebar = () => {
                                 </nav>
                             </div>
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gallery" aria-expanded="false" aria-controls="gallery">
-                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                <div className="sb-nav-link-icon"><i className="fas fa-image"></i></div>
                                 Galería
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
                             <div className="collapse" id="gallery" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav">
-                                    <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link>
+                                    {/* <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link> */}
                                     <Link className="nav-link" to="list-gallery">Listar Imagenes</Link>
                                 </nav>
                             </div>
+                            
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
+                                <div className="sb-nav-link-icon"><i className="fas fa-home"></i></div>
                                 Hospedaje
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
@@ -106,6 +124,8 @@ export const AdminSidebar = () => {
                                     </div>
                                 </nav>
                             </div>
+
+
                             <div className="sb-sidenav-menu-heading">Addons</div>
                             <a className="nav-link" href="charts.html">
                                 <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>

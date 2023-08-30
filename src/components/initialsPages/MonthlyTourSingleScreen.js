@@ -166,12 +166,11 @@ export const MonthlyTourSingleScreen = () => {
                             <div className='row text-center'>
                                 <div className='col-12 col-sm-6'>
                                     <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Salida<br></br> </h4>
-                                    <h5>{tour.departure_date}</h5>
+                                    <h5>{convertDate(tour.departure_date)}</h5>
                                 </div>
                                 <div className='col-12 col-sm-6'>
                                     <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Retorno <br></br> </h4>
-                                    <h5>{tour.return_date}</h5>
-
+                                    <h5>{convertDate(tour.return_date)}</h5>
                                 </div>
                             </div>
 

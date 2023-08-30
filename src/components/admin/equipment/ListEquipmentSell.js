@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { ApiUrl } from '../../../services/ApiRest';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 
 // import React, { useState } from 'react'
@@ -29,6 +31,14 @@ export const ListEquipmentSell = () => {
             .catch(err => {
                 console.log(err);
             })
+    }
+
+    const textLimit =(text,limit)=>{
+        if (text.length > limit) {
+            return text.substring(0, limit) + "...";
+          } else {
+            return text;
+          }
     }
 
 
@@ -68,17 +78,17 @@ export const ListEquipmentSell = () => {
                         <div className="card-header">
                             LISTA DE EQUIPOS DE VENTA
                         </div>
-                        <div className="card-body">
-                            <table className='table table-hover table-responsive' id="dataTable"  >
+                        <div className="card-body table-responsive">
+                            <table className='table table-hover ' id="dataTable"  >
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
+                                        {/* <th>Descripción</th> */}
                                         <th>Costo</th>
                                         <th>Estado</th>
                                         <th>Decuento</th>
-                                        <th>Descripción descuento</th>
+                                        <th>Descripcion Descuento</th>
                                         <th>Contacto</th>
                                         <th>Tipo</th>
                                         <th>Acciones</th>
@@ -90,7 +100,7 @@ export const ListEquipmentSell = () => {
                                         <tr key={equip.equipment_id}>
                                             <td>{i + 1}</td>
                                             <td>{equip.name}</td>
-                                            <td>{equip.description}</td>
+                                            {/* <td>{ textLimit(equip.description,20)}</td> */}
                                             <td>{equip.cost}</td>
                                             <td>{equip.state}</td>
                                             <td>{equip.discount}</td>
@@ -99,9 +109,9 @@ export const ListEquipmentSell = () => {
                                             <td>{equip.type}</td>
                                             <td>
                                                 <Link to={"../edit-equipment/" + equip.equipment_id}>
-                                                    <button className='btn btn-outline-primary' >Editar</button>
+                                                    <button className='btn btn-outline-primary' ><ModeEditOutlineOutlinedIcon/></button>
                                                 </Link>
-                                                <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectEquipment(equip)}  >Eliminar</button>
+                                                <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectEquipment(equip)}><DeleteOutlinedIcon/></button>
                                             </td>
                                         </tr>
                                     ))

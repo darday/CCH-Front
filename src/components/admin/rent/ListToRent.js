@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { ApiUrl } from '../../../services/ApiRest';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+
 
 export const ListToRent = () => {
     const [listData, setListData] = useState([]);
@@ -67,7 +70,7 @@ export const ListToRent = () => {
                                     <tr>
                                         <th>#</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
+                                        {/* <th>Descripción</th> */}
                                         <th>Costo</th>
                                         <th>Estado</th>
                                         <th>Decuento</th>
@@ -83,7 +86,7 @@ export const ListToRent = () => {
                                         <tr key={equip.equipment_rent_id}>
                                             <td>{i + 1}</td>
                                             <td>{equip.name}</td>
-                                            <td>{equip.description}</td>
+                                            {/* <td>{equip.description}</td> */}
                                             <td>{equip.cost}</td>
                                             <td>{equip.state}</td>
                                             <td>{equip.discount}</td>
@@ -92,9 +95,9 @@ export const ListToRent = () => {
                                             <td>{equip.type}</td>
                                             <td>
                                                 <Link to={"../edit-equipment-rent/" + equip.equipment_rent_id}>
-                                                    <button className='btn btn-outline-primary' >Editar</button>
+                                                    <button className='btn btn-outline-primary' ><ModeEditOutlineOutlinedIcon/></button>
                                                 </Link>
-                                                <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectEquipment(equip)}  >Eliminar</button>
+                                                <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectEquipment(equip)}  ><DeleteOutlinedIcon/></button>
                                             </td>
                                         </tr>
                                     ))

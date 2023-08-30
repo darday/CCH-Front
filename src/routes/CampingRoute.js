@@ -43,6 +43,9 @@ import { EditEquipment } from '../components/admin/equipment/EditEquipment';
 import { EditEquipmentRent } from '../components/admin/rent/EditEquipmentRent';
 import { GaleriaScreen } from '../components/initialsPages/gallery/GaleriaScreen';
 import { ListGallery } from '../components/admin/gallery/ListGallery';
+import { ListAvailablePassengerTours } from '../components/admin/passengerInTour/ListAvailablePassengerTours';
+import { ListAvailableMonthlyTour } from '../components/admin/tours/ListAvailableMonthlyTour';
+import { SingleListPassenger } from '../components/admin/passengerInTour/SingleListPassenger';
 
 
 export const CampingRoute = () => {
@@ -67,8 +70,13 @@ export const CampingRoute = () => {
                             <Route path="home" element={<AdminHomeScreen/>} /> 
                             
                             <Route path="addTour" element={<AddMonthlyTour/>} />   
+                            <Route path='monthly-tour-available' element={<ListAvailableMonthlyTour/>}/>
                             <Route path='monthly-tour-list' element={<MonthlyTourList/>}/>
                             <Route path='monthly-tour-edit/:tourId' element={<EditMonthlyTour/>}/>
+
+                            <Route path='passenger-available-tour' element={<ListAvailablePassengerTours/>}/>
+                            <Route path='passengerList-single-tour/tour:Id' element={<SingleListPassenger/>}/>
+
                             
                             <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
                             <Route path="catalogue-list" element={<CatalogueList/>} /> 
