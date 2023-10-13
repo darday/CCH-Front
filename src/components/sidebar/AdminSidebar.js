@@ -81,6 +81,21 @@ export const AdminSidebar = () => {
                                     <Link className="nav-link" to="list-to-rent">Listar Producto</Link>
                                 </nav>
                             </div>
+
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#inventory" aria-expanded="false" aria-controls="gallery">
+                                <div className="sb-nav-link-icon"><i className="fas fa-warehouse"></i></div>
+                                Inventario
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            <div className="collapse" id="inventory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav className="sb-sidenav-menu-nested nav">
+                                    {/* <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link> */}
+                                    <Link className="nav-link" to="inventario">Ver Inventario</Link>
+                                    <Link className="nav-link" to="productos">Ver Productos</Link>
+                                    <Link className="nav-link" to="bodegas">Ver Bodegas</Link>
+                                </nav>
+                            </div>
+
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gallery" aria-expanded="false" aria-controls="gallery">
                                 <div className="sb-nav-link-icon"><i className="fas fa-image"></i></div>
                                 Galería

@@ -11,4 +11,6 @@ $(function(){
 
       var table = $('#dataTable').DataTable();  
       table.destroy(); 
+      var table = $('#dataTable-ord-col1').DataTable();  
+      table.destroy(); 
   })

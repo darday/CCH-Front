@@ -12,7 +12,7 @@ export const NavBarUserScreen = () => {
 
     const token = cookies.get('token');
 
-    const {accessToken} = useSelector(state=>state.auth);
+    // const {accessToken} = useSelector(state=>state.auth);
 
     const dispatch = useDispatch();
 

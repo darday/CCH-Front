@@ -152,7 +152,7 @@ export const ListAvailableMonthlyTour = () => {
                                                 {/* <td>{index + 1}</td> */}
                                                 <td >{tour.tour_destiny}</td>
                                                 <td>{tour.type}</td>
-                                                <td style={{ color: (tour.state == 1) ? 'green' : 'red' }}><b> {(tour.state == 1) ? 'Activo' : 'Inactivo'}</b></td>
+                                                <td style={{ color: (tour.state === 1) ? 'green' : 'red' }}><b> {(tour.state === 1) ? 'Activo' : 'Inactivo'}</b></td>
                                                 <td>{tour.dificulty}</td>
                                                 <td>{tour.person_cost}</td>
                                                 <td>{tour.group_cost}</td>
@@ -205,7 +205,7 @@ export const ListAvailableMonthlyTour = () => {
 
                         {
                             showModal ?
-                                ((listExist == true) ?
+                                ((listExist === true) ?
                                     <div className="modal-content">
                                         <div className="modal-header">
                                             <h5 className="modal-title" id="exampleModalLabel">Crear Lista Pasajeros</h5>

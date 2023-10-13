@@ -46,6 +46,9 @@ import { ListGallery } from '../components/admin/gallery/ListGallery';
 import { ListAvailablePassengerTours } from '../components/admin/passengerInTour/ListAvailablePassengerTours';
 import { ListAvailableMonthlyTour } from '../components/admin/tours/ListAvailableMonthlyTour';
 import { SingleListPassenger } from '../components/admin/passengerInTour/SingleListPassenger';
+import { InventoryList } from '../components/admin/inventory/InventoryList';
+import { ListProduct } from '../components/admin/inventory/ListProduct';
+import { WarehouseList } from '../components/admin/inventory/WarehouseList';
 
 
 export const CampingRoute = () => {
@@ -91,6 +94,13 @@ export const CampingRoute = () => {
                             <Route path="edit-equipment-rent/:equipmentId" element={<EditEquipmentRent/>} /> 
 
                             <Route path="list-gallery" element={<ListGallery/>}/>
+
+                            <Route path="inventario" element={<InventoryList/>}/>
+                            <Route path="productos" element={<ListProduct/>}/>
+                            <Route path="bodegas" element={<WarehouseList/>}/>
+
+
+
 
                         </Route>
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
