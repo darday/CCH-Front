@@ -22,6 +22,8 @@ export const ProductsSelect = ({productSelect,setproductSelect}) => {
         await axios.get(ApiUrl + 'product-list')
             .then(resp => {
                 resp = resp.data;
+                console.log("resp")
+                console.log(resp)
                 addNewData(resp)
             })
             .catch(e => {
@@ -31,7 +33,7 @@ export const ProductsSelect = ({productSelect,setproductSelect}) => {
 
     const addNewData = (oldData) => {
         const newFormatData = oldData.map(item => ({
-            label: item.description,
+            label: item.description+' - '+item.supplier,
             value: item.product_id
         }));
 

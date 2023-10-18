@@ -225,12 +225,13 @@ export const InventoryList = () => {
                             </div>
                         </div>
                         <div className="card-body table-responsive">
-                            <table className='table table-hover ' id="dataTable-ord-col2"  >
+                            <table className='table table-hover ' id="dataTable-ord-col1"  >
                                 <thead>
                                     <tr>
-                                        <th>ID Prod</th>
+                                        {/* <th>ID Prod</th> */}
                                         <th>Cant</th>
                                         <th>Producto</th>
+                                        <th>Proveedor</th>
                                         <th>Estado</th>
                                         <th>Categoría</th>
                                         <th>En Bodega</th>
@@ -247,10 +248,11 @@ export const InventoryList = () => {
                                             // data.status_id == 4 ? 'text-warning' : ''
                                             }
                                             `} key={data.inventories_id}>
-                                            <td>{data.product_id}</td>
+                                            {/* <td>{data.product_id}</td> */}
                                             <td>{data.stock}</td>
                                             {/* <td>{ textLimit(data.description,20)}</td> */}
                                             <td >{data.product}</td>
+                                            <td >{data.name_store}</td>
                                             <td ><span className={` 
                                                 ${data.status_id == 5 ? 'badge rounded-pill bg-danger' :
                                                     data.status_id == 4 ? 'badge rounded-pill bg-warning' : ''
@@ -264,9 +266,7 @@ export const InventoryList = () => {
                                                 `} style={{ paddingRight: '0.5vw', paddingLeft: '0.5vw' }}>{data.withoutWarehouse}</span></td>
 
                                             <td>
-                                                {/* <Link to={"../edit-datament/" + data.datament_id}>
-                                                    <button className='btn btn-outline-primary' ><ModeEditOutlineOutlinedIcon /></button><i class="fas fa-edit"></i>
-                                                </Link> */}
+                                                
                                                 <button className='btn btn-outline-success' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectProduct(data, 1)} ><i className="fas fa-share-square"></i></button>
                                                 <button className='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => selectProduct(data, 2)} ><i className="fas fa-edit"></i></button>
                                             </td>
@@ -330,13 +330,13 @@ export const InventoryList = () => {
                                 {/* <button type="submit" className="btn btn-primary">Submit</button> */}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" className="btn btn-success" >Guardar</button>
+                                    <button type="submit" className="btn btn-success"  data-bs-dismiss="modal">Guardar</button>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             {/* <button type="button" className="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal"  >Aceptar</button> */}
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button>
+                            {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button> */}
                         </div>
                     </div>
                 </div>
@@ -404,13 +404,13 @@ export const InventoryList = () => {
                                 {/* <button type="submit" className="btn btn-primary">Submit</button> */}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" className="btn btn-success" >Guardar</button>
+                                    <button type="submit" className="btn btn-success"  data-bs-dismiss="modal" >Guardar</button>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             {/* <button type="button" className="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal"  >Aceptar</button> */}
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button>
+                            {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button> */}
                         </div>
                     </div>
                 </div>

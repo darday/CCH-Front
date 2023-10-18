@@ -71,6 +71,7 @@ $(function () {
                 }
             }
         );
+        
         $('#dataTable-ord-col2').DataTable(
             {
                 retrieve: true,

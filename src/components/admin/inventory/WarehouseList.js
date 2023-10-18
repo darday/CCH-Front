@@ -19,10 +19,6 @@ export const WarehouseList = () => {
         observation: '',
     });
 
-
-
-
-
     const warehouseListData = async () => {
         await axios.get(ApiUrl + 'warehouse-list')
             .then(resp => {
@@ -45,7 +41,6 @@ export const WarehouseList = () => {
             ...formD,
             [name]: value
         })
-
     }
 
     const addObservation = async () => {
@@ -80,7 +75,6 @@ export const WarehouseList = () => {
         await axios.post(ApiUrl + 'productsWarehouse-delete/' + productSelected.product_warehouses_id)
             .then(response => {
                 var resp = response.data;
-                console.log(resp);
                 if (resp.success) {
                     toast.success(resp.messagge, { position: toast.POSITION.BOTTOM_RIGHT });
                     deleteTable();
@@ -103,15 +97,12 @@ export const WarehouseList = () => {
                 setproductsInWarehouse(resp);
                 console.log(resp)
                 console.log("cargadenuevo")
-                const script = document.createElement("script");
-                script.src = `/assets/dataTable/dataTable.js`;
-                script.async = true;
-                document.body.appendChild(script);
 
             })
             .catch(e => {
                 console.log(e);
             })
+        await createTable();
     }
 
     const deleteTable = () => {
@@ -121,6 +112,12 @@ export const WarehouseList = () => {
         document.body.appendChild(script1);
     }
 
+    const createTable = () => {
+        const script = document.createElement("script");
+        script.src = `/assets/dataTable/dataTable.js`;
+        script.async = true;
+        document.body.appendChild(script);
+    }
 
     useEffect(() => {
         warehouseListData();
@@ -132,13 +129,15 @@ export const WarehouseList = () => {
             console.log(warehouseSelected[""])
             const foundWarehouse = warehouseList.find(warehouse => warehouse.warehouse_id === parseInt(warehouseSelected[""]));
             setwarehouseSelectedDesctiption(foundWarehouse)
-
+            if (productsInWarehouse) {
+                deleteTable();
+            }
             listDataProductWarehouse();
         }
-
-
     }, [warehouseSelected])
 
+    console.log("prduct selected");
+    console.log(productSelected);
 
     return (
         <div>
@@ -167,10 +166,8 @@ export const WarehouseList = () => {
                                     <table className='table table-hover ' id="dataTable-ord-col1"  >
                                         <thead>
                                             <tr>
-                                                {/* <th>Id</th> */}
                                                 <th>Cantidad</th>
                                                 <th>Producto</th>
-                                                {/* <th>Categoría</th> */}
                                                 <th>Estado</th>
                                                 <th>Bodega</th>
                                                 <th>Observación</th>
@@ -183,23 +180,21 @@ export const WarehouseList = () => {
                                                     productsInWarehouse.map((data, i) => (
                                                         <tr className={` 
                                                         ${data.status_id == 5 ? 'text-danger' : ''
-                                                            // data.status_id == 4 ? 'text-warning' : ''
                                                             }
                                                         `} key={i}>
-                                                            {/* <td>{data.product_id}</td> */}
                                                             <td>{data.quantity}</td>
                                                             <td>{data.product}</td>
-                                                            {/* <td>{data.ca}</td> */}
                                                             <td ><span className={` 
                                                                 ${data.status_id == 5 ? 'badge rounded-pill bg-danger' :
                                                                     data.status_id == 4 ? 'badge rounded-pill bg-warning' : ''
                                                                 }
-                                                                `}>{data.status} </span></td>                                                            <td>{data.warehouse}</td>
+                                                                `}>{data.status} </span></td>
+                                                            <td>{data.warehouse}</td>
                                                             <td><b><small>{data.observation}</small></b></td>
 
                                                             <td>
-                                                                <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#observation" ><i className="fas fa-eye" onClick={() => setproductSelected(data)} ></i></button>
-                                                                <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#delete" ><i className="fas fa-trash-alt" aria-hidden="true" onClick={() => setproductSelected(data)}></i></button>
+                                                                <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#observation" onClick={() => setproductSelected(data)} ><i className="fas fa-eye" >{data.product_warehouses_id}</i></button>
+                                                                <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#delete" onClick={() => setproductSelected(data)} ><i className="fas fa-trash-alt" aria-hidden="true" ></i></button>
                                                             </td>
                                                         </tr>
                                                     ))
@@ -228,7 +223,9 @@ export const WarehouseList = () => {
                         </div>
                         <div className="modal-body">
                             <div className='text-center'>
-                                <b style={{ textAlign: 'center' }}>{productSelected.product}</b>
+                                <b style={{ textAlign: 'center' }}>{productSelected.product}</b><br></br>
+                                Estado: <b style={{ textAlign: 'center' }}>{productSelected.status}</b><br></br>
+                                Bodega: <b style={{ textAlign: 'center' }}>{productSelected.warehouse}</b><br></br>
                             </div>
                             <br></br>
                             <label >Ingrese Observaciones</label>
