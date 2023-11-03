@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { ApiUrl } from '../../../services/ApiRest';
+import { ApiStorage, ApiUrl } from '../../../services/ApiRest';
 import { ToastContainer, toast } from 'react-toastify';
+
 
 import { CategorySelect } from './selects/CategorySelect';
 import { SupplierSelect } from './selects/SupplierSelect';
@@ -10,6 +11,7 @@ import { SupplierSelect } from './selects/SupplierSelect';
 export const ListProduct = () => {
     const [data, setdata] = useState([]);
     const [img1, setimg1] = useState();
+    const [selectedImage, setselectedImage] = useState([]);
 
     const [formD, setformD] = useState({
         description: '',
@@ -28,8 +30,8 @@ export const ListProduct = () => {
         await axios.get(ApiUrl + 'product-list')
             .then(resp => {
                 resp = resp.data;
-                // console.log(resp.data);
                 setdata(resp);
+                console.log(resp);
                 //cargamos los datos nuevos
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -110,7 +112,7 @@ export const ListProduct = () => {
 
     }
 
-    const selectProduct = (data)=>{
+    const selectProduct = (data) => {
         setproductSelected(data);
     }
 
@@ -172,6 +174,7 @@ export const ListProduct = () => {
                                             <td>{data.min_selling_price}</td>
                                             <td>{data.rent_price}</td>
                                             <td>
+                                                <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#watchModal" onClick={() => setselectedImage(data.img)}><i className="fas fa-eye" aria-hidden="true"></i></button>
                                                 <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectProduct(data)}><i className="fas fa-trash-alt" aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
@@ -195,6 +198,29 @@ export const ListProduct = () => {
                         </div>
                         <div className="modal-body">
                             Está seguro que desea eliminar <b>{productSelected.description}</b>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal"  >Aceptar</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div className="modal fade" id="watchModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">  <b>{productSelected.description}</b></h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body text-center">
+                            {
+                                (selectedImage) ? <img src={`${ApiStorage + selectedImage}`} style={{ width: '100%', padding: '1.5vh' }} className="card-img-top" alt="..."></img>
+                                    : <p>Cargando Imagen...</p>
+                            }
+
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal"  >Aceptar</button>
@@ -250,21 +276,21 @@ export const ListProduct = () => {
                                     <div className='col-4 col-md-3'>
                                         <div className="">
                                             <label className="form-label">P. Venta</label>
-                                            <input type="text" className="form-control" name="selling_price" value={formD.selling_price} onChange={onInputChange}  required></input>
+                                            <input type="text" className="form-control" name="selling_price" value={formD.selling_price} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
 
                                     <div className='col-4 col-md-3'>
                                         <div className="">
                                             <label className="form-label">P. Min Venta</label>
-                                            <input type="text" className="form-control" name='min_selling_price' value={formD.min_selling_price} onChange={onInputChange}  required></input>
+                                            <input type="text" className="form-control" name='min_selling_price' value={formD.min_selling_price} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
 
                                     <div className='col-4 col-md-3'>
                                         <div className="">
                                             <label className="form-label">P. Alquiler</label>
-                                            <input type="text" className="form-control" name="rent_price" value={formD.rent_price} onChange={onInputChange}  required></input>
+                                            <input type="text" className="form-control" name="rent_price" value={formD.rent_price} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
                                     <div className='col-6 col-md-6'>

@@ -72,9 +72,10 @@ export const ListAvailableMonthlyTour = () => {
     }
 
     const createListPassengerTour = async () => {
-        console.log(selectedTour.monthly_tour_id);
+        console.log(selectedTour);
         const f = new FormData();
         f.append("monthly_tour_id", selectedTour.monthly_tour_id);
+        f.append("tour_destiny", selectedTour.tour_destiny);
 
         await axios.post(ApiUrl + "passengerlistTour-create", f)
             .then(response => {

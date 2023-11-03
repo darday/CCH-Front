@@ -77,6 +77,7 @@ export const InventoryList = () => {
         } else {
             const f = new FormData();
 
+            f.append("inventories_id", productSelected.inventories_id);
             f.append("product_id", productSelected.product_id);
             f.append("warehouse_id", warehouseSelected[""]);
             f.append("quantityToMove", formD.quantityToMove);
@@ -466,13 +467,13 @@ export const InventoryList = () => {
                                 {/* <button type="submit" className="btn btn-primary">Submit</button> */}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" className="btn btn-success" >Guardar</button>
+                                    <button type="submit" className="btn btn-success" data-bs-dismiss="modal">Guardar</button>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             {/* <button type="button" className="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal"  >Aceptar</button> */}
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button>
+                            {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button> */}
                         </div>
                     </div>
                 </div>
