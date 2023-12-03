@@ -9,10 +9,9 @@ export const WarehouseList = () => {
     const [warehouseSelected, setwarehouseSelected] = useState("");
     const [warehouseSelectedDesctiption, setwarehouseSelectedDesctiption] = useState("");
     const [warehouseList, setwarehouseList] = useState();
-
     const [productsInWarehouse, setproductsInWarehouse] = useState()
-
     const [productSelected, setproductSelected] = useState([]);
+    const [productWarehousesId, setproductWarehousesId] = useState();
 
     const [formD, setformD] = useState({
         quantityToMove: '',
@@ -96,8 +95,8 @@ export const WarehouseList = () => {
                 resp = resp.data;
                 setproductsInWarehouse(resp);
                 console.log(resp)
-                console.log("cargadenuevo")
-
+                console.log("cargadenuevo")      
+      
             })
             .catch(e => {
                 console.log(e);
@@ -147,7 +146,7 @@ export const WarehouseList = () => {
                         <div className=" card-header">
                             <div className='row'>
                                 <div className='col-12 col-md-6'>
-                                    <b>PRODUCTOPS EN BODEGA</b>
+                                    <b>PRODUCTOS EN BODEGA</b>
                                 </div>
                                 <div className='col-12 col-md-6 ' style={{ textAlign: 'right' }}>
                                     <WarehouseSelect

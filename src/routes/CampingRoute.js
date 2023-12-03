@@ -49,6 +49,11 @@ import { SingleListPassenger } from '../components/admin/passengerInTour/SingleL
 import { InventoryList } from '../components/admin/inventory/InventoryList';
 import { ListProduct } from '../components/admin/inventory/ListProduct';
 import { WarehouseList } from '../components/admin/inventory/WarehouseList';
+import { GuideRoute } from './GuideRoute';
+import { GuideHomeScreen } from '../components/guide/GuideHomeScreen';
+import { WarehouseProductsList } from '../components/guide/warehouse/WarehouseProductsList';
+import { WarehouseRequestProducts } from '../components/guide/warehouse/WarehouseRequestProducts';
+import { WarehouseRequestHistory } from '../components/guide/warehouse/WarehouseRequestHistory';
 
 
 export const CampingRoute = () => {
@@ -79,7 +84,6 @@ export const CampingRoute = () => {
 
                             <Route path='passenger-available-tour' element={<ListAvailablePassengerTours/>}/>
                             <Route path='passengerList-single-tour/tour:Id' element={<SingleListPassenger/>}/>
-
                             
                             <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
                             <Route path="catalogue-list" element={<CatalogueList/>} /> 
@@ -98,11 +102,22 @@ export const CampingRoute = () => {
                             <Route path="inventario" element={<InventoryList/>}/>
                             <Route path="productos" element={<ListProduct/>}/>
                             <Route path="bodegas" element={<WarehouseList/>}/>
-
-
-
-
                         </Route>
+
+
+
+
+                        <Route path="guide" element={<GuideRoute/>}>
+                            <Route path="home" element={<GuideHomeScreen/>} />                            
+
+                            <Route path="bodegas" element={<WarehouseList/>}/>
+                            <Route path="lista-productos" element={<WarehouseProductsList/>}/>
+                            <Route path="solicitar-productos" element={<WarehouseRequestProducts/>}/>
+                            <Route path="Historial-solicitud-productos" element={<WarehouseRequestHistory/>}/>
+                        </Route>
+
+
+
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
                         <Route path="/registrar" element={<RegisterScreen />}></Route>
                         <Route path="/" element={<IndexScreen />}></Route>
