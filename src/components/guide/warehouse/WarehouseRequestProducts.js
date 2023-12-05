@@ -7,7 +7,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import WarehouseRequestHistory from './WarehouseRequestHistory';
 import { WarehouseList } from '../../admin/inventory/WarehouseList';
-const userId = 2;
+import Cookies from 'universal-cookie/es6';
+// const userId = 2;
+const cookies = new Cookies();
+const userId = cookies.get('uid');
+
 export const WarehouseRequestProducts = () => {
     const [data, setdata] = useState([]);
     const [requestProductToAddSelected, setrequestProductToAddSelected] = useState(null);

@@ -59,6 +59,8 @@ export const ListAvailablePassengerTours = () => {
 
     const selectTour = (data) => {
         setselectedTourList(data);
+        
+        
     }
 
     const updatePastTours = async () => {
@@ -70,6 +72,11 @@ export const ListAvailablePassengerTours = () => {
             .catch(e => {
                 console.log(e);
             })
+    }
+
+    const addPassengerToList = async () =>{
+        console.log("guardado");
+        
     }
 
     useEffect(() => {
@@ -129,7 +136,7 @@ export const ListAvailablePassengerTours = () => {
 
                                                     <td>
                                                         <button className='btn btn-outline-primary btn-sm' data-bs-toggle="modal" data-bs-target="#addPassenger" onClick={() => setselectedTourList(tour)} ><i className="fas fa-user-plus"></i></button>
-                                                        <button className='btn btn-outline-secondary btn-sm' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => (tour)}  ><i className="fas fa-list-ol"></i></button>
+                                                        <button className='btn btn-outline-secondary btn-sm' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => (tour)}  ><i className="fas fa-eye"></i></button>
                                                         <button className='btn btn-outline-danger btn-sm' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => (tour.img_1)}  ><i className="fas fa-trash-alt"></i></button>
                                                         {
                                                             <button className='btn btn-outline-success btn-sm ' data-bs-toggle="modal" data-bs-target="#modal-lista-pasajeros" > <i className="far fa-calendar-check"></i> </button>
@@ -209,7 +216,7 @@ export const ListAvailablePassengerTours = () => {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal" >Aceptar</button>
+                                <button type="button" className="btn btn-primary" onClick={() => addPassengerToList()} data-bs-dismiss="modal" >Aceptar</button>
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button>
                             </div>
                         </div>

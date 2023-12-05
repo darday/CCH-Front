@@ -3,10 +3,37 @@ import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie/es6';
 import { useGetDate } from '../../hooks/useGetDate';
 import './Navbar.css';
+import { requestRole } from '../../functions/requestRole';
+import { useEffect } from 'react';
 
 const cookies = new Cookies();
+var rol = '';
+
 export const NavBarScreen = (props) => {
-    
+    const loadUser = async () => {
+        rol = await requestRole(cookies.get('uid'))
+        switch (rol) {
+            case rol = 'admin':
+                rol = '/administrativo'
+                break;
+            case rol = 'guide':
+                rol = '/guide'
+                break;
+            case rol = 'shopkeeper':
+                rol = '/bodeguero'
+                break;
+            case rol = 'client':
+                rol = '/cliente'
+                break;
+        }
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, [])
+
+
+
     const token = cookies.get('token');
     // const { printMonth } = useGetDate();
 
@@ -186,7 +213,7 @@ export const NavBarScreen = (props) => {
                         (token) ?
                             <form className="d-flex">
                                 <div style={{ paddingRigth: '0.2vh' }}>
-                                    <Link className="" to="/administrativo"><button className="btn btn-success btn-md" type="submit">Ver mi cuenta</button></Link>
+                                    <Link className="" to={`${rol}`}><button className="btn btn-success btn-md" type="submit">Ver mi cuenta</button></Link>
                                 </div>
 
                             </form>

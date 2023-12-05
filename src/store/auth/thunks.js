@@ -20,16 +20,27 @@ export const chekingAutentication=(email,password)=>{
             if(result.success === true){                
                 cookies.set('uid',result.user.id,{path:"/"})
                 cookies.set('token',result.accessToken,{path:"/"})
-                var rol = cookies.set('rol',result.rol,{path:"/"})
-                dispatch(login(result));
-                if(rol === 'admin'){
+                // var rol = cookies.set('rol',result.rol,{path:"/"})
+                // dispatch(login(result));
+                console.log("Este es el Rol:" + result.rol)
+                if(result.rol === 'admin'){
                     window.location.href="/administrativo";
                 }else{
-                    if(rol='user'){
-                        console.log("desarrollar pantalla para user");
+                    if(result.rol==='client'){
+                        window.location.href="/client";
+                    }else{
+                        if(result.rol==='guide'){
+                            window.location.href="/guide";
+                        }else{
+                            if(result.rol==='shopkeeper'){
+                                window.location.href="/bodeguero";
+                            }else{
+                                
+                            }
+
+                        }
                     }
                 }
-
             }else{
                 dispatch(logout(result));
                 // window.location.href="/iniciar-sesion";
@@ -39,9 +50,6 @@ export const chekingAutentication=(email,password)=>{
             console.log(error);
             dispatch(logout(error));
         })
-            
-        
-
     }
 }
 

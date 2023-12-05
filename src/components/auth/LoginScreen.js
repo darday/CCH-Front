@@ -12,114 +12,137 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie/es6';
 import { useForm } from '../../hooks/useForm';
 import { chekingAutentication } from '../../store/auth/thunks';
+import { requestRole } from '../../functions/requestRole';
 
 
 const cookies = new Cookies();
-const rol = cookies.get('role');
+// const rol = cookies.get('rol');
+var rol = '';
 const islogged = cookies.get('log');
 
 
 export const LoginScreen = () => {
+    const loadUser = async () => {
+        rol = await requestRole(cookies.get('uid'))
+        if (rol === 'admin') {
+            window.location.href = "/administrativo";
+        } else {
+            if (rol === 'guide') {
+                window.location.href = "/guide";
+            } else {
+                if (rol === 'shopkeeper') {
+                    window.location.href = "/bodeguero";
+                } else {
+                    if (rol === 'client') {
+                        window.location.href = "/cliente";
+                    } else {
 
-    if(cookies.get('token') && cookies.get('uid') && cookies.get('rol')){
-        console.log("Estoy en administrativo logeado!!!")
-        window.location.href="/administrativo";
+                    }
+                }
 
-     }else{
-         console.log('no está logeado')
-       
-     }
-    
-    const {status,errorMessage} = useSelector(state=>state.auth);
+            }
+        }
+    }
 
-    const isAuthenticate = useMemo(()=>status === 'checking',[status]);
+    if (cookies.get('token') && cookies.get('uid')) {
+        loadUser();
+    } else {
+        console.log('no está logeado')
+    }
 
-  
-    const { email,password,onInputChange } = useForm({
-        email:'',
-        password:''
+
+
+    const { status, errorMessage } = useSelector(state => state.auth);
+    const isAuthenticate = useMemo(() => status === 'checking', [status]);
+
+
+    const { email, password, onInputChange } = useForm({
+        email: '',
+        password: ''
     })
     const dispatch = useDispatch();
-    const loading = useSelector( state => state.ui );
+    const loading = useSelector(state => state.ui);
 
- 
-    const onSubmit = (event)=>{
+
+    const onSubmit = (event) => {
         event.preventDefault();
-        dispatch(chekingAutentication(email,password));
-        // console.log({email,password});
-
+        dispatch(chekingAutentication(email, password));
     }
-    
-    if(islogged){
-        if(rol === "admin"){
-            window.location.href="/administrativo";
-        }       
-    }else{
-        
+
+    // if (islogged) {
+    //     if (rol === "admin") {
+    //         window.location.href = "/administrativo";
+    //     } else {
+    //         if (rol === "guide") {
+    //             window.location.href = "/administrativo";
+    //         }
+    //     }
+    // } else {
+
         return (
-        <>
-        <NavBarScreen/>
-        <div className='fondo-register ' >    
-            <div className="container" style={{width:"85%",paddingBottom:'10vh'}}>
-                <div className="row justify-content-center " style={{paddingTop:'25vh'}}>
-                    <div className= " col-xs-12 col-lg-5 col-xl-5 color-istmas">
-                        <div className="card shadow p-3 mb-5 bg-white form-fondo">
-                            <div className="card-header text-center">
-                                <h3 className='camping-letters text-center'>Comencemos!  </h3>
-                            </div>
-                            <div className="card-body">
-                                <form onSubmit={onSubmit} >
-                                    
-                                    <div className='row'>
-                                        <div className="col-12 col-sm-12" style={{paddingTop:'2vh'}}>
-                                            <label  className="form-label"><b>Correo</b></label>
-                                            <input  type="email" onChange={onInputChange} name='email' value={email}  className="form-control" placeholder='Ej: campingchimborazo@gmail.com' aria-describedby="textHelp" required></input>
-                                        </div>
-                                        
+            <>
+                <NavBarScreen />
+                <div className='fondo-register ' >
+                    <div className="container" style={{ width: "85%", paddingBottom: '10vh' }}>
+                        <div className="row justify-content-center " style={{ paddingTop: '25vh' }}>
+                            <div className=" col-xs-12 col-lg-5 col-xl-5 color-istmas">
+                                <div className="card shadow p-3 mb-5 bg-white form-fondo">
+                                    <div className="card-header text-center">
+                                        <h3 className='camping-letters text-center'>Comencemos!  </h3>
                                     </div>
+                                    <div className="card-body">
+                                        <form onSubmit={onSubmit} >
 
-                                    <div className='row'>
-                                        <div className="col-12 col-sm-12" style={{paddingTop:'2vh'}}>
-                                            <label  className="form-label"><b>Contraseña</b></label>
-                                            <input  type="password" onChange={onInputChange}  name='password' value={password} className="form-control"  aria-describedby="textHelp" placeholder='********' required></input>
-                                        </div>
+                                            <div className='row'>
+                                                <div className="col-12 col-sm-12" style={{ paddingTop: '2vh' }}>
+                                                    <label className="form-label"><b>Correo</b></label>
+                                                    <input type="email" onChange={onInputChange} name='email' value={email} className="form-control" placeholder='Ej: campingchimborazo@gmail.com' aria-describedby="textHelp" required></input>
+                                                </div>
 
-                                    </div>
-                                    <div>
-                                    </div>
-                                
-                                    <div className="text-center" style={{paddingTop:'2vh'}}>
-                                        {
-                                            (errorMessage)
-                                            ?
-                                            <div className="alert alert-danger" role="alert">
-                                                {errorMessage}
                                             </div>
-                                            :
-                                            <></>
-                                        }
-                                        
-                                        <button type="submit" disabled={isAuthenticate} className="btn  btn btn-success "  style={{margin:"5px", width:"180px"}} > <b>Iniciar Sesión</b></button>
-                                        <Link to="/">
-                                            <button type="" className="btn  btn btn-dark "  style={{margin:"5px", width:"180px"}}  ><b>Cancelar </b></button>
-                                        </Link>                                
-                                    </div>                               
-                                    
-                                </form> 
+
+                                            <div className='row'>
+                                                <div className="col-12 col-sm-12" style={{ paddingTop: '2vh' }}>
+                                                    <label className="form-label"><b>Contraseña</b></label>
+                                                    <input type="password" onChange={onInputChange} name='password' value={password} className="form-control" aria-describedby="textHelp" placeholder='********' required></input>
+                                                </div>
+
+                                            </div>
+                                            <div>
+                                            </div>
+
+                                            <div className="text-center" style={{ paddingTop: '2vh' }}>
+                                                {
+                                                    (errorMessage)
+                                                        ?
+                                                        <div className="alert alert-danger" role="alert">
+                                                            {errorMessage}
+                                                        </div>
+                                                        :
+                                                        <></>
+                                                }
+
+                                                <button type="submit" disabled={isAuthenticate} className="btn  btn btn-success " style={{ margin: "5px", width: "180px" }} > <b>Iniciar Sesión</b></button>
+                                                <Link to="/">
+                                                    <button type="" className="btn  btn btn-dark " style={{ margin: "5px", width: "180px" }}  ><b>Cancelar </b></button>
+                                                </Link>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                        </div>                                                          
-                    </div>                    
-                </div>                
-            </div>  
+                        </div>
+                    </div>
 
 
-            
-            <ToastContainer theme= "colored" />
-            {/* <FooterScreen/> */}
 
-        </div>
-        </>
+                    <ToastContainer theme="colored" />
+                    {/* <FooterScreen/> */}
+
+                </div>
+            </>
 
         )
-    }
+    // }
 }

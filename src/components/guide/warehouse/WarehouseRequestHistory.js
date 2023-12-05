@@ -3,7 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { ApiUrl } from '../../../services/ApiRest';
 import { ToastContainer, toast } from 'react-toastify';
 import { WarehouseRequestProducts } from './WarehouseRequestProducts';
-const userId = 2;
+import Cookies from 'universal-cookie/es6';
+
+// const userId = 2;
+const cookies = new Cookies();
+const userId = cookies.get('uid');
+
+
 export const WarehouseRequestHistory = () => {
     const [dataHistory, setdataHistory] = useState([]);
     const [data, setdata] = useState([]);

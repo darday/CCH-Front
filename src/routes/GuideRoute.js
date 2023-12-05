@@ -21,7 +21,7 @@ export const GuideRoute = () => {
     const dispatch = useDispatch();
 
     
-    if(cookies.get('token') && cookies.get('uid') && cookies.get('rol')){
+    if(cookies.get('token') && cookies.get('uid')){
         dispatch(loadUser(cookies.get('uid')));
         dispatch(startLoadingTourCatalogue());
         // console.log("Estoy en administrativo logeado!!!")
