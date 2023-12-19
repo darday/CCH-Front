@@ -1,15 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { ApiUrl } from '../../../services/ApiRest';
+import axios from 'axios';
+import { ApiUrl } from '../../../../services/ApiRest';
 import { ToastContainer, toast } from 'react-toastify';
-import { WarehouseRequestProducts } from './WarehouseRequestProducts';
 import Cookies from 'universal-cookie/es6';
+// import { WarehouseRequestProducts } from './WarehouseRequestProducts';
 
 // const userId = 2;
 const cookies = new Cookies();
 const userId = cookies.get('uid');
 
-export const WarehouseRequestHistory = () => {
+export const WarehouseRequestsHistoriesAdm = () => {
     const [dataHistory, setdataHistory] = useState([]);
     const [data, setdata] = useState([])
     const [requestHistoryToDelete, setrequestHistoryToDelete] = useState(null);
@@ -31,11 +31,12 @@ export const WarehouseRequestHistory = () => {
         return storeIds ? JSON.parse(storeIds) : [];
     });
 
-    const dataListHistoryAdm = async () => {        
-        await axios.get(ApiUrl + 'request-complete-product-list/'+userId)
+    const dataListHistoryAdm = async () => {
+        await axios.get(ApiUrl + 'request-complete-products-list-rejected-retired/')
             .then(resp => {
                 const responseData = resp.data;
                 console.log("RESPONSEDATA PARA LISTO", responseData);
+
                 setdataHistory(responseData);
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -58,6 +59,7 @@ export const WarehouseRequestHistory = () => {
             });
         setrequestHistoryToDelete(null);
     };
+
 
     const getStatusName = (status) => {
         switch (status) {
@@ -97,62 +99,6 @@ export const WarehouseRequestHistory = () => {
         }
     };
 
-    const upDateReadyWithdrawWarehouse = async () => {
-        // Realizar la actualización del estado en el servidor
-        try {
-            const response1 = await axios.post(`${ApiUrl}request-completes-update-status/${requestCompleteProductsId}`);
-            if (response1.data.success) {
-                toast.success("Solicitud actualizada exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
-                dataListHistoryAdm();
-                setreadyIds(prevIds => [...prevIds, requestCompleteProductsId]);
-                localStorage.setItem('kReadyIds', JSON.stringify([...readyIds, requestCompleteProductsId]));
-            } else {
-                toast.error("Error al actualizar la solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-            }
-        } catch (error) {
-            console.error(error);
-            toast.error("Error al actualizar la solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-        }
-    };
-
-    const upDateProductsWithdrawWarehouse = async () => {
-        try {
-            const response1 = await axios.post(`${ApiUrl}request-completes-update-products-retired/${requestCompleteProductsId}`);
-            if (response1.data.success) {
-                toast.success("Solicitud de retiro de productos exitosa", { position: toast.POSITION.BOTTOM_RIGHT });
-                dataListHistoryAdm();
-                setRejectedIds(prevIds => [...prevIds, requestCompleteProductsId]);
-                localStorage.setItem('rejectedIds', JSON.stringify([...rejectedIds, requestCompleteProductsId]));
-            } else {
-                toast.error("Error Solicitud de retiro de productos", { position: toast.POSITION.BOTTOM_RIGHT });
-            }
-        } catch (error) {
-            console.error(error);
-            toast.error("Error Solicitud de retiro de productos", { position: toast.POSITION.BOTTOM_RIGHT });
-        }
-    };
-
-    const upDateProductsRejectedWarehouse = async () => {
-        try {
-            const response1 = await axios.post(`${ApiUrl}request-product-update-products-withdrawal/${requestCompleteProductsId}`);
-            if (response1.data.success) {
-                toast.success("La solicitud ha sido rechazada", { position: toast.POSITION.BOTTOM_RIGHT });
-                dataListHistoryAdm();
-                // Agregar el ID al conjunto de IDs rechazados
-                setRejectedIds(prevIds => [...prevIds, requestCompleteProductsId]);
-                // Almacenar IDs rechazados en el almacenamiento local
-                localStorage.setItem('rejectedIds', JSON.stringify([...rejectedIds, requestCompleteProductsId]));
-                //  setDisableOtherButtons(true);       
-            } else {
-                toast.error("Error al recharaz solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-            }
-
-        } catch (error) {
-            console.error(error);
-            toast.error("Error al recharaz solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-        }
-    };
-
     useEffect(() => {
         dataListHistoryAdm();
     }, [])
@@ -168,14 +114,14 @@ export const WarehouseRequestHistory = () => {
                     <div className="card">
                         <div className=" card-header">
                             <div className='row'>
-                                <div className='col-12 col-md-12'>
-                                    <b>ADMINISTRACIÓN DE SOLICITUD DE PRODUCTOS CAMPING CHIMBORAZO</b>
+                                <div className='col-12 col-md-6'>
+                                    <b>HISTORIAL DE SOLICITUD DE PRODUCTOS CAMPING CHIMBORAZO</b>
                                 </div>
 
                             </div>
                         </div>
                         <div className="card-body table-responsive">
-                            <table className='table table-hover' id="dataTable"  >
+                            <table className='table table-hover' id="dataTable-ord-col1"  >
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -206,16 +152,16 @@ export const WarehouseRequestHistory = () => {
                                                     onClick={() => dataListAdm(dataHistory.request_complete_products_id)}
                                                 >
                                                     <i className="fas fa-eye" aria-hidden="true"></i>
-                                                </button>
+                                                </button>&nbsp;
                                                 {/* <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#watchModal" onClick={() => handleOpenModal(data)}><i className="fas fa-eye" aria-hidden="true"></i></button> */}
-                                                {/* <button
+                                                <button
                                                     className='btn btn-outline-danger'
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
                                                     onClick={() => setrequestHistoryToDelete(dataHistory.request_complete_products_id)}
                                                 >
                                                     <i className="fas fa-trash-alt" aria-hidden="true"></i>
-                                                </button> */}
+                                                </button>
                                             </td>
                                         </tr>
                                     ))
@@ -269,7 +215,7 @@ export const WarehouseRequestHistory = () => {
                         </div>
                         <div className="modal-body text-center">
                             <div className="card-body table-responsive">
-                                <table className='table table-hover' id="dataTable"  >
+                                <table className='table table-hover ' id="dataTable-ord-col1"  >
                                     <thead>
                                         <tr>
                                             <th>Cant</th>
@@ -301,10 +247,7 @@ export const WarehouseRequestHistory = () => {
                                 </table>
                             </div>
                         </div>
-                        <div className="modal-footer">
-                            {/* <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => upDateReadyWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Listo para retirar</button> */}
-                            {/* <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => upDateProductsWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || rejectedIds.includes(requestCompleteProductsId)}>Retirar</button> */}
-                            {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => upDateProductsRejectedWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Rechazar</button> */}
+                        <div className="modal-footer">                            
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
                         </div>
                     </div>
@@ -314,5 +257,3 @@ export const WarehouseRequestHistory = () => {
         </div>
     )
 }
-
-

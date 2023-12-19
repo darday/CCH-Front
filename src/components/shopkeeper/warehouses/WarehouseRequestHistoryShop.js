@@ -1,15 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { ApiUrl } from '../../../services/ApiRest';
 import { ToastContainer, toast } from 'react-toastify';
-import { WarehouseRequestProducts } from './WarehouseRequestProducts';
 import Cookies from 'universal-cookie/es6';
+import WarehouseRequestHistoryMain from '../../admin/inventory/RequestProducts/WarehouseRequestHistoryMain';
 
 // const userId = 2;
 const cookies = new Cookies();
 const userId = cookies.get('uid');
 
-export const WarehouseRequestHistory = () => {
+export const WarehouseRequestHistoryShop = ({ disabledButtons, onButtonClick }) => {
     const [dataHistory, setdataHistory] = useState([]);
     const [data, setdata] = useState([])
     const [requestHistoryToDelete, setrequestHistoryToDelete] = useState(null);
@@ -31,11 +31,12 @@ export const WarehouseRequestHistory = () => {
         return storeIds ? JSON.parse(storeIds) : [];
     });
 
-    const dataListHistoryAdm = async () => {        
-        await axios.get(ApiUrl + 'request-complete-product-list/'+userId)
+    const dataListHistoryAdm = async () => {
+        await axios.get(ApiUrl + 'request-complete-products-list/')
             .then(resp => {
                 const responseData = resp.data;
                 console.log("RESPONSEDATA PARA LISTO", responseData);
+
                 setdataHistory(responseData);
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -58,7 +59,6 @@ export const WarehouseRequestHistory = () => {
             });
         setrequestHistoryToDelete(null);
     };
-
     const getStatusName = (status) => {
         switch (status) {
             case 'pendiente':
@@ -175,7 +175,7 @@ export const WarehouseRequestHistory = () => {
                             </div>
                         </div>
                         <div className="card-body table-responsive">
-                            <table className='table table-hover' id="dataTable"  >
+                            <table className='table table-hover' id="dataTable-ord-col1"  >
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -207,13 +207,13 @@ export const WarehouseRequestHistory = () => {
                                                 >
                                                     <i className="fas fa-eye" aria-hidden="true"></i>
                                                 </button>
-                                                {/* <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#watchModal" onClick={() => handleOpenModal(data)}><i className="fas fa-eye" aria-hidden="true"></i></button> */}
+                                                
                                                 {/* <button
                                                     className='btn btn-outline-danger'
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
                                                     onClick={() => setrequestHistoryToDelete(dataHistory.request_complete_products_id)}
-                                                >
+                                                >{dataHistory.request_complete_products_id}
                                                     <i className="fas fa-trash-alt" aria-hidden="true"></i>
                                                 </button> */}
                                             </td>
@@ -269,7 +269,7 @@ export const WarehouseRequestHistory = () => {
                         </div>
                         <div className="modal-body text-center">
                             <div className="card-body table-responsive">
-                                <table className='table table-hover' id="dataTable"  >
+                                <table className='table table-hover ' id="dataTable-ord-col1"  >
                                     <thead>
                                         <tr>
                                             <th>Cant</th>
@@ -302,9 +302,9 @@ export const WarehouseRequestHistory = () => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            {/* <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => upDateReadyWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Listo para retirar</button> */}
-                            {/* <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => upDateProductsWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || rejectedIds.includes(requestCompleteProductsId)}>Retirar</button> */}
-                            {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => upDateProductsRejectedWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Rechazar</button> */}
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => upDateReadyWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Listo para retirar</button>
+                            <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => upDateProductsWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || rejectedIds.includes(requestCompleteProductsId)}>Retirada</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() => upDateProductsRejectedWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Rechazar</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
                         </div>
                     </div>
@@ -314,5 +314,3 @@ export const WarehouseRequestHistory = () => {
         </div>
     )
 }
-
-

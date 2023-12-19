@@ -20,7 +20,7 @@ export const RequestProductsSelect = ({ requestProductSelect, setrequestProductS
 
     const addNewData = (oldData) => {
         const newFormatData = oldData.map(item => ({
-            label: item.product + ' (' + item.quantity + ')',
+            label: item.product + ' (' + item.quantity + ')' + '-' + item.description_products + '',
             value: {
                 product_warehouses_id: item.product_warehouses_id,
                 category_id: item.category_id,
