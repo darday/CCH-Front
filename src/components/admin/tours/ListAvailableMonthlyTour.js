@@ -23,6 +23,7 @@ export const ListAvailableMonthlyTour = () => {
             .then(response => {
                 const data = response.data;
                 settours(data);
+                console.log(data)
                 //cargamos los datos nuevos
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -77,7 +78,7 @@ export const ListAvailableMonthlyTour = () => {
         f.append("monthly_tour_id", selectedTour.monthly_tour_id);
         f.append("tour_destiny", selectedTour.tour_destiny);
 
-        await axios.post(ApiUrl + "passengerlistTour-create", f)
+        await axios.post(ApiUrl + "list-create", f)
             .then(response => {
                 console.log("holaaa");
                 toast.success("Lista de Tours Creada", { position: toast.POSITION.BOTTOM_RIGHT });

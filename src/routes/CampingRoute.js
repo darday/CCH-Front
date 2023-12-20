@@ -83,7 +83,7 @@ export const CampingRoute = () => {
                             <Route path='monthly-tour-edit/:tourId' element={<EditMonthlyTour/>}/>
 
                             <Route path='passenger-available-tour' element={<ListAvailablePassengerTours/>}/>
-                            <Route path='passengerList-single-tour/tour:Id' element={<SingleListPassenger/>}/>
+                            <Route path='passengerList-single-tour/:tourId' element={<SingleListPassenger/>}/>
                             
                             <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
                             <Route path="catalogue-list" element={<CatalogueList/>} /> 

@@ -327,7 +327,7 @@ export const EditMonthlyTour = () => {
 
                                 </div>
                                 <button type="submit" className="btn btn-success" disabled={isLoading} >Guardar Tour</button> &nbsp;
-                                <Link to={'../catalogue-list'}>
+                                <Link to={'../monthly-tour-available'}>
                                     <button type="button" className="btn btn-danger">Regresar</button> &nbsp;
                                 </Link>
                             </form>
