@@ -54,6 +54,13 @@ import { GuideHomeScreen } from '../components/guide/GuideHomeScreen';
 import { WarehouseProductsList } from '../components/guide/warehouse/WarehouseProductsList';
 import { WarehouseRequestProducts } from '../components/guide/warehouse/WarehouseRequestProducts';
 import { WarehouseRequestHistory } from '../components/guide/warehouse/WarehouseRequestHistory';
+import { WarehouseRequestProductsAdm } from '../components/admin/inventory/RequestProducts/WarehouseRequestProductsAdm';
+import { WarehouseRequestHistoryAdm } from '../components/admin/inventory/RequestProducts/WarehouseRequestHistoryAdm';
+import { WarehouseRequestsHistoriesAdm } from '../components/admin/inventory/RequestProducts/WarehouseRequestsHistoriesAdm';
+import { ShopkeeperRoute } from './ShopkeeperRoute';
+import { ShopkeeperHomeScreen } from '../components/shopkeeper/ShopkeeperHomeScreen';
+import { WarehouseRequestsHistories } from '../components/shopkeeper/warehouses/WarehouseRequestsHistories';
+import { WarehouseRequestHistoryShop } from '../components/shopkeeper/warehouses/WarehouseRequestHistoryShop';
 
 
 export const CampingRoute = () => {
@@ -102,9 +109,10 @@ export const CampingRoute = () => {
                             <Route path="inventario" element={<InventoryList/>}/>
                             <Route path="productos" element={<ListProduct/>}/>
                             <Route path="bodegas" element={<WarehouseList/>}/>
+                            <Route path="crear-solicitud" element={<WarehouseRequestProductsAdm/>}/>
+                            <Route path="Administrar-solicitud-productos" element={<WarehouseRequestHistoryAdm/>}/>
+                            <Route path="Historial-solicitudes" element={<WarehouseRequestsHistoriesAdm/>}/>
                         </Route>
-
-
 
 
                         <Route path="guide" element={<GuideRoute/>}>
@@ -113,9 +121,16 @@ export const CampingRoute = () => {
                             <Route path="bodegas" element={<WarehouseList/>}/>
                             <Route path="lista-productos" element={<WarehouseProductsList/>}/>
                             <Route path="solicitar-productos" element={<WarehouseRequestProducts/>}/>
-                            <Route path="Historial-solicitud-productos" element={<WarehouseRequestHistory/>}/>
+                            <Route path="Historial-solicitud-productos" element={<WarehouseRequestHistory/>}/>                            
                         </Route>
 
+
+                        <Route path="bodeguero" element={<ShopkeeperRoute/>}>
+                            <Route path="home" element={<ShopkeeperHomeScreen/>} />
+                            <Route path="Administrar-solicitud-productos" element={<WarehouseRequestHistoryShop/>}/>
+                            <Route path="Historial-solicitudes" element={<WarehouseRequestsHistories/>}/>
+
+                        </Route>
 
 
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>

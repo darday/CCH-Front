@@ -1,15 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { ApiUrl } from '../../../services/ApiRest';
+import axios from 'axios';
+import { ApiUrl } from '../../../../services/ApiRest';
 import { ToastContainer, toast } from 'react-toastify';
-import { WarehouseRequestProducts } from './WarehouseRequestProducts';
 import Cookies from 'universal-cookie/es6';
+// import { WarehouseRequestProducts } from './WarehouseRequestProducts';
 
 // const userId = 2;
 const cookies = new Cookies();
 const userId = cookies.get('uid');
 
-export const WarehouseRequestHistory = () => {
+export const WarehouseRequestHistoryAdm = () => {
     const [dataHistory, setdataHistory] = useState([]);
     const [data, setdata] = useState([])
     const [requestHistoryToDelete, setrequestHistoryToDelete] = useState(null);
@@ -31,11 +31,12 @@ export const WarehouseRequestHistory = () => {
         return storeIds ? JSON.parse(storeIds) : [];
     });
 
-    const dataListHistoryAdm = async () => {        
-        await axios.get(ApiUrl + 'request-complete-product-list/'+userId)
+    const dataListHistoryAdm = async () => {
+        await axios.get(ApiUrl + 'request-complete-products-list/')
             .then(resp => {
                 const responseData = resp.data;
                 console.log("RESPONSEDATA PARA LISTO", responseData);
+
                 setdataHistory(responseData);
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -59,6 +60,29 @@ export const WarehouseRequestHistory = () => {
         setrequestHistoryToDelete(null);
     };
 
+    // const dataListAdm = async (requestCompProdId) => {
+    //     try {
+    //         const response = await axios.get(ApiUrl + `request-products-guide-list/${requestCompProdId}/${userId}`);
+    //         const responseData = response.data;
+    //         setdata(responseData);
+    //         setrequestCompleteProductsId(requestCompProdId);
+    //         console.log("SABER LA LISTA SIIIII para TITULO:::", responseData);
+    //         // Calcular la suma total
+    //         const newTotal = responseData.reduce((acc, item) => acc + parseFloat(item.total_price), 0);
+    //         setTotal(newTotal);
+
+    //         // if (firstItem && 'status_acquisition' in firstItem) {
+    //         //     settitleModdal(firstItem['status_acquisition']);
+    //         //     console.log('QUIEROS SABER status_acquisition:', firstItem['status_acquisition']);
+    //         // } else {
+    //         //     console.error('La propiedad "status_acquisition" no está definida en el primer elemento.');
+    //         // }
+    //         console.log('QUIEROS SABER status_acquisition:', responseData[0]['status_acquisition']);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+
     const getStatusName = (status) => {
         switch (status) {
             case 'pendiente':
@@ -73,6 +97,19 @@ export const WarehouseRequestHistory = () => {
                 return status;
         }
     };
+
+    const [disabledButtons, setDisabledButtons] = useState({
+        admin: {
+          ready: false,
+          withdraw: false,
+          reject: false,
+        },
+        warehouse: {
+          ready: false,
+          withdraw: false,
+          reject: false,
+        },
+      });
 
     const dataListAdm = async (requestCompProdId) => {
         try {
@@ -175,7 +212,7 @@ export const WarehouseRequestHistory = () => {
                             </div>
                         </div>
                         <div className="card-body table-responsive">
-                            <table className='table table-hover' id="dataTable"  >
+                            <table className='table table-hover' id="dataTable-ord-col1"  >
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -204,18 +241,20 @@ export const WarehouseRequestHistory = () => {
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#watchModal"
                                                     onClick={() => dataListAdm(dataHistory.request_complete_products_id)}
+                                                    
                                                 >
                                                     <i className="fas fa-eye" aria-hidden="true"></i>
-                                                </button>
+                                                </button>&nbsp;
                                                 {/* <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#watchModal" onClick={() => handleOpenModal(data)}><i className="fas fa-eye" aria-hidden="true"></i></button> */}
-                                                {/* <button
+                                                <button
                                                     className='btn btn-outline-danger'
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
                                                     onClick={() => setrequestHistoryToDelete(dataHistory.request_complete_products_id)}
+                                                    disabled={dataHistory.status_acquisition === 'listo' ||  dataHistory.status_acquisition === 'retirada' || dataHistory.status_acquisition === 'rechazada'}
                                                 >
                                                     <i className="fas fa-trash-alt" aria-hidden="true"></i>
-                                                </button> */}
+                                                </button>
                                             </td>
                                         </tr>
                                     ))
@@ -269,7 +308,7 @@ export const WarehouseRequestHistory = () => {
                         </div>
                         <div className="modal-body text-center">
                             <div className="card-body table-responsive">
-                                <table className='table table-hover' id="dataTable"  >
+                                <table className='table table-hover ' id="dataTable-ord-col1"  >
                                     <thead>
                                         <tr>
                                             <th>Cant</th>
@@ -302,9 +341,9 @@ export const WarehouseRequestHistory = () => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            {/* <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => upDateReadyWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Listo para retirar</button> */}
-                            {/* <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => upDateProductsWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || rejectedIds.includes(requestCompleteProductsId)}>Retirar</button> */}
-                            {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => upDateProductsRejectedWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Rechazar</button> */}
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => upDateReadyWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Listo para retirar</button>
+                            <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => upDateProductsWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || rejectedIds.includes(requestCompleteProductsId)}>Retirada</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() => upDateProductsRejectedWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Rechazar</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
                         </div>
                     </div>
@@ -314,5 +353,3 @@ export const WarehouseRequestHistory = () => {
         </div>
     )
 }
-
-
