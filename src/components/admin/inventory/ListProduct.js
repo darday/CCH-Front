@@ -6,20 +6,22 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { CategorySelect } from './selects/CategorySelect';
 import { SupplierSelect } from './selects/SupplierSelect';
+import { useGetDate } from '../../../hooks/useGetDate';
 
 
 export const ListProduct = () => {
     const [data, setdata] = useState([]);
     const [img1, setimg1] = useState();
     const [selectedImage, setselectedImage] = useState([]);
-
+    const {year,month,day} = useGetDate();
+    const currentDate = year+'-'+(month+1)+'-'+day;        
     const [formD, setformD] = useState({
         description: '',
         buying_price: '',
         min_selling_price: '',
         selling_price: '',
         rent_price: '',
-        entry_date: '',
+        entry_date: currentDate,
 
     });
     const [categorySelected, setcategorySelected] = useState();
@@ -31,7 +33,7 @@ export const ListProduct = () => {
             .then(resp => {
                 resp = resp.data;
                 setdata(resp);
-                console.log(resp);
+                // console.log(resp);
                 //cargamos los datos nuevos
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -96,8 +98,8 @@ export const ListProduct = () => {
                         rent_price: '',
                         entry_date: ''
                     });
-                    setcategorySelected('');
-                    setsupplierSelected('');
+                    // setcategorySelected('');
+                    // setsupplierSelected('');
 
 
                 } else {
