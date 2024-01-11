@@ -43,6 +43,25 @@ import { EditEquipment } from '../components/admin/equipment/EditEquipment';
 import { EditEquipmentRent } from '../components/admin/rent/EditEquipmentRent';
 import { GaleriaScreen } from '../components/initialsPages/gallery/GaleriaScreen';
 import { ListGallery } from '../components/admin/gallery/ListGallery';
+import { ListAvailablePassengerTours } from '../components/admin/passengerInTour/ListAvailablePassengerTours';
+import { ListAvailableMonthlyTour } from '../components/admin/tours/ListAvailableMonthlyTour';
+import { SingleListPassenger } from '../components/admin/passengerInTour/SingleListPassenger';
+import { InventoryList } from '../components/admin/inventory/InventoryList';
+import { ListProduct } from '../components/admin/inventory/ListProduct';
+import { WarehouseList } from '../components/admin/inventory/WarehouseList';
+import { GuideRoute } from './GuideRoute';
+import { GuideHomeScreen } from '../components/guide/GuideHomeScreen';
+import { WarehouseProductsList } from '../components/guide/warehouse/WarehouseProductsList';
+import { WarehouseRequestProducts } from '../components/guide/warehouse/WarehouseRequestProducts';
+import { WarehouseRequestHistory } from '../components/guide/warehouse/WarehouseRequestHistory';
+import { WarehouseRequestProductsAdm } from '../components/admin/inventory/RequestProducts/WarehouseRequestProductsAdm';
+import { WarehouseRequestHistoryAdm } from '../components/admin/inventory/RequestProducts/WarehouseRequestHistoryAdm';
+import { WarehouseRequestsHistoriesAdm } from '../components/admin/inventory/RequestProducts/WarehouseRequestsHistoriesAdm';
+import { ShopkeeperRoute } from './ShopkeeperRoute';
+import { ShopkeeperHomeScreen } from '../components/shopkeeper/ShopkeeperHomeScreen';
+import { WarehouseRequestsHistories } from '../components/shopkeeper/warehouses/WarehouseRequestsHistories';
+import { WarehouseRequestHistoryShop } from '../components/shopkeeper/warehouses/WarehouseRequestHistoryShop';
+import { GuideWarehouseList } from '../components/guide/GuideWarehouseList';
 
 
 export const CampingRoute = () => {
@@ -67,8 +86,12 @@ export const CampingRoute = () => {
                             <Route path="home" element={<AdminHomeScreen/>} /> 
                             
                             <Route path="addTour" element={<AddMonthlyTour/>} />   
+                            <Route path='monthly-tour-available' element={<ListAvailableMonthlyTour/>}/>
                             <Route path='monthly-tour-list' element={<MonthlyTourList/>}/>
                             <Route path='monthly-tour-edit/:tourId' element={<EditMonthlyTour/>}/>
+
+                            <Route path='passenger-available-tour' element={<ListAvailablePassengerTours/>}/>
+                            <Route path='passengerList-single-tour/:tourId' element={<SingleListPassenger/>}/>
                             
                             <Route path="add-to-catalogue" element={<AddToCatalogue/>} /> 
                             <Route path="catalogue-list" element={<CatalogueList/>} /> 
@@ -84,7 +107,33 @@ export const CampingRoute = () => {
 
                             <Route path="list-gallery" element={<ListGallery/>}/>
 
+                            <Route path="inventario" element={<InventoryList/>}/>
+                            <Route path="productos" element={<ListProduct/>}/>
+                            <Route path="bodegas" element={<WarehouseList/>}/>
+                            <Route path="crear-solicitud" element={<WarehouseRequestProductsAdm/>}/>
+                            <Route path="Administrar-solicitud-productos" element={<WarehouseRequestHistoryAdm/>}/>
+                            <Route path="Historial-solicitudes" element={<WarehouseRequestsHistoriesAdm/>}/>
                         </Route>
+
+
+                        <Route path="guide" element={<GuideRoute/>}>
+                            <Route path="home" element={<GuideHomeScreen/>} />                            
+
+                            <Route path="bodegas" element={<GuideWarehouseList/>}/>
+                            <Route path="lista-productos" element={<WarehouseProductsList/>}/>
+                            <Route path="solicitar-productos" element={<WarehouseRequestProducts/>}/>
+                            <Route path="Historial-solicitud-productos" element={<WarehouseRequestHistory/>}/>                            
+                        </Route>
+
+
+                        <Route path="bodeguero" element={<ShopkeeperRoute/>}>
+                            <Route path="home" element={<ShopkeeperHomeScreen/>} />
+                            <Route path="Administrar-solicitud-productos" element={<WarehouseRequestHistoryShop/>}/>
+                            <Route path="Historial-solicitudes" element={<WarehouseRequestsHistories/>}/>
+
+                        </Route>
+
+
                         <Route path="/iniciar-sesion" element={<LoginScreen/>}></Route>
                         <Route path="/registrar" element={<RegisterScreen />}></Route>
                         <Route path="/" element={<IndexScreen />}></Route>

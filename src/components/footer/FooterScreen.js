@@ -26,6 +26,7 @@ export const FooterScreen = () => {
                         <label>-Venta de Equipo de montaña</label><br></br>
                         <label>-Tours Privados</label><br></br>
                         <label>-Tours Personalizados</label><br></br>
+                        <a href="/iniciar-sesion">Guide Login</a>
                         
 
                     </div>

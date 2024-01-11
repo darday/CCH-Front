@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom'
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen';
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
+import { useGetDateToDayMonth } from '../../hooks/useGetDateToDayMonth';
 
 
 export const MonthlyTourSingleScreen = () => {
@@ -27,6 +29,12 @@ export const MonthlyTourSingleScreen = () => {
 
     }, [])
 
+    const convertDate = (date)=>{
+        const {letterMonth,day} = useGetDateToDayMonth(date);
+        var dateText = day+' '+'DE '+letterMonth;
+        return(dateText);
+    }
+
 
     return (
         <>
@@ -39,7 +47,7 @@ export const MonthlyTourSingleScreen = () => {
             <div className='container pantalla-grande'>
                 <br></br>
                 {tour.map((tour, index) => (
-                    <div className=' row' key={tour.tour_catalogues_id} >
+                    <div className='row' key={index}>
                         <div className='col-12 col-sm-12 col-md-6'>
                             <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
                                 <div className="carousel-inner">
@@ -82,11 +90,11 @@ export const MonthlyTourSingleScreen = () => {
                             <div className='row text-center'>
                                 <div className='col-12 col-sm-6'>
                                     <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Salida<br></br> </h4>
-                                    <h5>{tour.departure_date}</h5>
+                                    <h5>{convertDate(tour.departure_date)}</h5>
                                 </div>
                                 <div className='col-12 col-sm-6'>
                                     <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Retorno <br></br> </h4>
-                                    <h5>{tour.return_date}</h5>
+                                    <h5>{convertDate(tour.return_date)}</h5>
 
                                 </div>
                             </div>
@@ -158,12 +166,11 @@ export const MonthlyTourSingleScreen = () => {
                             <div className='row text-center'>
                                 <div className='col-12 col-sm-6'>
                                     <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Salida<br></br> </h4>
-                                    <h5>{tour.departure_date}</h5>
+                                    <h5>{convertDate(tour.departure_date)}</h5>
                                 </div>
                                 <div className='col-12 col-sm-6'>
                                     <h4 className='camping-letters' style={{ textTransform: 'uppercase' }}>Fecha Retorno <br></br> </h4>
-                                    <h5>{tour.return_date}</h5>
-
+                                    <h5>{convertDate(tour.return_date)}</h5>
                                 </div>
                             </div>
 
@@ -188,7 +195,7 @@ export const MonthlyTourSingleScreen = () => {
             <br></br>
             <br></br>
             <br></br>
-
+            <WhatsappButtonScreen/>
             <FooterScreen />
 
 

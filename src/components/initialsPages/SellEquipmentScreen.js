@@ -4,6 +4,7 @@ import { useGetDate } from '../../hooks/useGetDate'
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 export const SellEquipmentScreen = () => {
     // var date = new Date();
@@ -45,10 +46,10 @@ export const SellEquipmentScreen = () => {
                 <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
                     <div className="carousel-inner" role="listbox">
 
-                        <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/tours/venta.jpeg')` }}>
+                        <div className="banner" data-bs-interval="4000" style={{ backgroundImage: `url('./assets/images/principal/tours/venta3.jpg')` }}>
                             <div className="pantalla_dividida" style={{ height: "45vh" }}>
                                 <div className="text_cent_img_dividida animate__animated animate__fadeInRight animate__delay-0.8s">
-                                    <h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}} >Es hora de que<br />empieces con tu equipo propio</h1>
+                                    <h1 className="tit-sob-img_dividida" style={{textShadow:'1px 1px 2px rgba(0,0,0,1.5)'}} ><br />Empieza con tu equipo propio</h1>
                                 </div>
 
                             </div>
@@ -128,6 +129,7 @@ export const SellEquipmentScreen = () => {
 
             <br></br>
             <br></br>
+            <WhatsappButtonScreen/>
             <FooterScreen />
 
         </>

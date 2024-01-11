@@ -4,6 +4,7 @@ import { useGetDate } from '../../hooks/useGetDate'
 import { ApiStorage, ApiUrl } from '../../services/ApiRest';
 import { FooterScreen } from '../footer/FooterScreen';
 import { NavBarScreen } from '../navBar/NavBarScreen'
+import { WhatsappButtonScreen } from './whatsappButton/WhatsappButtonScreen';
 
 export const RentEquipmentScreen = () => {
 
@@ -73,7 +74,7 @@ export const RentEquipmentScreen = () => {
                     {data.map((equipment, index) => (
                         <div className='col-6 col-sm-12 col-md-3' style={{ paddingTop: '1rem' }}>
                             <div className="card h-100" >
-                                <img src={`${ApiStorage + equipment.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
+                            <img src={`${ApiStorage + equipment.img_1}`} style={{ width: '100%' }} className="card-img-top" alt="..."></img>
 
                                 <div className="card-body sell-equipment-card-body">
                                     {/* <div className='row'> */}
@@ -100,11 +101,11 @@ export const RentEquipmentScreen = () => {
                                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                            <h5 className="modal-title camping-letters" id="exampleModalLabel">{selectedData.name}</h5>
+                                        <h5 className="modal-title camping-letters" id="exampleModalLabel">{selectedData.name}</h5>
                                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div className="modal-body">
-                                            <h5 className="card-text camping-letters ">Precio: ${selectedData.cost} </h5>
+                                        <h5 className="card-text camping-letters ">Precio: ${selectedData.cost} </h5>
                                             <textarea class="form-control" placeholder="Leave a comment here" value={selectedData.description} rows="10" style={{ color: 'black' }} onlyread disabled ></textarea>
                                         </div>
                                         <div className="modal-footer">
@@ -125,6 +126,7 @@ export const RentEquipmentScreen = () => {
 
             <br></br>
             <br></br>
+            <WhatsappButtonScreen/>
             <FooterScreen />
 
 
