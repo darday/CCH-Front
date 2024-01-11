@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { ApiUrl } from '../../../../services/ApiRest';
 
-export const CategorySelect = ({ category, setcategory }) => {
+export const CategorySelect = ({ category = 0, setcategory=0,reload, setreload }) => {
 
     const [data, setdata] = useState([]);
 
@@ -12,6 +12,7 @@ export const CategorySelect = ({ category, setcategory }) => {
                 resp = resp.data;
                 // console.log(resp.data);
                 setdata(resp);
+                console.log("reload")
 
             })
             .catch(e => {
@@ -27,12 +28,19 @@ export const CategorySelect = ({ category, setcategory }) => {
         })
     }
 
+    if(reload === true){
+        setreload(false)
+        dataList();
+        
+    }
+
     useEffect(() => {
         dataList();
     }, [])
+
     return (
         <select className="form-select " onChange={onInputChange} required aria-label=".form-select-sm example">
-            <option >Seleccione Categoría</option>
+            <option value={category.category_id} >{category.category}</option>
             {data.map((data) => (
                 <option key={data.categories_id} value={data.categories_id}>{data.Description}</option>
             ))
