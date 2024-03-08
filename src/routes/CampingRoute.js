@@ -62,6 +62,7 @@ import { ShopkeeperHomeScreen } from '../components/shopkeeper/ShopkeeperHomeScr
 import { WarehouseRequestsHistories } from '../components/shopkeeper/warehouses/WarehouseRequestsHistories';
 import { WarehouseRequestHistoryShop } from '../components/shopkeeper/warehouses/WarehouseRequestHistoryShop';
 import { GuideWarehouseList } from '../components/guide/GuideWarehouseList';
+import { ListCredit } from '../components/admin/credits/ListCredit';
 
 
 export const CampingRoute = () => {
@@ -113,6 +114,8 @@ export const CampingRoute = () => {
                             <Route path="crear-solicitud" element={<WarehouseRequestProductsAdm/>}/>
                             <Route path="Administrar-solicitud-productos" element={<WarehouseRequestHistoryAdm/>}/>
                             <Route path="Historial-solicitudes" element={<WarehouseRequestsHistoriesAdm/>}/>
+
+                            <Route path="listar-creditos" element={<ListCredit/>}/>
                         </Route>
 
 

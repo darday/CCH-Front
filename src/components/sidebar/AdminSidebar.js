@@ -170,6 +170,26 @@ export const AdminSidebar = () => {
                     </div>
 
                     {
+                        (swType === 1  || swType === 2) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#credits" aria-expanded="false" aria-controls="gallery">
+                                <div className="sb-nav-link-icon"><i className="fas fa-credit-card"></i></div>
+                                Créditos
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
+
+                    <div className="collapse" id="credits" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav className="sb-sidenav-menu-nested nav">
+                            {/* <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link> */}
+                            <Link className="nav-link" to="listar-creditos">Ver Créditos</Link>
+                        </nav>
+                    </div>
+
+
+                    {
                         (swType === 1) ?
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gallery" aria-expanded="false" aria-controls="gallery">
                                 <div className="sb-nav-link-icon"><i className="fas fa-image"></i></div>
