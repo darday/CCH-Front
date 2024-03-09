@@ -63,6 +63,7 @@ import { WarehouseRequestsHistories } from '../components/shopkeeper/warehouses/
 import { WarehouseRequestHistoryShop } from '../components/shopkeeper/warehouses/WarehouseRequestHistoryShop';
 import { GuideWarehouseList } from '../components/guide/GuideWarehouseList';
 import { ListCredit } from '../components/admin/credits/ListCredit';
+import { ViajaPeruScreen } from '../components/initialsPages/ViajaPeruScreen';
 
 
 export const CampingRoute = () => {
@@ -154,6 +155,7 @@ export const CampingRoute = () => {
                         
                         <Route path="/galeria" element={<GaleriaScreen />}></Route>
                         <Route path="/nosotros" element={<AboutUsScreen />}></Route>
+                        <Route path="/viaja-peru" element={<ViajaPeruScreen />}></Route>
 
                         <Route path="user-home" element={<UserRouteScreen/>}></Route>
                         {/* <Route path="/*" element={
