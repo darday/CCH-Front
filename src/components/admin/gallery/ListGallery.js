@@ -55,7 +55,7 @@ export const ListGallery = () => {
         setsending(false)
         const data = resp.data;
         console.log(data);
-        if (data.success == true) {
+        if (data.success === true) {
           success(data.messagge);
           getData();
 
@@ -180,6 +180,7 @@ export const ListGallery = () => {
                     <img src={`${ApiStorage + selectedImg.img_1}`} style={{ width: '70%' }} className="card-img-top" alt="..."></img>  
                   :
                     <img></img>
+                    
                 }
                 
               </div>

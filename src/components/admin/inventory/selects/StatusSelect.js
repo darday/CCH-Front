@@ -18,7 +18,7 @@ export const StatusSelect = ({ status, setstatus }) => {
     }
 
     const message = `El estado actual es: ${status}`;
-    console.log(message);
+    // console.log(message);
     const onInputChange = ({ target }) => {
         const { name, value } = target;
         setstatus({

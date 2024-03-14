@@ -18,22 +18,28 @@ export const InventoryList = () => {
     const [statusSelected, setstatusSelected] = useState([])
     const [quantityAdd, setquantityAdd] = useState()
     const [observationAdd, setobservationAdd] = useState()
-
-
-
+    const [inventoryId, setinventoryId] = useState()
+    const [dataWarehouse, setdataWarehouse] = useState([]);
+    const [productsTotalQuantity, setproductsTotalQuantity] = useState();
+    const [productsWithoutWarehouse, setproductsWithoutWarehouse] = useState();
+    const [productsNameWarehouse, setproductsNameWarehouse] = useState('');
+    const [productsStatusWarehouse, setproductsStatusWarehouse] = useState('');
+    const [warehouseId, setwarehouseId] = useState()
+    const [totalInventory, settotalInventory] = useState(0);
 
     const [formD, setformD] = useState({
         quantityToMove: '',
         observation: '',
     });
 
-
     const dataList = async () => {
         await axios.get(ApiUrl + 'inventory-list')
             .then(resp => {
                 resp = resp.data;
                 setdata(resp);
-                console.log(resp);
+                console.log("Todos los productos de INVENTARIO:", resp);
+                const newTotal = resp.reduce((acc, data) => acc + parseFloat(data.total_price), 0);
+                settotalInventory(newTotal);
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
                 script.async = true;
@@ -42,6 +48,24 @@ export const InventoryList = () => {
             .catch(e => {
                 console.log(e);
             })
+    }
+
+    const dataListProductsQuantity = async () => {
+        try {
+            const response = await axios.get(ApiUrl + `inventorie-quiantity-in-warehouse/${inventoryId}`);
+            const responseData = response.data;
+            setdataWarehouse(responseData);
+            console.log("INformacion Productos BODEGAS:", responseData);
+            if (responseData.length > 0 && responseData[0].warehouse_id !== undefined) {
+                console.log("BODEGAS ID:", responseData[0].warehouse_id);
+                setwarehouseId(responseData[0].warehouse_id);
+            } else {
+                console.log("NO HAY VALOR QUE MOSTRAR BODEGAS ID");
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const onInputChange = ({ target }) => {
@@ -209,6 +233,11 @@ export const InventoryList = () => {
         dataList();
     }, [])
 
+    useEffect(() => {
+        if (inventoryId) {
+            dataListProductsQuantity();
+        }
+    }, [inventoryId]);
 
     return (
         <div>
@@ -225,8 +254,14 @@ export const InventoryList = () => {
                                 </div>
                             </div>
                         </div>
+                        <br></br>
+                        <div className='row'>
+                            <div className='col-sm-12'>
+                                <center><h4> TOTAL INVERTIDO: {totalInventory} </h4></center>
+                            </div>                            
+                        </div>
                         <div className="card-body table-responsive">
-                            <table className='table table-hover ' id="dataTable-ord-col1"  >
+                            <table className='table table-hover' id="dataTable-ord-col1" >
                                 <thead>
                                     <tr>
                                         {/* <th>ID Prod</th> */}
@@ -237,7 +272,8 @@ export const InventoryList = () => {
                                         <th>Categoría</th>
                                         <th>En Bodega</th>
                                         <th>Sin Bodega</th>
-
+                                        <th>P. Unitario</th>
+                                        <th>P. Total</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -265,11 +301,12 @@ export const InventoryList = () => {
                                                 ${data.withoutWarehouse > 0 ? 'badge rounded-pill bg-danger' : ''
                                                 }
                                                 `} style={{ paddingRight: '0.5vw', paddingLeft: '0.5vw' }}>{data.withoutWarehouse}</span></td>
-
+                                            <td>{data.unit_price_product}</td>
+                                            <td>{data.total_price}</td>
                                             <td>
-                                                
                                                 <button className='btn btn-outline-success' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectProduct(data, 1)} ><i className="fas fa-share-square"></i></button>
                                                 <button className='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => selectProduct(data, 2)} ><i className="fas fa-edit"></i></button>
+                                                <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#exampleModalView" onClick={() => { setinventoryId(data.inventories_id); dataListProductsQuantity(); setproductsTotalQuantity(data.stock); setproductsWithoutWarehouse(data.withoutWarehouse); setproductsNameWarehouse(data.product); setproductsStatusWarehouse(data.status); }} ><i className="fas fa-eye" ></i></button>
                                             </td>
                                         </tr>
                                     ))
@@ -331,7 +368,7 @@ export const InventoryList = () => {
                                 {/* <button type="submit" className="btn btn-primary">Submit</button> */}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" className="btn btn-success"  data-bs-dismiss="modal">Guardar</button>
+                                    <button type="submit" className="btn btn-success" data-bs-dismiss="modal">Guardar</button>
                                 </div>
                             </form>
                         </div>
@@ -405,7 +442,7 @@ export const InventoryList = () => {
                                 {/* <button type="submit" className="btn btn-primary">Submit</button> */}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" className="btn btn-success"  data-bs-dismiss="modal" >Guardar</button>
+                                    <button type="submit" className="btn btn-success" data-bs-dismiss="modal" >Guardar</button>
                                 </div>
                             </form>
                         </div>
@@ -478,6 +515,75 @@ export const InventoryList = () => {
                     </div>
                 </div>
             </div>
+
+
+            {/* INFORMACION DE BODEGAS */}
+            <div className="modal fade" id="exampleModalView" aria-labelledby="exampleModal" aria-hidden="true">
+                <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Información de productos en Bodegas</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className='container'>
+                                <div className='row'>
+                                    <div className='col-sm-12'>
+                                        <center><h4> {productsNameWarehouse} </h4></center>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div className='row'>
+                                    <div className='col-sm-4'>
+                                        <center><h5> CANTIDAD TOTAL: {productsTotalQuantity} </h5></center>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <center><h5>SIN BODEGA: {productsWithoutWarehouse} </h5></center>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <center><h5>ESTADO: {productsStatusWarehouse} </h5></center>
+                                    </div>
+                                </div>
+                                <br></br>
+                                {
+                                    productsWithoutWarehouse === productsTotalQuantity ? (
+                                        <center><h5>Producto sin asignar a Bodegas</h5></center>
+
+                                    ) : (
+                                        <div className="modal-body text-center">
+                                            <div className="card-body table-responsive">
+                                                <table className='table table-hover' id="dataTable-ord-col1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Cant</th>
+                                                            <th>Bodega</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {dataWarehouse.map((item) => (
+                                                            <tr key={item.product_warehouses_id}>
+                                                                <td>{item.quantity}</td>
+                                                                <td>{item.description}</td>
+                                                            </tr>
+                                                        ))
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+
+
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <ToastContainer theme="colored" />
         </div>
     )
