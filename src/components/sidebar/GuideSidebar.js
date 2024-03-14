@@ -22,7 +22,7 @@ export const GuideSidebar = () => {
 
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#inventory" aria-expanded="false" aria-controls="gallery">
                                 <div className="sb-nav-link-icon"><i className="fas fa-warehouse"></i></div>
-                                Bodega
+                                Bodega Alimentos
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
                             <div className="collapse" id="inventory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -31,6 +31,20 @@ export const GuideSidebar = () => {
                                     <Link className="nav-link" to="lista-productos">Lista de productos</Link>
                                     <Link className="nav-link" to="solicitar-productos">Solicitar productos</Link>
                                     <Link className="nav-link" to="Historial-solicitud-productos">Historial de solicitud de productos</Link>
+                                </nav>
+                            </div>
+                            
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#equipment" aria-expanded="false" aria-controls="gallery">
+                                <div className="sb-nav-link-icon"><i className="fas fa-campground"></i></div>
+                                Bodega Equipos
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            <div className="collapse" id="equipment" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav className="sb-sidenav-menu-nested nav">
+                                    {/* <Link className="nav-link" to="bodegas">Ver Bodegas</Link> */}
+                                    <Link className="nav-link" to="bodegas">Ver Bodega</Link>
+                                    {/* <Link className="nav-link" to="solicitar-productos">Solicitar productos</Link>
+                                    <Link className="nav-link" to="Historial-solicitud-productos">Historial de solicitud de productos</Link> */}
                                 </nav>
                             </div>
 

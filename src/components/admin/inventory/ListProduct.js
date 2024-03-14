@@ -6,32 +6,48 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { CategorySelect } from './selects/CategorySelect';
 import { SupplierSelect } from './selects/SupplierSelect';
+import { useGetDate } from '../../../hooks/useGetDate';
 
 
 export const ListProduct = () => {
     const [data, setdata] = useState([]);
     const [img1, setimg1] = useState();
     const [selectedImage, setselectedImage] = useState([]);
+    const { year, month, day } = useGetDate();
+    const paddedMonth = String(month + 1).padStart(2, '0');
+    const paddedDay = String(day).padStart(2, '0');
+    const currentDate = `${year}-${paddedMonth}-${paddedDay}`;
 
+    // const currentDate = year + '-' + (month + 1) + '-' + day;
     const [formD, setformD] = useState({
         description: '',
         buying_price: '',
         min_selling_price: '',
         selling_price: '',
         rent_price: '',
-        entry_date: '',
+        entry_date: currentDate,
 
     });
+
+    const [reloadCategory, setreloadCategory] = useState(false)
+    const [reloadSupplier, setreloadSupplier] = useState(false)
     const [categorySelected, setcategorySelected] = useState();
     const [supplierSelected, setsupplierSelected] = useState();
-    const [productSelected, setproductSelected] = useState([]);
+    const [productSelected, setproductSelected] = useState({
+        description: '',
+        buying_price: '',
+        min_selling_price: '',
+        selling_price: '',
+        rent_price: '',
+        entry_date: currentDate,
+    });
 
     const dataList = async () => {
         await axios.get(ApiUrl + 'product-list')
             .then(resp => {
                 resp = resp.data;
                 setdata(resp);
-                console.log(resp);
+                // console.log(resp);
                 //cargamos los datos nuevos
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -54,6 +70,14 @@ export const ListProduct = () => {
         const { name, value } = target;
         setformD({
             ...formD,
+            [name]: value
+        })
+    }
+
+    const onInputChangeEdit = ({ target }) => {
+        const { name, value } = target;
+        setproductSelected({
+            ...productSelected,
             [name]: value
         })
     }
@@ -96,8 +120,8 @@ export const ListProduct = () => {
                         rent_price: '',
                         entry_date: ''
                     });
-                    setcategorySelected('');
-                    setsupplierSelected('');
+                    // setcategorySelected('');
+                    // setsupplierSelected('');
 
 
                 } else {
@@ -111,9 +135,74 @@ export const ListProduct = () => {
             })
 
     }
+    const onSubmitEdit = async (event) => {
+
+        event.preventDefault();
+
+        const f = new FormData();
+
+        if (!categorySelected[""]) {
+            f.append("category_id", categorySelected.category_id);
+        } else {
+            f.append("category_id", categorySelected[""]);
+        }
+        if (!supplierSelected[""]) {
+            f.append("supplier_id", supplierSelected.supplier_id);
+        } else {
+            f.append("supplier_id", supplierSelected[""]);
+        }
+
+
+        f.append("description", productSelected.description);
+        f.append("buying_price", productSelected.buying_price);
+        f.append("min_selling_price", productSelected.min_selling_price);
+        f.append("selling_price", productSelected.selling_price);
+        f.append("rent_price", productSelected.rent_price);
+        f.append("entry_date", productSelected.entry_date);
+        if (img1 != undefined) {
+            f.append("img", img1[0]);
+        }
+        console.log("Ediiit")
+        console.log(Object.fromEntries(f));
+        await axios.post(ApiUrl + 'product-update/' + productSelected.product_id, f)
+            .then(response => {
+                var resp = response.data;
+                console.log(resp);
+                if (resp.success) {
+
+                    toast.success("Tour Agregado exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+                    deleteTable();
+                    dataList();
+                    setformD({
+                        description: '',
+                        buying_price: '',
+                        min_selling_price: '',
+                        selling_price: '',
+                        rent_price: '',
+                        entry_date: ''
+                    });
+                    // setcategorySelected('');
+                    // setsupplierSelected('');
+
+
+                } else {
+                    toast.error("El tour no se ha agregado", { position: toast.POSITION.BOTTOM_RIGHT });
+                }
+            })
+            .catch(e => {
+                console.log(e)
+                toast.error("" + e + "  !", { position: toast.POSITION.BOTTOM_RIGHT });
+            })
+
+    }
 
     const selectProduct = (data) => {
+        console.log(data)
         setproductSelected(data);
+        setcategorySelected(data)
+        setsupplierSelected(data);
+        setreloadCategory(true)
+        setreloadSupplier(true)
     }
 
     const deleteTour = async () => {
@@ -143,7 +232,7 @@ export const ListProduct = () => {
                                     <b>LISTA DE PRODUCTOS</b>
                                 </div>
                                 <div className='col-12 col-md-6 ' style={{ textAlign: 'right' }}>
-                                    <button className='btn btn-success btn-sm' data-bs-toggle="modal" data-bs-target="#addProductModal" ><i className="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button className='btn btn-success btn-sm' data-bs-toggle="modal" data-bs-target="#addProductModal" ><b>AGREGAR PRODUCTO </b><i className="fa fa-plus" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -175,6 +264,7 @@ export const ListProduct = () => {
                                             <td>{data.rent_price}</td>
                                             <td>
                                                 <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#watchModal" onClick={() => setselectedImage(data.img)}><i className="fas fa-eye" aria-hidden="true"></i></button>
+                                                <button className='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target="#editProductModal" onClick={() => selectProduct(data)}><i className="fas fa-pen" aria-hidden="true"></i></button>
                                                 <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectProduct(data)}><i className="fas fa-trash-alt" aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
@@ -275,14 +365,14 @@ export const ListProduct = () => {
 
                                     <div className='col-4 col-md-3'>
                                         <div className="">
-                                            <label className="form-label">P. Venta</label>
+                                            <label className="form-label">P. Venta Nuevo</label>
                                             <input type="text" className="form-control" name="selling_price" value={formD.selling_price} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
 
                                     <div className='col-4 col-md-3'>
                                         <div className="">
-                                            <label className="form-label">P. Min Venta</label>
+                                            <label className="form-label">P. Venta Semi Nuevo</label>
                                             <input type="text" className="form-control" name='min_selling_price' value={formD.min_selling_price} onChange={onInputChange} required></input>
                                         </div>
                                     </div>
@@ -297,6 +387,100 @@ export const ListProduct = () => {
                                         <div className="">
                                             <label className="form-label">Fecha Ingreso</label>
                                             <input type="date" className="form-control" name='entry_date' value={formD.entry_date} onChange={onInputChange} required></input>
+                                        </div>
+                                    </div>
+                                    <div className='col-6 col-md-6'>
+                                        <div className="">
+                                            <label className="form-label">Imagen (Opcional)</label>
+                                            <input className="form-control" type="file" name="img" onChange={(e) => updateImg1(e.target.files)} id="formFile"></input>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* <button type="submit" className="btn btn-primary">Submit</button> */}
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" className="btn btn-success" >Guardar</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="editProductModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel"><b>EDITAR PRODUCTO</b></h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <form onSubmit={onSubmitEdit}>
+                                <div className='row'>
+                                    <div className='col-12'>
+                                        <div className="">
+                                            <label className="form-label">Descripción</label>
+                                            <input type="text" name='description' className="form-control" value={productSelected.description} onChange={onInputChangeEdit} required ></input>
+                                        </div>
+                                    </div>
+
+                                    <div className='col-6 col-md-6'>
+                                        <div className="">
+                                            <label className="form-label">Categoría</label>
+
+                                            <CategorySelect
+                                                category={categorySelected}
+                                                setcategory={setcategorySelected}
+                                                reload={reloadCategory}
+                                                setreload={setreloadCategory}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className='col-6 col-md-6'>
+                                        <div className="">
+                                            <label className="form-label">Proveedor</label>
+                                            <SupplierSelect
+                                                supplier={supplierSelected}
+                                                setsupplier={setsupplierSelected}
+                                                reload={reloadSupplier}
+                                                setreload={setreloadSupplier}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className='col-4 col-md-3'>
+                                        <div className="">
+                                            <label className="form-label">P. Compra</label>
+                                            <input type="text" className="form-control" name="buying_price" value={productSelected.buying_price} onChange={onInputChangeEdit} required ></input>
+                                        </div>
+                                    </div>
+
+                                    <div className='col-4 col-md-3'>
+                                        <div className="">
+                                            <label className="form-label">P. Venta Nuevo</label>
+                                            <input type="text" className="form-control" name="selling_price" value={productSelected.selling_price} onChange={onInputChangeEdit} required></input>
+                                        </div>
+                                    </div>
+
+                                    <div className='col-4 col-md-3'>
+                                        <div className="">
+                                            <label className="form-label">P. Venta Semi Nuevo</label>
+                                            <input type="text" className="form-control" name='min_selling_price' value={productSelected.min_selling_price} onChange={onInputChangeEdit} required></input>
+                                        </div>
+                                    </div>
+
+                                    <div className='col-4 col-md-3'>
+                                        <div className="">
+                                            <label className="form-label">P. Alquiler</label>
+                                            <input type="text" className="form-control" name="rent_price" value={productSelected.rent_price} onChange={onInputChangeEdit} required></input>
+                                        </div>
+                                    </div>
+                                    <div className='col-6 col-md-6'>
+                                        <div className="">
+                                            <label className="form-label">Fecha Ingreso</label>
+                                            <input type="date" className="form-control" name='entry_date' value={productSelected.entry_date} onChange={onInputChangeEdit} required></input>
                                         </div>
                                     </div>
                                     <div className='col-6 col-md-6'>

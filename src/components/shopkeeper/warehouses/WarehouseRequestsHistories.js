@@ -32,7 +32,7 @@ export const WarehouseRequestsHistories = () => {
     });
 
     const dataListHistoryAdm = async () => {
-        await axios.get(ApiUrl + 'request-complete-products-list-rejected-retired/')
+        await axios.get(ApiUrl + 'request-complete-products-list-rejected-retired')
             .then(resp => {
                 const responseData = resp.data;
                 console.log("RESPONSEDATA PARA LISTO", responseData);

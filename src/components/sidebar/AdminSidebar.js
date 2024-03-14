@@ -1,11 +1,32 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { ApiUrl } from '../../services/ApiRest';
 
 export const AdminSidebar = () => {
 
     const { displayName } = useSelector(state => state.auth);
     console.log(displayName);
+
+    const [swType, setswType] = useState(0)
+
+    const loadEntrpriseInfo = async () => {
+        await axios.get(ApiUrl + 'enterprise')
+            .then(resp => {
+                const responseData = resp.data;
+                console.log("enterprise PARA LISTO", responseData[0].software_type_id);
+                setswType(responseData[0].software_type_id);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    useEffect(() => {
+        loadEntrpriseInfo();
+    }, [])
+
 
     return (
 
@@ -18,11 +39,18 @@ export const AdminSidebar = () => {
                         INICIO
                     </Link>
                     <div className="sb-sidenav-menu-heading">Interface</div>
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#catalogo" aria-expanded="false" aria-controls="catalogo">
-                        <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                        Catálogo de Tours
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+
+                    {
+                        (swType === 1) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#catalogo" aria-expanded="false" aria-controls="catalogo">
+                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                Catálogo de Tours
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
                     <div className="collapse" id="catalogo" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav">
                             <Link className="nav-link" to="add-to-catalogue">Agregar a catálogo</Link>
@@ -30,11 +58,18 @@ export const AdminSidebar = () => {
                         </nav>
                     </div>
 
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#monthly" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div className="sb-nav-link-icon"><i className="fas fa-mountain"></i></div>
-                        Tours mensuales
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+                    {
+                        (swType === 1) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#monthly" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div className="sb-nav-link-icon"><i className="fas fa-mountain"></i></div>
+                                Tours mensuales
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
+
                     <div className="collapse" id="monthly" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav">
                             <Link className="nav-link" to="addTour">Agregar Tour</Link>
@@ -44,11 +79,18 @@ export const AdminSidebar = () => {
                         </nav>
                     </div>
 
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#passenger-tour" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div className="sb-nav-link-icon"><i className="fas fa-id-badge"></i></div>
-                        Pasajeros en Tour
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+                    {
+                        (swType === 1) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#passenger-tour" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div className="sb-nav-link-icon"><i className="fas fa-id-badge"></i></div>
+                                Pasajeros en Tour
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
+
                     <div className="collapse" id="passenger-tour" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav">
                             <Link className="nav-link" to="passenger-available-tour">Tour con Listado</Link>
@@ -58,23 +100,35 @@ export const AdminSidebar = () => {
                         </nav>
                     </div>
 
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#ventas" aria-expanded="false" aria-controls="ventas">
-                        <div className="sb-nav-link-icon"><i className="far fa-money-bill-alt"></i></div>
-                        Ventas
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+                    {
+                        (swType === 1) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#ventas" aria-expanded="false" aria-controls="ventas">
+                                <div className="sb-nav-link-icon"><i className="far fa-money-bill-alt"></i></div>
+                                Ventas
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
                     <div className="collapse" id="ventas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav">
                             <Link className="nav-link" to="add-equipment-sell">Agregar Producto</Link>
                             <Link className="nav-link" to="list-equipment-sell">Listar Productos</Link>
-
                         </nav>
                     </div>
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div className="sb-nav-link-icon"><i className="fas fa-retweet"></i></div>
-                        Alquiler
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+
+                    {
+                        (swType === 1) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div className="sb-nav-link-icon"><i className="fas fa-retweet"></i></div>
+                                Alquiler
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
                     <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav">
                             <Link className="nav-link" to="add-to-rent">Agregar Producto</Link>
@@ -82,11 +136,18 @@ export const AdminSidebar = () => {
                         </nav>
                     </div>
 
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#inventory" aria-expanded="false" aria-controls="gallery">
-                        <div className="sb-nav-link-icon"><i className="fas fa-warehouse"></i></div>
-                        Inventario
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+                    {
+                        (swType === 1 || swType === 2) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#inventory" aria-expanded="false" aria-controls="gallery">
+                                <div className="sb-nav-link-icon"><i className="fas fa-warehouse"></i></div>
+                                Inventario
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
+
                     <div className="collapse" id="inventory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav">
                             {/* <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link> */}
@@ -102,17 +163,44 @@ export const AdminSidebar = () => {
                                     {/* <a className="nav-link" href="login.html">Crear solicitud</a> */}
                                     <Link className="nav-link" to="crear-solicitud">Crear solicitud</Link>
                                     <Link className="nav-link" to="Administrar-solicitud-productos">Administrar solicitudes</Link>
-                                    <Link className="nav-link" to="Historial-solicitudes">Historial de solicitudes</Link>                              
+                                    <Link className="nav-link" to="Historial-solicitudes">Historial de solicitudes</Link>
                                 </nav>
                             </div>
                         </nav>
                     </div>
 
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gallery" aria-expanded="false" aria-controls="gallery">
-                        <div className="sb-nav-link-icon"><i className="fas fa-image"></i></div>
-                        Galería
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+                    {
+                        (swType === 1  || swType === 2) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#credits" aria-expanded="false" aria-controls="gallery">
+                                <div className="sb-nav-link-icon"><i className="fas fa-credit-card"></i></div>
+                                Créditos
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
+
+                    <div className="collapse" id="credits" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav className="sb-sidenav-menu-nested nav">
+                            {/* <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link> */}
+                            <Link className="nav-link" to="listar-creditos">Ver Créditos</Link>
+                        </nav>
+                    </div>
+
+
+                    {
+                        (swType === 1) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#gallery" aria-expanded="false" aria-controls="gallery">
+                                <div className="sb-nav-link-icon"><i className="fas fa-image"></i></div>
+                                Galería
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
+
                     <div className="collapse" id="gallery" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav">
                             {/* <Link className="nav-link" to="add-to-rent">Agregar Imagen</Link> */}
@@ -120,11 +208,18 @@ export const AdminSidebar = () => {
                         </nav>
                     </div>
 
-                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                        <div className="sb-nav-link-icon"><i className="fas fa-home"></i></div>
-                        Hospedaje
-                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                    </a>
+                    {
+                        (swType === 1) ?
+                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div className="sb-nav-link-icon"><i className="fas fa-home"></i></div>
+                                Hospedaje
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            :
+                            <></>
+                    }
+
+
                     <div className="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">

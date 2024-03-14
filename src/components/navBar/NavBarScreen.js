@@ -76,6 +76,10 @@ export const NavBarScreen = (props) => {
                 localStorage.removeItem("menu");
                 window.localStorage.setItem("menu", 8);
                 break;
+            case 9:
+                localStorage.removeItem("menu");
+                window.localStorage.setItem("menu", 9);
+                break;
 
             default:
                 break;
@@ -124,6 +128,15 @@ export const NavBarScreen = (props) => {
                                 onClick={() => menuSeleccionado(3)}
                             >
                                 Nuestros Tours
+                            </a>
+                        </li>
+                        
+                        <li className="nav-item">
+                            <a className={`nav-link selection-word ${(localStorage.getItem("menu") == 9) && 'color-selected'}`}
+                                href="/viaja-peru"
+                                onClick={() => menuSeleccionado(9)}
+                            >
+                                Viaja Perú
                             </a>
                         </li>
 

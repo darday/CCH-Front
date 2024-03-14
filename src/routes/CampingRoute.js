@@ -61,6 +61,9 @@ import { ShopkeeperRoute } from './ShopkeeperRoute';
 import { ShopkeeperHomeScreen } from '../components/shopkeeper/ShopkeeperHomeScreen';
 import { WarehouseRequestsHistories } from '../components/shopkeeper/warehouses/WarehouseRequestsHistories';
 import { WarehouseRequestHistoryShop } from '../components/shopkeeper/warehouses/WarehouseRequestHistoryShop';
+import { GuideWarehouseList } from '../components/guide/GuideWarehouseList';
+import { ListCredit } from '../components/admin/credits/ListCredit';
+import { ViajaPeruScreen } from '../components/initialsPages/ViajaPeruScreen';
 
 
 export const CampingRoute = () => {
@@ -112,13 +115,15 @@ export const CampingRoute = () => {
                             <Route path="crear-solicitud" element={<WarehouseRequestProductsAdm/>}/>
                             <Route path="Administrar-solicitud-productos" element={<WarehouseRequestHistoryAdm/>}/>
                             <Route path="Historial-solicitudes" element={<WarehouseRequestsHistoriesAdm/>}/>
+
+                            <Route path="listar-creditos" element={<ListCredit/>}/>
                         </Route>
 
 
                         <Route path="guide" element={<GuideRoute/>}>
                             <Route path="home" element={<GuideHomeScreen/>} />                            
 
-                            <Route path="bodegas" element={<WarehouseList/>}/>
+                            <Route path="bodegas" element={<GuideWarehouseList/>}/>
                             <Route path="lista-productos" element={<WarehouseProductsList/>}/>
                             <Route path="solicitar-productos" element={<WarehouseRequestProducts/>}/>
                             <Route path="Historial-solicitud-productos" element={<WarehouseRequestHistory/>}/>                            
@@ -150,6 +155,7 @@ export const CampingRoute = () => {
                         
                         <Route path="/galeria" element={<GaleriaScreen />}></Route>
                         <Route path="/nosotros" element={<AboutUsScreen />}></Route>
+                        <Route path="/viaja-peru" element={<ViajaPeruScreen />}></Route>
 
                         <Route path="user-home" element={<UserRouteScreen/>}></Route>
                         {/* <Route path="/*" element={
