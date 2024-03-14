@@ -17,10 +17,14 @@ export const AdminSidebar = () => {
                 const responseData = resp.data;
                 console.log("enterprise PARA LISTO", responseData[0].software_type_id);
                 setswType(responseData[0].software_type_id);
+
+
             })
             .catch(e => {
                 console.log(e);
             })
+        if (swType !=0 || swType !=1 || swType !=2 || swType !=3 )
+            setswType(1);
     }
 
     useEffect(() => {
@@ -170,7 +174,7 @@ export const AdminSidebar = () => {
                     </div>
 
                     {
-                        (swType === 1  || swType === 2) ?
+                        (swType === 1 || swType === 2) ?
                             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#credits" aria-expanded="false" aria-controls="gallery">
                                 <div className="sb-nav-link-icon"><i className="fas fa-credit-card"></i></div>
                                 Créditos

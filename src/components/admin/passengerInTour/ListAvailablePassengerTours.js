@@ -289,14 +289,15 @@ export const ListAvailablePassengerTours = () => {
                                                     <td>{tour.utility}</td>
 
                                                     <td>
-                                                        <button className='btn btn-outline-primary btn-sm' data-bs-toggle="modal" data-bs-target="#addPassenger" onClick={() => setselectedTourList(tour)} ><i className="fas fa-user-plus"></i></button>
+                                                        <button className='btn btn-outline-primary ' data-bs-toggle="modal" data-bs-target="#addPassenger" onClick={() => setselectedTourList(tour)} ><i className="fas fa-user-plus"></i></button>
                                                         <Link to={"../passengerList-single-tour/" + tour.monthly_tour_id}>
-                                                            <button className='btn btn-outline-secondary btn-sm' onClick={() => setselectedTourList(tour)} ><i className="fas fa-eye"></i></button>
+                                                            <button className='btn btn-outline-secondary ' onClick={() => setselectedTourList(tour)} ><i className="fas fa-eye"></i></button>
                                                         </Link>
 
-                                                        <button className='btn btn-outline-danger btn-sm' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => (tour.img_1)}  ><i className="fas fa-trash-alt"></i></button>
+                                                        <button className='btn btn-outline-warning' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => (tour.img_1)}  ><i className="fas fa-file-invoice-dollar"></i></button>
+                                                        <button className='btn btn-outline-danger ' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => (tour.img_1)}  ><i className="fas fa-trash-alt"></i></button>
                                                         {
-                                                            <button className='btn btn-outline-success btn-sm ' data-bs-toggle="modal" data-bs-target="#modal-lista-pasajeros" > <i className="far fa-calendar-check"></i> </button>
+                                                            <button className='btn btn-outline-success ' data-bs-toggle="modal" data-bs-target="#modal-lista-pasajeros" > <i className="far fa-calendar-check"></i> </button>
                                                         }
                                                     </td>
 

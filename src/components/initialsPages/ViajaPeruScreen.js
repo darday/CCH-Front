@@ -74,8 +74,8 @@ export const ViajaPeruScreen = () => {
 
             <br></br>
             <div className='container'>
-                <h1 className="camping-letters text-center" >LAND TOUR 6 DÍAS 5 NOCHES - DESDE $450 </h1>
-                <h1 className="tit-sob-img_dividida blink text-center" style={{ textShadow: '1px 1px 2px rgba(0,0,0,1.5)', letterSpacing: '0px', color:'#28a745' }}>PROXIMAMENTE 🥳🎉</h1>
+                <h1 className="camping-letters text-center" >LAND TOUR 6 DÍAS 5 NOCHES</h1>
+                <h1 className="tit-sob-img_dividida blink text-center" style={{ textShadow: '1px 1px 2px rgba(0,0,0,1.5)', letterSpacing: '0px', color:'#28a745' }}>PRÓXIMAMENTE 🥳🎉</h1>
 
             </div>
             
