@@ -208,7 +208,6 @@ export const WarehouseRequestHistoryAdm = () => {
                                 <div className='col-12 col-md-12'>
                                     <b>ADMINISTRACIÓN DE SOLICITUD DE PRODUCTOS CAMPING CHIMBORAZO</b>
                                 </div>
-
                             </div>
                         </div>
                         <div className="card-body table-responsive">
@@ -221,7 +220,7 @@ export const WarehouseRequestHistoryAdm = () => {
                                         <th>detalle</th>
                                         <th>Fecha de tour</th>
                                         <th>Estado</th>
-                                        <th>Accione</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -333,8 +332,7 @@ export const WarehouseRequestHistoryAdm = () => {
                                     <tfoot>
                                         <tr>
                                             <td colSpan="4"><strong>Total:</strong></td>
-                                            <td><strong>{total}</strong></td>
-                                            <td></td> {/* Esto es para mantener la alineación de las columnas */}
+                                            <td><strong>{total}</strong></td>                                            
                                         </tr>
                                     </tfoot>
                                 </table>

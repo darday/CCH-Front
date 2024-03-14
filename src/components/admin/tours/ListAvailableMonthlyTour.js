@@ -7,6 +7,7 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import AssignmentIndTwoToneIcon from '@mui/icons-material/AssignmentIndTwoTone';
+import { useNavigate } from 'react-router-dom';
 
 
 export const ListAvailableMonthlyTour = () => {
@@ -15,15 +16,16 @@ export const ListAvailableMonthlyTour = () => {
     const [selectedImage, setselectedImage] = useState([]);
     const [listExist, setlistExist] = useState();
     const [showModal, setshowModal] = useState(false);
-
-
+    const [listPassengerId, setlistPassengerId] = useState();
+    const [listIdToRedirect, setListIdToRedirect] = useState(null);
+    const navigate = useNavigate();
 
     const getData = async () => {
         await axios.get(ApiUrl + "monthly-tour-available")
             .then(response => {
                 const data = response.data;
                 settours(data);
-                console.log(data)
+                console.log("SABER EL VALORrrr:", data)
                 //cargamos los datos nuevos
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -77,30 +79,25 @@ export const ListAvailableMonthlyTour = () => {
         const f = new FormData();
         f.append("monthly_tour_id", selectedTour.monthly_tour_id);
         f.append("tour_destiny", selectedTour.tour_destiny);
-
         await axios.post(ApiUrl + "list-create", f)
             .then(response => {
-                console.log("holaaa");
                 toast.success("Lista de Tours Creada", { position: toast.POSITION.BOTTOM_RIGHT });
-
             })
             .catch(e => {
                 toast.error("Error No se creo listado", { position: toast.POSITION.BOTTOM_RIGHT });
-
                 console.log("Error222");
                 console.log(e)
             })
     }
-    
+
     const verifyListTour = async (tour) => {
         setselectedTour(tour);
         setshowModal(false);
-
         await axios.get(ApiUrl + "passengerlistTour-list-byID/" + tour.monthly_tour_id)
             .then(response => {
                 var res = response.data;
-                console.log("res.data");
-                console.log(res);
+                console.log("QUIERO SABER Q HAY");
+                console.log("REEESSS:", res);
                 if (res.count > 0) {
                     setlistExist(false);
                     setshowModal(true);
@@ -108,11 +105,38 @@ export const ListAvailableMonthlyTour = () => {
                     setlistExist(true);
                     setshowModal(true);
                 }
+                // Verifica si hay elementos en el array
+                if (res.data.length > 0) {
+                    // Imprime el list_id del primer element                    
+                    console.log("res.data.list_id:", res.data[0].monthly_tour_id);
+                    setListIdToRedirect(res.data[0].monthly_tour_id);                  
+                } else {
+                    console.log("No hay datos en el array");
+                }
             })
             .catch(e => {
-                console.log(e)
-                alert("Error con el servidor")
-            })
+                console.log(e);
+                alert("Error con el servidor");
+            });
+    }
+
+    const getDataPassengerListId = async () => {
+        try {
+            if (listPassengerId !== undefined) {
+                const response = await axios.get(ApiUrl + `list-passenger-list/${listPassengerId}`);
+
+                if (response && response.data && response.data.success) {
+                    console.log('hola');
+                } else {
+                    toast.error("Error al generar la solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
+                }
+            } else {
+                // Manejar el caso en que listPassengerId es undefined
+                console.log('listPassengerId es undefined');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
@@ -121,6 +145,10 @@ export const ListAvailableMonthlyTour = () => {
 
     useEffect(() => {
         getData()
+    }, [])
+
+    useEffect(() => {
+        getDataPassengerListId()
     }, [])
 
     return (
@@ -166,16 +194,11 @@ export const ListAvailableMonthlyTour = () => {
                                                     </Link>
                                                     <button className='btn btn-outline-danger btn-sm' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => selectTour(tour)}  ><DeleteOutlinedIcon /></button>
                                                     <button className='btn btn-outline-success btn-sm' data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => setselectedImage(tour.img_1)}  ><VisibilityOutlinedIcon /></button>
-                                                    {
-                                                        <button className='btn btn-outline-secondary btn-sm ' data-bs-toggle="modal" data-bs-target="#modal-lista-pasajeros" onClick={(e) => { e.stopPropagation(); verifyListTour(tour) }} > <AssignmentIndTwoToneIcon /> </button>
-                                                    }
 
+                                                    <button className='btn btn-outline-secondary btn-sm ' data-bs-toggle="modal" data-bs-target="#modal-lista-pasajeros" onClick={(e) => { e.stopPropagation(); verifyListTour(tour) }} > <AssignmentIndTwoToneIcon /> </button>
                                                 </td>
-
-
                                             </tr>
                                         ))}
-
                                     </tbody>
                                 </table>
                             </div>
@@ -204,7 +227,6 @@ export const ListAvailableMonthlyTour = () => {
 
                 <div className="modal fade" id="modal-lista-pasajeros" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
-
                         {
                             showModal ?
                                 ((listExist === true) ?
@@ -232,17 +254,25 @@ export const ListAvailableMonthlyTour = () => {
                                             Ya se ha creado una lista de pasajeros de esta ruta <br></br>
                                         </div>
                                         <div className="modal-footer">
-                                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" >Ver Listado de Pasajeros </button>
+                                            {/* <button type="button" className="btn btn-primary" data-bs-dismiss="modal" >Ver Listado de Pasajeros </button> */}
+                                            {/* <Link to={"../passengerList-single-tour/" + listIdToRedirect}> */}
+                                            <button
+                                                type="button"
+                                                className="btn btn-primary"
+                                                onClick={() => navigate(`../passengerList-single-tour/${listIdToRedirect}`)}
+                                                data-bs-dismiss="modal"
+                                            >
+                                                Ver Listado de Pasajeros
+                                            </button>
+                                            {/* </Link> */}
                                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Aceptar</button>
                                         </div>
                                     </div>
                                 ) :
                                 <div className="modal-content">
-                                    
                                     <div className="modal-body">
                                         Cargando... <br></br>
                                     </div>
-                                   
                                 </div>
                         }
                     </div>
@@ -255,7 +285,7 @@ export const ListAvailableMonthlyTour = () => {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Eliminar</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Eliminar david paca</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
@@ -264,7 +294,6 @@ export const ListAvailableMonthlyTour = () => {
                                     (selectedImage) ? <img src={`${ApiStorage + selectedImage}`} style={{ width: '100%', padding: '1.5vh' }} className="card-img-top" alt="..."></img>
                                         : <p>Cargando Imagen...</p>
                                 }
-
                             </div>
                             <div className="modal-footer">
                                 {/* <button type="button" className="btn btn-primary" onClick={() => deleteTour()} data-bs-dismiss="modal" >Aceptar</button> */}
@@ -273,9 +302,7 @@ export const ListAvailableMonthlyTour = () => {
                         </div>
                     </div>
                 </div>
-
                 <ToastContainer theme="colored" />
-
             </div>
         </>
     )

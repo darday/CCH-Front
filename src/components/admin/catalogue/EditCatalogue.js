@@ -35,6 +35,7 @@ export const EditCatalogue = () => {
         await axios.get(ApiUrl + 'show-catalogue-tour/' + tourId)
             .then(res => {
                 var respuesta = res.data[0];
+                console.log("F:", respuesta);
                 setnewData({
                     tour_name: respuesta.tour_name,
                     tour_destiny: respuesta.tour_destiny,
@@ -51,7 +52,6 @@ export const EditCatalogue = () => {
                     discount_description: respuesta.discount_description,
                     contact_phone: respuesta.contact_phone,
                     messagge_for_contact: respuesta.messagge_for_contact,
-
                 });
                 setloading({
 
@@ -60,8 +60,6 @@ export const EditCatalogue = () => {
             .catch(e => {
                 console.log(e);
             })
-
-
     }
 
     useEffect(() => {
@@ -137,9 +135,9 @@ export const EditCatalogue = () => {
 
     }
     const toastId = React.useRef(null);
-    const notify = () => toastId.current = toast("Enviando Datos...", { autoClose: false,  type: toast.TYPE.INFO, position: toast.POSITION.BOTTOM_RIGHT });
-    const success = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.SUCCESS, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
-    const error = (messagge) => toast.update(toastId.current, { render:messagge,type: toast.TYPE.ERROR, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+    const notify = () => toastId.current = toast("Enviando Datos...", { autoClose: false, type: toast.TYPE.INFO, position: toast.POSITION.BOTTOM_RIGHT });
+    const success = (messagge) => toast.update(toastId.current, { render: messagge, type: toast.TYPE.SUCCESS, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
+    const error = (messagge) => toast.update(toastId.current, { render: messagge, type: toast.TYPE.ERROR, position: toast.POSITION.BOTTOM_RIGHT, autoClose: 5000 });
 
     if (loading == true) {
         return (<h3>Cargando Datos...</h3>)

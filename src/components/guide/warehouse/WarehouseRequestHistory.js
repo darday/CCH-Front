@@ -15,8 +15,8 @@ export const WarehouseRequestHistory = () => {
     const [requestHistoryToDelete, setrequestHistoryToDelete] = useState(null);
     const [total, setTotal] = useState(0);
     const [requestCompleteProductsId, setrequestCompleteProductsId] = useState();
-    const [disableOtherButtons, setDisableOtherButtons] = useState(false);
-    const [disableOtherButtons2, setDisableOtherButtons2] = useState(false);
+    // const [disableOtherButtons, setDisableOtherButtons] = useState(false);
+    // const [disableOtherButtons2, setDisableOtherButtons2] = useState(false);
     const [TitleModal, setTitleModal] = useState([]);
 
     const [rejectedIds, setRejectedIds] = useState(() => {
@@ -35,7 +35,7 @@ export const WarehouseRequestHistory = () => {
         await axios.get(ApiUrl + 'request-complete-product-list/'+userId)
             .then(resp => {
                 const responseData = resp.data;
-                console.log("RESPONSEDATA PARA LISTO", responseData);
+                console.log("RESPONSEDATA VER CVOMPLETOOOOO:", responseData);
                 setdataHistory(responseData);
                 const script = document.createElement("script");
                 script.src = `/assets/dataTable/dataTable.js`;
@@ -97,61 +97,61 @@ export const WarehouseRequestHistory = () => {
         }
     };
 
-    const upDateReadyWithdrawWarehouse = async () => {
-        // Realizar la actualización del estado en el servidor
-        try {
-            const response1 = await axios.post(`${ApiUrl}request-completes-update-status/${requestCompleteProductsId}`);
-            if (response1.data.success) {
-                toast.success("Solicitud actualizada exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
-                dataListHistoryAdm();
-                setreadyIds(prevIds => [...prevIds, requestCompleteProductsId]);
-                localStorage.setItem('kReadyIds', JSON.stringify([...readyIds, requestCompleteProductsId]));
-            } else {
-                toast.error("Error al actualizar la solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-            }
-        } catch (error) {
-            console.error(error);
-            toast.error("Error al actualizar la solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-        }
-    };
+    // const upDateReadyWithdrawWarehouse = async () => {
+    //     // Realizar la actualización del estado en el servidor
+    //     try {
+    //         const response1 = await axios.post(`${ApiUrl}request-completes-update-status/${requestCompleteProductsId}`);
+    //         if (response1.data.success) {
+    //             toast.success("Solicitud actualizada exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+    //             dataListHistoryAdm();
+    //             setreadyIds(prevIds => [...prevIds, requestCompleteProductsId]);
+    //             localStorage.setItem('kReadyIds', JSON.stringify([...readyIds, requestCompleteProductsId]));
+    //         } else {
+    //             toast.error("Error al actualizar la solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //         toast.error("Error al actualizar la solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
+    //     }
+    // };
 
-    const upDateProductsWithdrawWarehouse = async () => {
-        try {
-            const response1 = await axios.post(`${ApiUrl}request-completes-update-products-retired/${requestCompleteProductsId}`);
-            if (response1.data.success) {
-                toast.success("Solicitud de retiro de productos exitosa", { position: toast.POSITION.BOTTOM_RIGHT });
-                dataListHistoryAdm();
-                setRejectedIds(prevIds => [...prevIds, requestCompleteProductsId]);
-                localStorage.setItem('rejectedIds', JSON.stringify([...rejectedIds, requestCompleteProductsId]));
-            } else {
-                toast.error("Error Solicitud de retiro de productos", { position: toast.POSITION.BOTTOM_RIGHT });
-            }
-        } catch (error) {
-            console.error(error);
-            toast.error("Error Solicitud de retiro de productos", { position: toast.POSITION.BOTTOM_RIGHT });
-        }
-    };
+    // const upDateProductsWithdrawWarehouse = async () => {
+    //     try {
+    //         const response1 = await axios.post(`${ApiUrl}request-completes-update-products-retired/${requestCompleteProductsId}`);
+    //         if (response1.data.success) {
+    //             toast.success("Solicitud de retiro de productos exitosa", { position: toast.POSITION.BOTTOM_RIGHT });
+    //             dataListHistoryAdm();
+    //             setRejectedIds(prevIds => [...prevIds, requestCompleteProductsId]);
+    //             localStorage.setItem('rejectedIds', JSON.stringify([...rejectedIds, requestCompleteProductsId]));
+    //         } else {
+    //             toast.error("Error Solicitud de retiro de productos", { position: toast.POSITION.BOTTOM_RIGHT });
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //         toast.error("Error Solicitud de retiro de productos", { position: toast.POSITION.BOTTOM_RIGHT });
+    //     }
+    // };
 
-    const upDateProductsRejectedWarehouse = async () => {
-        try {
-            const response1 = await axios.post(`${ApiUrl}request-product-update-products-withdrawal/${requestCompleteProductsId}`);
-            if (response1.data.success) {
-                toast.success("La solicitud ha sido rechazada", { position: toast.POSITION.BOTTOM_RIGHT });
-                dataListHistoryAdm();
-                // Agregar el ID al conjunto de IDs rechazados
-                setRejectedIds(prevIds => [...prevIds, requestCompleteProductsId]);
-                // Almacenar IDs rechazados en el almacenamiento local
-                localStorage.setItem('rejectedIds', JSON.stringify([...rejectedIds, requestCompleteProductsId]));
-                //  setDisableOtherButtons(true);       
-            } else {
-                toast.error("Error al recharaz solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-            }
+    // const upDateProductsRejectedWarehouse = async () => {
+    //     try {
+    //         const response1 = await axios.post(`${ApiUrl}request-product-update-products-withdrawal/${requestCompleteProductsId}`);
+    //         if (response1.data.success) {
+    //             toast.success("La solicitud ha sido rechazada", { position: toast.POSITION.BOTTOM_RIGHT });
+    //             dataListHistoryAdm();
+    //             // Agregar el ID al conjunto de IDs rechazados
+    //             setRejectedIds(prevIds => [...prevIds, requestCompleteProductsId]);
+    //             // Almacenar IDs rechazados en el almacenamiento local
+    //             localStorage.setItem('rejectedIds', JSON.stringify([...rejectedIds, requestCompleteProductsId]));
+    //             //  setDisableOtherButtons(true);       
+    //         } else {
+    //             toast.error("Error al recharaz solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
+    //         }
 
-        } catch (error) {
-            console.error(error);
-            toast.error("Error al recharaz solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
-        }
-    };
+    //     } catch (error) {
+    //         console.error(error);
+    //         toast.error("Error al recharaz solicitud", { position: toast.POSITION.BOTTOM_RIGHT });
+    //     }
+    // };
 
     useEffect(() => {
         dataListHistoryAdm();
@@ -169,7 +169,7 @@ export const WarehouseRequestHistory = () => {
                         <div className=" card-header">
                             <div className='row'>
                                 <div className='col-12 col-md-12'>
-                                    <b>ADMINISTRACIÓN DE SOLICITUD DE PRODUCTOS CAMPING CHIMBORAZO</b>
+                                    <b>ADMINISTRACIÓN DE SOLICITUD DE PRODUCTOS CAMPING CHIMBORAZO GUIAAAAAA</b>
                                 </div>
 
                             </div>
@@ -239,7 +239,6 @@ export const WarehouseRequestHistory = () => {
                             Está seguro que desea eliminar<b></b>
                         </div>
                         <div className="modal-footer">
-
                             <button type="button" className="btn btn-primary" onClick={() => deleteRequestHistoryAdm(requestHistoryToDelete)} data-bs-dismiss="modal">Aceptar</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"  >Cancelar</button>
                         </div>
@@ -294,17 +293,13 @@ export const WarehouseRequestHistory = () => {
                                     <tfoot>
                                         <tr>
                                             <td colSpan="4"><strong>Total:</strong></td>
-                                            <td><strong>{total}</strong></td>
-                                            <td></td> {/* Esto es para mantener la alineación de las columnas */}
+                                            <td><strong>{total}</strong></td>                                            
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
-                        <div className="modal-footer">
-                            {/* <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => upDateReadyWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Listo para retirar</button> */}
-                            {/* <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => upDateProductsWithdrawWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || rejectedIds.includes(requestCompleteProductsId)}>Retirar</button> */}
-                            {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => upDateProductsRejectedWarehouse(requestCompleteProductsId)} disabled={disableOtherButtons || disableOtherButtons2 || rejectedIds.includes(requestCompleteProductsId) || readyIds.includes(requestCompleteProductsId)}>Rechazar</button> */}
+                        <div className="modal-footer">                       
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
                         </div>
                     </div>
