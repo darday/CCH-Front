@@ -40,8 +40,8 @@ export const SingleListPassenger = () => {
   const [img02, setimg02] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [passengerGroupLeaderCI, setpassengerGroupLeaderCI] = useState('');
-  // const [requestUsersGuideSelected, setrequestUsersGuideSelected] = useState(null);
-  // const [userGuide, setUserGuide] = useState({});
+  const [passengerListCiId, setpassengerListCiId] = useState('');
+  const [CiAntigua, setCiAntigua] = useState('');
   const [newData, setnewData] = useState({
     name: '',
     ci: '',
@@ -147,8 +147,85 @@ export const SingleListPassenger = () => {
 
   const handleImages2Change = (e) => {
     setimg02(e.target.files);
+    console.log('SOY la IMAGEN');
   };
-  // console.log('LEADER CI:', passengerLeader);
+
+
+  // const onsubmitUpdate = async (event) => {
+  //   event.preventDefault();
+  //   if (resultRestToCollect < 0) {
+  //     toast.error("El campo Por Cobrar, tiene una cantidad negativa", { position: toast.POSITION.BOTTOM_RIGHT });
+  //     setIsModalOpen(true);
+  //     return;
+  //   }
+  //   try {
+  //     const f = new FormData();
+  //     f.append('name', newData.name);
+  //     f.append('ci', newData.ci);
+  //     f.append('phone', newData.phone);
+  //     f.append('city', newData.city);
+  //     f.append('correo', newData.correo);
+  //     f.append('age', newData.age);
+  //     const responsePassenger = await axios.post(ApiUrl + `passenger-update/${passengerId}`, f, {
+  //     });
+  //     console.log('Respuesta de passenger-updateEEE:', responsePassenger);
+  //     if (responsePassenger.status === 200) {
+  //       toast.success("Registro Actualizado exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+  //       console.log('Deseo ver RESP UPDATE:', responsePassenger);
+  //     } else {
+  //       toast.error("Registro NO ha sido agregado", { position: toast.POSITION.BOTTOM_RIGHT });
+  //     }
+
+  //     const formData = new FormData();
+  //     formData.append('passenger_ci', newData.ci);
+  //     if (newData.description === 'No Aplica - Acompañante') {
+  //       formData.append('unit_cost', 0);
+  //     } else {
+  //       formData.append('unit_cost', newData.unit_cost);
+  //     }
+  //     if (newData.description === 'No Aplica - Acompañante') {
+  //       formData.append('total_cost', 0);
+  //     } else {
+  //       formData.append('total_cost', resultTotalCost || '');
+  //     }
+  //     if (newData.description === 'No Aplica - Acompañante') {
+  //       formData.append('collected', 0);
+  //     } else {
+  //       formData.append('collected', newData.collected);
+  //     }
+  //     if (resultRestToCollect === 0) {
+  //       formData.append('to_collect', 0);
+  //     } else {
+  //       formData.append('to_collect', resultRestToCollect || '');
+  //     }
+  //     formData.append('responsable', newData.responsable);
+  //     formData.append('meeting_point', newData.meeting_point);
+  //     formData.append("img_cmp_2", img02[0]);
+  //     if (newData.state != undefined || newData.state != null) {
+  //       formData.append('state', newData.state);
+  //     }
+  //     formData.append('observation', newData.observation);
+  //     // formData.append("passenger_group_leader_ci", newData.ci)
+  //     console.log('Datos enviados al backend:', Object.fromEntries(f));
+  //     const responseList = await axios.post(ApiUrl + `passenger-list-update/${passengerListId}/${passengerListCiId}`, formData);
+  //     const respList = responseList.data;
+  //     console.log('Respuesta del servidor PASENGER LIIIST:', respList);
+  //     // listsPassengers();
+  //     if (respList) {
+  //       // toast.success("Registro en LISTA de pasajeros ACTUALIZADO exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+  //       listsPassengers();
+  //     } else {
+  //       toast.error("Registro en lista de pasajeros NO ha sido actualizado", { position: toast.POSITION.BOTTOM_RIGHT });
+  //       console.log('ok');
+  //     }
+
+
+
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
   const onsubmitUpdate = async (event) => {
     event.preventDefault();
     if (resultRestToCollect < 0) {
@@ -203,29 +280,56 @@ export const SingleListPassenger = () => {
         formData.append('state', newData.state);
       }
       formData.append('observation', newData.observation);
-      for (let i = 0; i < formData.length; i++) {
-      // if (newData.passenger_type === 'Responsable' ) {
-      //   formData.append("passenger_group_leader_ci", newData.ci)
-      // }
-      console.log('FRO FROMDATA:',formData);
-      }
-
-      const responseList = await axios.post(ApiUrl + `passenger-list-update/${passengerListId}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      // formData.append("passenger_group_leader_ci", newData.ci)
+      console.log('Datos enviados al backend:', Object.fromEntries(formData));
+      console.log("DATOS de GUAEDADOsssss TOODOS:", formData);
+      const responseList = await axios.post(ApiUrl + `passenger-list-update/${passengerListId}/${passengerListCiId}`, formData);
       const respList = responseList.data;
-      if (respList.success) {
-        toast.success("Registro en lista de pasajeros actualizado exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+      console.log('Respuesta del servidor PASENGER LIIIST:', respList);
+      // listsPassengers();
+      if (respList) {
+        toast.success("Registro en LISTA de pasajeros ACTUALIZADO exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
         listsPassengers();
       } else {
         toast.error("Registro en lista de pasajeros NO ha sido actualizado", { position: toast.POSITION.BOTTOM_RIGHT });
+        console.log('ok');
       }
+
+      // const formD = new FormData();
+      // formD.append("img_cmp_2", img02[0]);
+      // console.log('Datos enviados al backend IMAGEN 2:', Object.fromEntries(formD));
+      // const responseList2 = await axios.post(ApiUrl + `passenger-list-update-img2/${passengerListId}`, formData);
+      // const respList2 = responseList2.data;
+      // console.log('Respuesta del servidor PASENGER LIIIST IMG 2:', respList2);
+      // if (respList2) {
+      //   toast.success("Registro en IMAGEN ACTUALIZADA exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+
+      // } else {
+      //   toast.error("Registro en lista de pasajeros NO IMAGEN ACTUALIZADA", { position: toast.POSITION.BOTTOM_RIGHT });
+
+      // }
+
     } catch (error) {
       console.log(error);
     }
   }
+
+  const updateFullPaymentBtn = async () => {
+    try {
+      const response = await axios.post(ApiUrl + `passenger-list-update/${passengerListId}`);
+      const responseD = response.data;
+      if (responseD) {
+        toast.success("Pago total realizado exitosamente", { position: toast.POSITION.BOTTOM_RIGHT });
+        // console.log('Datos enviados al backend Del PAGO TOTAL BTN:', Object.fromEntries(responseD.data));
+        console.log('Datos enviados al backend Del PAGO TOTAL BTN:', responseD.data);
+        listsPassengers();
+      } else {
+        toast.error("No se ha realizado el pago total", { position: toast.POSITION.BOTTOM_RIGHT });
+      }      
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const toastId = React.useRef(null);
   const notify = () => toastId.current = toast("Cargando Datos...", { autoClose: true, type: toast.TYPE.INFO, position: toast.POSITION.BOTTOM_RIGHT });
@@ -375,7 +479,7 @@ export const SingleListPassenger = () => {
                         <td>{listP.meeting_point}</td>
                         <td>{listP.observation}</td>
                         <td>
-                          <button className='btn btn-outline-primary btn-sm w-50' data-bs-toggle="modal" data-bs-target="#exampleModaEdit" onClick={() => { console.log("Valor de setlistPassengerId:", listP.passenger_lists_id); listsPassengersComplete(listP.passenger_lists_id); setpassengerType(listP.passenger_type); setpassengerSeats(listP.seat); setpassengerLeader(listP.passenger_group_leader_name); console.log("Valor de passenger_group_leader_CI:", listP.passenger_group_leader_ci); setpassengerId(listP.passenger_id); setpassengerUnitCost(listP.unit_cost); setpassengerTotalCost(listP.total_cost); setpassengerCollected(listP.collected); setpassengerToCollect(listP.to_collect); setpassengerListId(listP.passenger_lists_id); setpassengerGroupLeaderCI(listP.passenger_group_leader_ci); }}><i className="fas fa-edit"></i></button>
+                          <button className='btn btn-outline-primary btn-sm w-50' data-bs-toggle="modal" data-bs-target="#exampleModaEdit" onClick={() => { console.log("Valor de setlistPassengerId:", listP.passenger_lists_id); listsPassengersComplete(listP.passenger_lists_id); setpassengerType(listP.passenger_type); setpassengerSeats(listP.seat); setpassengerLeader(listP.passenger_group_leader_name); console.log("Valor de passenger_group_leader_CI:", listP.passenger_group_leader_ci); setpassengerId(listP.passenger_id); setpassengerUnitCost(listP.unit_cost); setpassengerTotalCost(listP.total_cost); setpassengerCollected(listP.collected); setpassengerToCollect(listP.to_collect); setpassengerListId(listP.passenger_lists_id); setpassengerGroupLeaderCI(listP.passenger_group_leader_ci); console.log('El valor de CI de API:', listP.passenger_ci); setpassengerListCiId(listP.passenger_ci); setCiAntigua(listP.passenger_group_leader_name); }}><i className="fas fa-edit"></i></button>
                           <button className='btn btn-outline-secondary btn-sm w-50' data-bs-toggle="modal" data-bs-target="#exampleModaPI" onClick={() => { setpassengerCi(listP.ci); setpassengerNames(listP.name); setpassengerMail(listP.correo); setpassengerPhone(listP.phone); setpassengerCity(listP.city); setpassengerAge(listP.age); }}><i className="fas fa-eye"></i></button>
                           {
                             listP.state === 7 || listP.state === 8 ? (
@@ -529,7 +633,6 @@ export const SingleListPassenger = () => {
                 <h5 className="modal-title" id="exampleModalLabel">EDITAR PASAJERO</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-
               <div className="modal-body">
                 <div className='container'>
                   <center><h4>TOUR: {dataTour.tour_destiny} </h4></center>
@@ -544,7 +647,6 @@ export const SingleListPassenger = () => {
                     </div>
                   </div>
                   <br></br>
-
                   <div className='row'>
                     <div className='col-12 col-sm-8'>
                       <div className="form-group">
@@ -587,92 +689,103 @@ export const SingleListPassenger = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='row'>
-                    {
-                      newData.description === 'No Aplica - Acompañante' ? (<div className="col-12"><hr style={{ margin: '10px 0' }} /></div>) : ''
-                    }
-                    {
-                      newData.description === 'No Aplica - Acompañante' ? (<h6>Campos vacíos porque: <b>No Aplica - Acompañante.</b> Revisar en: <b>Pasajero Responsable</b></h6>) : ''
-                    }
-                    <div className='col-12 col-sm-3'>
-                      <div className="form-group">
-                        <label >P. Unitario:</label>
-                        <input type="text" name='unit_cost' className="form-control" value={newData.description === 'No Aplica - Acompañante' ? '0' : newData.unit_cost} onChange={onInputChange} placeholder='' required disabled={newData.description === 'No Aplica - Acompañante'} ></input>
-                      </div>
-                    </div>
-                    <div className='col-12 col-sm-3'>
-                      <div className="form-group">
-                        <label >P. Total:</label>
-                        <input type="text" name='total_cost' className="form-control" value={resultTotalCost !== undefined ? resultTotalCost : ''} onChange={onInputChange} placeholder='' required disabled={newData.description === 'No Aplica - Acompañante'} />
-                      </div>
-                    </div>
-                    <div className='col-12 col-sm-3'>
-                      <div className="form-group">
-                        <label >Cobrado</label>
-                        <input type="text" name='collected' className="form-control" value={newData.description === 'No Aplica - Acompañante' ? '0' : newData.collected} onChange={onInputChange} placeholder='' required disabled={newData.description === 'No Aplica - Acompañante'}></input>
-                      </div>
-                    </div>
-                    <div className='col-12 col-sm-3'>
-                      <div className="form-group">
-                        <label >Por Cobrar</label>
-                        <input type="text" name='to_collect' className="form-control" value={resultRestToCollect !== undefined ? resultRestToCollect : ''} onChange={onInputChange} placeholder='' disabled></input>
-                      </div>
-                    </div>
-                    {
-                      newData.description === 'No Aplica - Acompañante' ? (<div className="col-12"><hr style={{ margin: '10px 0' }} /></div>) : ''
-                    }
-                  </div>
-                  <div className='row'>
-                    <div className='col-12 col-sm-6'>
-                      <div className="form-group">
-                        <label > Guía Responsable</label>
-                        <input type="text" name='responsable' className="form-control" value={newData.responsable} onChange={onInputChange} placeholder=''></input>
-                        {/* <UsersGuideSelect
+                  {
+                    newData.description !== 'No Aplica - Acompañante' && (
+                      <div>
+                        {/* Aquí va todo el formulario que quieres mostrar cuando la condición no se cumple */}
+                        <div className='row'>
+                          <div className='row'>
+                            {
+                              newData.description === 'No Aplica - Acompañante' ? (<div className="col-12"><hr style={{ margin: '10px 0' }} /></div>) : ''
+                            }
+                            {
+                              newData.description === 'No Aplica - Acompañante' ? (<h6>Campos vacíos porque: <b>No Aplica - Acompañante.</b> Revisar en: <b>Pasajero Responsable</b></h6>) : ''
+                            }
+                            <div className='col-12 col-sm-3'>
+                              <div className="form-group">
+                                <label >P. Unitario:</label>
+                                <input type="text" name='unit_cost' className="form-control" value={newData.description === 'No Aplica - Acompañante' ? '0' : newData.unit_cost} onChange={onInputChange} placeholder='' required disabled={newData.description === 'No Aplica - Acompañante'} ></input>
+                              </div>
+                            </div>
+                            <div className='col-12 col-sm-3'>
+                              <div className="form-group">
+                                <label >P. Total:</label>
+                                <input type="text" name='total_cost' className="form-control" value={resultTotalCost !== undefined ? resultTotalCost : ''} onChange={onInputChange} placeholder='' required disabled={newData.description === 'No Aplica - Acompañante'} />
+                              </div>
+                            </div>
+                            <div className='col-12 col-sm-3'>
+                              <div className="form-group">
+                                <label >Cobrado</label>
+                                <input type="text" name='collected' className="form-control" value={newData.description === 'No Aplica - Acompañante' ? '0' : newData.collected} onChange={onInputChange} placeholder='' required disabled={newData.description === 'No Aplica - Acompañante'}></input>
+                              </div>
+                            </div>
+                            <div className='col-12 col-sm-3'>
+                              <div className="form-group">
+                                <label >Por Cobrar</label>
+                                <input type="text" name='to_collect' className="form-control" value={resultRestToCollect !== undefined ? resultRestToCollect : ''} onChange={onInputChange} placeholder='' disabled></input>
+                              </div>
+                            </div>
+                            {
+                              newData.description === 'No Aplica - Acompañante' ? (<div className="col-12"><hr style={{ margin: '10px 0' }} /></div>) : ''
+                            }
+                          </div>
+                          <div className='row'>
+                            <div className='col-12 col-sm-6'>
+                              <div className="form-group">
+                                <label > Guía Responsable</label>
+                                <input type="text" name='responsable' className="form-control" value={newData.responsable} onChange={onInputChange} placeholder=''></input>
+                                {/* <UsersGuideSelect
                         userGuide={userGuide}
                         setUserGuide={setUserGuide}
                         requestUsersGuideSelected={requestUsersGuideSelected}
                         setrequestUsersGuideSelected={setrequestUsersGuideSelected}
                       /> */}
+                              </div>
+                            </div>
+                            <div className='col-12 col-sm-6'>
+                              <div className="form-group">
+                                <label >Punto de Ecuentro</label>
+                                <input type="text" name='meeting_point' className="form-control" value={newData.meeting_point} onChange={onInputChange} placeholder=''></input>
+                              </div>
+                            </div>
+                          </div>
+                          <div className='row'>
+                            <div className='col-12 col-sm-6'>
+                              <div className="mb-3">
+                                <label className="form-label">Comprobante Pago Total</label>
+                                {/* <input name='img_cmp_2' className="form-control" onChange={handleImages2Change} id="formFileSm" type="file" accept="image/png, image/gif, image/jpeg" disabled={newData.description === 'No Aplica - Acompañante'}></input> */}
+                                <input name='img_cmp_2' className="form-control" onChange={(e) => handleImages2Change(e)} id="formFileSm" type="file" accept="image/png, image/gif, image/jpeg" disabled={newData.description === 'No Aplica - Acompañante'}></input>
+                              </div>
+                            </div>
+                            <div className='col-12 col-sm-6'>
+                              <div className="form-group">
+                                <label >Estado de Pago</label>
+                                <select className="form-select" name="state" onChange={onInputChange} aria-label="Default select example" disabled={newData.description === 'No Aplica - Acompañante'}>
+                                  <option value="" >{newData.description}</option>
+                                  <option value="6">No Paga Nada</option>
+                                  <option value="8">Pago Parcial</option>
+                                  <option value="7">Pagado Todo</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div className='row'>
+                            <div className='col-12 col-sm-12'>
+                              <div className="form-group">
+                                <label > Observaciones</label>
+                                <input type="text" name='observation' className="form-control" value={newData.observation} onChange={onInputChange} placeholder=''></input>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className='col-12 col-sm-6'>
-                      <div className="form-group">
-                        <label >Punto de Ecuentro</label>
-                        <input type="text" name='meeting_point' className="form-control" value={newData.meeting_point} onChange={onInputChange} placeholder=''></input>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='row'>
-                    <div className='col-12 col-sm-6'>
-                      <div className="mb-3">
-                        <label className="form-label">Comprobante Pago Total</label>
-                        <input name='img_cmp_2' className="form-control" onChange={handleImages2Change} id="formFileSm" type="file" accept="image/png, image/gif, image/jpeg" required disabled={newData.description === 'No Aplica - Acompañante'}></input>
-                      </div>
-                    </div>
-                    <div className='col-12 col-sm-6'>
-                      <div className="form-group">
-                        <label >Estado de Pago</label>
-                        <select className="form-select" name="state" onChange={onInputChange} aria-label="Default select example" disabled={newData.description === 'No Aplica - Acompañante'}>
-                          <option value="" >{newData.description}</option>
-                          {/* <option value="6">No Paga Nada</option> */}
-                          <option value="8">Pago Parcial</option>
-                          <option value="7">Pagado Todo</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='row'>
-                    <div className='col-12 col-sm-12'>
-                      <div className="form-group">
-                        <label > Observaciones</label>
-                        <input type="text" name='observation' className="form-control" value={newData.observation} onChange={onInputChange} placeholder=''></input>
-                      </div>
-                    </div>
-                  </div>
-
+                    )
+                  }
                 </div>
               </div>
               <div className="modal-footer">
+                {/* <button type="button" className="btn btn-success" onChange={updateFullPaymentBtn}> Pago Total</button> */}
+                <button type="button" className="btn btn-success" onClick={updateFullPaymentBtn}> Pago Total</button>
                 <button type="submit" className="btn btn-primary"> Aceptar</button>
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
               </div>

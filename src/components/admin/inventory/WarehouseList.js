@@ -15,6 +15,7 @@ export const WarehouseList = () => {
     const [productquantity, setproductquantity] = useState('');
     const [productId, setproductId] = useState();
     const [inventoriesId, setinventoriesId] = useState();
+    const [warehouseId, setwarehouseId] = useState();
     const [formD, setformD] = useState({
         quantityToMove: '',
         observation: '',
@@ -46,6 +47,7 @@ export const WarehouseList = () => {
         const f = new FormData();
         f.append("status_id", formData.status_id);
         f.append("stock", productquantity);
+        f.append("warehouse_id", warehouseId);
         console.log('VALOR DE STOCK:', productquantity);
         console.log('DENTRO DE YA ESTAN AQUI. VALOR DE STAUTS:', formData.status_id);
         console.log('DENTRO DE YA ESTAN AQUI. VALOR DE STOCK:', productquantity);
@@ -254,7 +256,7 @@ export const WarehouseList = () => {
 
                                                             <td>
                                                                 <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#observation" onClick={() => setproductSelected(data)} ><i className="fas fa-eye" ></i></button>
-                                                                <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#exampleModaEditWarehouse" onClick={() => { setproductSelected(data); console.log("El valor del ID STATUS:", data.status_id); console.log("El valor de STATUS:", data.status); console.log("El valor de CANTIDAD:", data.quantity); setproductState(data.status); setproductquantity(data.quantity); console.log('El valor de PRODUCT ID:', data.product_id); setproductId(data.product_id); console.log('EL valor de INVENTORIES ID:', data.inventories_id); setinventoriesId(data.inventories_id); }}><i className="fas fa-edit"></i></button>
+                                                                <button className='btn btn-outline-primary' data-bs-toggle="modal" data-bs-target="#exampleModaEditWarehouse" onClick={() => { setproductSelected(data); console.log("El valor del ID STATUS:", data.status_id); console.log("El valor de STATUS:", data.status); console.log("El valor de CANTIDAD:", data.quantity); setproductState(data.status); setproductquantity(data.quantity); console.log('El valor de PRODUCT ID:', data.product_id); setproductId(data.product_id); console.log('EL valor de INVENTORIES ID:', data.inventories_id); setinventoriesId(data.inventories_id); console.log('EL ID de BODEGA:', data.warehouse_id); setwarehouseId(data.warehouse_id); }}><i className="fas fa-edit"></i></button>
                                                                 <button className='btn btn-outline-danger' data-bs-toggle="modal" data-bs-target="#delete" onClick={() => setproductSelected(data)} ><i className="fas fa-trash-alt" aria-hidden="true" ></i></button>
                                                             </td>
                                                         </tr>

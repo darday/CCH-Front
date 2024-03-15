@@ -215,6 +215,7 @@ export const ListAvailablePassengerTours = () => {
             }
             console.log("DATOS de GUAEDADOsssss:", f);
             console.log(Object.fromEntries(f));
+            console.log('Datos enviados al backend AGREGADO:', Object.fromEntries(f));
             try {
 
                 const response = await axios.post(ApiUrl + 'passenger-list-create', f);
